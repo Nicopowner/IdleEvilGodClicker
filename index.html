@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Death clicker</title>
+  
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  
+  <div class="clicker_content unselectable">
+    <div class="title"> Idle Evil God
+    </div>
+      <div class="score_header">
+        <div class="score_header_left">
+            Living:<span id="score_living"> </span><br>
+            Kills:<span id="score_death"> </span>
+            <span class="hide" id="score_death_amount"> </span><br>
+            Passive Kills:<span id="score_passive_death"> </span>
+        </div>  
+        <div class="score_header_right">
+          DeathPoints:<span id="score_deathpoints"> </span><br>
+          Worshipper:<span id="score_worshipper"> </span><br>
+          Divinities:<span id="score_divinities"> </span>
+        </div>
+      </div>  
+      <div class="clicker_power_bar"><div class="clicker_power_bar_result" id="clicker_power_bar"></div></div>
+      <div class="clicker_area" id="clicker_area_id"draggable="false" userselect="none">
+        
+        <img class="click_object" id="planet" src="images/world smaller stage 1.png" draggable="false">
+        
+        <div id="lightning_strike_effect"><img class="click_effect" id="click_effect_visual" src="images/lightning.png"></div>
+
+        <div id="number-container"></div>
+        <!--<div id="lightning_strike_effect" style="position: absolute; visibility: visible; top:200px; left:200px; width: 20px; height: 20px; object-fit: contain;background-image: 'images/lightning.png';">
+         
+        </div> -->
+      </div> 
+
+    
+    <!-- menu copied form w3 schools-->
+      <div class="upgrade_area">
+        <div class="w3-bar w3-black upgrade_title">
+        <button class="w3-bar-item w3-button" onclick="menu('Upgrades')">Upgrades</button>
+        <button class="w3-bar-item w3-button" onclick="menu('Cult')">Cult</button>
+        <button class="w3-bar-item w3-button" onclick="menu('Relic')">Relics</button>
+        <button class="w3-bar-item w3-button" onclick="menu('Settings')">Config</button>
+        <button class="w3-bar-item w3-button" onclick="menu('Stats')">Stats</button>
+        <button class="w3-bar-item w3-button" onclick="menu('Shop')">Shop</button>
+      </div>
+      <div id="Upgrades" class="w3-container w3-display-container menuitem">
+        <div class="progress_bar" id="passive_speed_bar"><div class="progress_bar_result" id="passive_speed_bar_result"></div></div>
+
+        <!-- lightning kills -->  
+        <div class="info_box" >
+          
+          <div style="text-align: end;">
+            <button id="select_1" class="w3-button selector_button selector_button_clicked" onclick="buyamount('1')" style="height: 25px; padding:0px;">x1</button>
+            <button id="select_10" class="w3-button selector_button" onclick="buyamount('10')" style="height: 25px; padding:0px;">x10</button>
+            <button id="select_100" class="w3-button selector_button" onclick="buyamount('100')" style="height: 25px; padding:0px;">x100</button>
+          </div>
+        </div>
+        <div class="upgrade_component" id="lightning_strike_component">
+            <div class = "upgrade_logo" id="lightning_strike_logo">
+              
+              <img src="images/lightning.png" style="height: 35px; ">
+              <div class="upgrade_level" id="lightning_strike_level"></div>
+            </div>
+            <div class="upgrade_name" id="lightning_strike_name">
+              Lightning Strike power 
+              <span id="lightning_strike_increase_amount"></span>
+            </div>
+            <div class="upgrade_button" id="lightning_strike_button" type="button">
+                
+                <div class="upgrade_price" id="lightning_strike_price">Price</div>
+                <div class="progressbar" id="lightning_strike_bar"><div class="progressbar_result" id="lightning_strike_bar_result"></div></div>
+
+            </div>
+
+        </div>
+        <div class="more_info" id="lightning_strike_more_info">more info</div>
+
+        <!-- Passive lightning kills -->       
+        <div class="upgrade_component" id="passive_lightning_strike_component">
+          <div class = "upgrade_logo" id="passive_lightning_strike_logo">
+            
+            <img src="images/lightning.png" style="height: 35px; ">
+            <div class="upgrade_level" id="passive_lightning_strike_level">lvl </div>
+          </div>
+          <div class="upgrade_name" id="passive_lightning_strike_name">
+            Lightning Strike passive speed 
+            <span id="passive_lightning_strike_increase_amount"></span>
+          </div>
+          <div class="upgrade_button" id="passive_lightning_strike_button" type="button">
+              
+              <div class="upgrade_price" id="passive_lightning_strike_price">Price</div>
+              <div class="progressbar" id="passive_lightning_strike_bar"><div class="progressbar_result" id="passive_lightning_strike_bar_result"></div></div>
+
+          </div>
+      </div>
+      <div class="more_info" id="passive_lightning_strike_more_info">more info</div>
+
+        <!-- Acolyte -->
+         <!-- 
+        <div class="upgrade_component" id="buy_acolyte_component">
+          <div class = "upgrade_logo" id="acolyte_logo">
+            <img src="images/lightning.png" style="height: 35px; ">
+            <div class="upgrade_level" id="lightning_strike_level">lvl 15</div>
+          </div>
+          <div class="upgrade_name">
+            Buy Acolyte
+          </div>
+          <div class="upgrade_button" id="buy_acolyte_button" type="button">
+              
+              <span class="upgrade_price" id="buy_acolyte_price">Price</span>
+          </div>
+        </div>-->
+
+      </div>
+
+      <div id="Cult" class="w3-container w3-display-container menuitem" style="display:none">
+        <div id="buttons" class="cult_button_roster">
+          <div id="events_button" class="cult_button">Events</div>
+          <div id="new_acolyte" class="cult_button">Hire New Acolyte</div>
+        </div>
+          <div id="cult_roster" class="cult_roster">
+            <div class="id_card_cultist" id="id_card_cultist">
+                <div class="id_card_content" id="id_card_content">
+                  <div >
+                    <img class="id_card_profile_pic" id="id_card_profile_pic" src="images/beast helmet.png">
+
+                  </div>
+                  <div class="id_card_details">
+                    <span class="name" id="id_card_name"> Name: Bill </span><br>
+                    <span class="level" id="id_card_level"> Level: Grunt</span><br>
+                    <span class="age" id="id_card_age"> Age: 14 </span><br>
+                    <span class="worshipper" id="id_card_worshipper"> Worshipper: 10 </span>
+                  </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+
+      <!--Relics-->
+        <div id="Relic" class="w3-container w3-display-container menuitem" style="display:none">
+              
+          <div id="armory_button" class="relic_button">Armory</div>
+
+
+              <div style="display: none;">
+                <div class="relic_component" id="relic_component">
+                  <div class = "relic_logo" id="relic_logo">
+                    
+                    <img src="images/hammer of thor.png" style="height: 55px; margin: auto; ">
+                    <div class="relic_level" id="relic_level">lvl </div>
+                  </div>
+                  <div class="relic_name" id="relic_name">
+                    Lightning Strike passive speed 
+                    <span id="relic_increase_amount"></span>
+                  </div>
+                  <div class="relic_button" id="relic_button" type="button">
+                      
+                      <div class="relic_price" id="relic_price">Price</div>
+
+                  </div>
+                </div>
+            </div>
+        </div>
+
+       <!--Stats-->
+      <div id="Stats" class="w3-container w3-display-container menuitem" style="display:none">
+        
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Score</span> 
+          <span id="stats_score" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Deathpoints</span> 
+          <span id="stats_deathpoints" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Worshipper</span> 
+          <span id="stats_worshipper" style="margin: auto">0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Divinities</span> 
+          <span id="stats_divinities" style="margin: auto">0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Kills</span> 
+          <span id="stats_death" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Passive kills</span> 
+          <span id="stats_passive_kills" style="margin: auto">0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Total clicks</span> 
+          <span id="stats_clicks" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Total click kills</span> 
+          <span id="stats_click_kills" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">days in game</span> 
+          <span id="stats_daytics" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">naturalbirths</span> 
+          <span id="stats_naturalbirths" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">naturaldeaths</span> 
+          <span id="stats_naturaldeaths" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">upgradesExisting</span> 
+          <span id="stats_upgradesExisting" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">totalupgradesbought</span> 
+          <span id="stats_totalupgradesbought" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">lightningKillsPerClick</span> 
+          <span id="stats_lightningKillsPerClick" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">lightningCost</span> 
+          <span id="stats_lightningCost" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">lightningPassiveSpeed</span> 
+          <span id="stats_lightningPassiveSpeed" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">lightningPassiveCost</span> 
+          <span id="stats_lightningPassiveCost" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">lightningKills</span> 
+          <span id="stats_lightningKills" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">lightninglevel</span> 
+          <span id="stats_lightninglevel" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">acolyteAmount</span> 
+          <span id="stats_acolyteAmount" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">acolyteDamage</span> 
+          <span id="stats_acolyteDamage" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">buyacolyteCost</span> 
+          <span id="stats_buyacolyteCost" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">acolytelevel</span> 
+          <span id="stats_acolytelevel" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">acolyteKills</span> 
+          <span id="stats_acolyteKills" style="margin: auto"> 0</span>
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">acolyteWorshipperPerSecond</span> 
+          <span id="stats_acolyteWorshipperPerSecond" style="margin: auto"> 0</span>
+        </div>
+        
+        
+
+      </div>
+      <!--settings
+      <div id="Cult" class="w3-container w3-display-container menuitem" style="display:none">
+        
+        
+        <h2>Cult attributes</h2>
+      
+      </div>-->
+      
+      <div id="Settings" class="w3-container w3-display-container menuitem" style="display:none">
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Remove SFX</span> 
+            <input type="checkbox" id="cancelSFX" value="True" style="height: 50%; margin: auto;">
+        </div>
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Remove music</span> 
+          <input type="checkbox" id="cancelmusic" value="True" style="height: 50%; margin: auto;">
+      </div>
+      <div class="settings_component">
+        <span style="margin: auto; margin-left: 5%;">adjust volume</span> 
+      <div class="slidecontainer">
+        <input type="range" min="1" max="100" value="50" class="slider" id="music_volume_bar">
+      </div>
+      </div>
+        <div class="save_component">
+          <button class="settings_button" id="Save">Save</button>
+          <button class="settings_button" id="Load">Load</button>
+          <button class="settings_button" id="Reset">Reset Save</button>
+        </div>
+        
+      
+      </div>
+      <div id="Shop" class="w3-container w3-display-container menuitem" style="display:none">
+        
+        <h2>Shop</h2>
+      
+      </div>
+
+      </div>
+        <div class="armory" id="armory_screen" style="display: none;" >
+          <span class="close" id="close_armory">&times;</span>
+          
+          <div > Equipment area
+            <div id="top_armory_section" class="armory_section"> 
+              <div id="helm" class="helm">
+                <img src="images/helm area.svg" alt="Description of the image" height="100px">
+              </div>
+              <div id="cloak" class="cloak"> 
+                <img src="images/cloak area.svg" alt="Description of the image" height="100px">
+              </div> 
+              
+            </div>
+            <div id="middle_armory_section" class="armory_section" >
+              <div id="weapon" class="weapon">
+                <img src="images/weapon area left.svg" alt="Description of the image" height="100px">
+              </div> 
+              <div id="chest" class="chest">
+                <img src="images/chest area.svg" alt="Description of the image" height="100px">
+              </div>
+              <div id="shield" class="shield">
+                <img src="images/weapon area right.svg" alt="Description of the image" height="100px">
+              </div>
+              
+            </div>
+            <div id="bottom_armory_section" class="armory_section">
+              <div id="ring" class="ring">
+                <img src="images/ring area.svg" alt="Description of the image" height="100px">
+              </div>
+              <div id="shoes" class="shoes">
+                <img src="images/shoe area.svg" alt="Description of the image" height="100px">
+              </div>
+            </div>
+            
+        </div> 
+
+        <div class="relic_armory_area armory_section" >
+          
+        <!-- Potential section to remove gear, dont see why i would add this for now
+          <div id="remove_gear" class="remove_gear" style="float:right;"> 
+            <img src="images/remove.jpeg" alt="Description of the image" height="100px">
+          </div> -->
+          <div class="relic_armory_box" id="relic_armory_box" >
+            
+          </div>
+        </div>
+        </div>
+
+        <div class="id_card_detail_pop_up" id="id_card_detail_pop_up">
+          <div class="id_card_detail_pop_up_content">
+            <div >
+              <img class="id_card_profile_pic_pop_up" id="id_card_profile_pic_pop_up" src="">
+              <span class="close" id="close_id_card">&times;</span>
+            </div>
+            
+            <div class="id_card_details_pop_up_details">
+              
+              
+              <span class="pop_up_name" id="pop_up_name"> Name: Bill </span><br>
+              <span class="pop_up_job" id="pop_up_job"> Job: Employee </span><br>
+              <span class="pop_up_level_name" id="pop_up_level_name"> Level: Grunt</span><br>
+              <span class="pop_up_level" id="pop_up_level"> level: 1 </span><br>
+              <span class="pop_up_age" id="pop_up_age"> Age: 14 </span><br>
+              <span class="pop_up_worshipper" id="pop_up_worshipper"> Worshipper: 10 </span><br>
+              <span class="pop_up_total_worshipper" id="pop_up_total_worshipper"> Total worshipper: 14 </span><br>
+              <span class="pop_up_status" id="pop_up_status"> Status: Alive </span>
+              
+
+            </div>
+            
+
+          </div>
+          <div class="id_card_detail_pop_up_buttons">
+            <div >
+              <div id="release_button" class="cult_button">Release cultee from service</div>
+              <div id="upgrade_acolyte" class="cult_button">Sent cultee to training</div>
+            </div>
+            
+          </div>
+
+        </div>
+
+        <!--Pop up used to describe the cultist deaths-->
+      
+        <div id="popup" class="popup">
+        </div>
+
+        <div class="events_screen" id="event_screen_full" style="display: none;" >
+            <h3 style="color: #000;">Disaster Card events<span class="close" id="close_events" style="margin-right: 5px; font-size:30px;">&times;</span></h3> 
+            
+            <div class="events_screen_content" id="event_screen">
+            
+            <!---->
+              <div class="event_box" id="event_box" style="display: none;">
+                
+                <div id="event_image_container">
+                  <img class="id_card_profile_pic_pop_up" id="event_picture" src="./images/Toxic staff.png">
+                </div>
+                <div class="event_details" id="event_details">
+                  <span class="event_content_information" id="event_name"> Name: Bill </span><br>
+                  <span class="event_content_information" id="event_description"> Description: <br> bla blab </span><br>
+                  <span class="event_content_information" id="event_effect"> Kills: Grunt</span><br>
+                </div>
+                <div >
+                  <div id="event_button" class="event_button">Activate: </div>
+                </div>
+                  
+              </div>
+              
+              </div>
+            </div>
+        
+      </div>
+
+<!--End of the body tag-->
+  </div>
+
+
+  <div id="overlay"></div>
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <script src="game.js" charset="utf-8"></script>
+</body>
+
+</html>
