@@ -20,8 +20,8 @@ var data = {
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints: 1500000000,
-    worshipper: 250000000,
+    deathpoints: 1,
+    worshipper: 1,
     divinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
