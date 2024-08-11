@@ -1,4 +1,5 @@
 
+
 var groan = [
     new Audio('sounds/groana.mp3'),
     new Audio('sounds/groanb.mp3'),
@@ -20,8 +21,8 @@ var data = {
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints: 1,
-    worshipper: 1,
+    deathpoints: 1500000000,
+    worshipper: 250000000,
     divinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
@@ -1041,13 +1042,21 @@ function createArmoryRelics(){
             //add it to the list of armory boxes
             $(".relic_armory_area").append(newRelicArmoryBox);
             //add the picture in the box
-            document.getElementById(data.relic[i][1] + '_armory_box').innerHTML ='<img src= '+data.relic[i][7] + ' style="height: 100px; " draggable="true">';
+            document.getElementById(data.relic[i][1] + '_armory_box').innerHTML ='<img id="'+ data.relic[i][1] + '_armory_image" src= '+data.relic[i][7] + ' style="height: 100px; " draggable="true">';
+            $('#'+data.relic[i][1] + '_armory_box').css("touchaction","none") /* Prevent default touch actions */
             
             data.relic[i][11] = true;
             
             document.getElementById(data.relic[i][1] + '_armory_box').addEventListener('dragstart',dragStart);
             document.getElementById(data.relic[i][1] + '_armory_box').addEventListener('dragend',dragEnd);
             document.getElementById(data.relic[i][1] + '_armory_box').addEventListener('drop',dragDrop);
+            
+            $("#"+data.relic[i][1] + '_armory_box').on('click',function(){equipEvent(event)});
+            
+            $("#"+data.relic[i][1] + '_armory_image').on('click',function(){equipEvent(event)});
+           // document.getElementById(data.relic[i][1] + '_armory_box').addEventListener('touchstart',equipEvent(Event),{passive:true});
+           // document.getElementById(data.relic[i][1] + '_armory_box').addEventListener('touchend',equipEvent(Event),{passive:true});
+            
         }
     };
 };
@@ -1201,7 +1210,7 @@ function dragStart(){
 }
 
 function dragEnd(){
-    //console.log(this.id,'dragend')
+    console.log(this.id,'dragend')
    
     if(relicClassReplaced[0] === relicClassDragged[0] /*&& !(relicClassReplaced === 'remove_gear')*/){
         //console.log(relicClassReplaced,relicClassDragged,relicIdDragged,'ok')
@@ -1231,15 +1240,50 @@ function dragEnd(){
     }
 }
 
-function dragOver(e){
-    e.preventDefault();
-    //console.log(this.id, this.classList, 'dragover')  
+function equipEvent(event){
+    //console.log(event.target.id);
+    var name = event.target.id.replace('_armory_image', ""); 
+    //var parentElement = target.parentElement;
+    //console.log(  parentElement );
+    
+    for(i=0;i<data.relic.length;i++){
+        if(name.includes(data.relic[i][1])){
+            //loop through all equipment
+            for(a=0;a<data.relic.length;a++){
+                //check all equipment for same types
+                if( data.relic[i][8] === data.relic[a][8]){
+                    //remove all other same type relics form equipment
+                    data.relic[a][10]=false; 
+                }
+            }
+            //equip the gear selected
+            data.relic[i][10]=true;
+            //display the gear in the equiped armory
+            $("#" + data.relic[i][8]).html('<img src= '+ data.relic[i][7] + ' style="height: 100px; " draggable="true">');
+                // update the ID $("#"+relicReplaced).attr("id",data.relic[i][1]+"_armory_box_equiped");
+                //$("#"+relicReplaced).css("display",'none');
+                // test for successful swapsconsole.log(("#"+relicReplaced).id,'<img src= '+data.relic[i][7] + ' style="height: 100px; " draggable="true">');
+        }
+    }
+    console.log(data.relic)
+    
+
+
 }
+
+
+
+function dragOver(e){
+    //console.log(this.id, this.classList, 'dragover'); 
+    e.preventDefault(); 
+}
+    
+    
 
 function dragDrop(){
     relicReplaced = this.id;
     relicClassReplaced = this.classList;
-    //console.log(this.id, this.classList,'dragdrop');
+    console.log(this.id, this.classList,'dragdrop');
 }
 
 function clickArmory(){
@@ -2759,4 +2803,5 @@ document.getElementById('cancelSFX').addEventListener('change', function() {
         localStorage.setItem(savename, '{}');
         location.reload();
     }
+
 
