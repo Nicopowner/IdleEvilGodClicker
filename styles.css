@@ -750,3 +750,6 @@ display: none;
   z-index: 9999; /* On top of other elements */
   display: none; /* Hidden by default */
 }
+iframe{
+  display: none !important;  
+}
