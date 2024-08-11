@@ -1,5 +1,4 @@
 
-
 var groan = [
     new Audio('sounds/groana.mp3'),
     new Audio('sounds/groanb.mp3'),
@@ -175,7 +174,7 @@ var data = {
             totalKills = 0, 
             level = 0,
             description =  "Back from the past to inflict pain",
-            logo = '"images/spanish flu.png"',
+            logo = '"images/Spanish Flu.png"',
             automatedFlag = false,
             artifactUpgrade = 0,
             visible = false,
@@ -207,7 +206,7 @@ var data = {
             totalKills = 0, 
             level = 0,
             description =  "A flu strain resistant to most medicen. It was released when scientists cracked a space rock open",
-            logo = '"images/alien flu.png"',
+            logo = '"images/Alien Flu.png"',
             automatedFlag = false,
             artifactUpgrade = 0,
             visible = false,
@@ -519,7 +518,7 @@ var data = {
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "A mace imbued with the essence of fire, capable of incinerating rocks with a single touch. Wielding this mace can increase your passive fire kills by 40% per level.",
-                logo = '"images/Fire Mace.png"',
+                logo = '"images/fire mace.png"',
                 type = 'weapon',
                 upgradeIncreaseIncrement = 0.4,
                 active = false,
@@ -535,7 +534,7 @@ var data = {
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "A sword forged from the purest ice, capable of freezing enemies in their tracks. Wielding this sword can increase your passive ice and water kills by 35% per level.",
-                logo = '"images/Ice Sword.png"',
+                logo = '"images/ice sword.png"',
                 type = 'weapon',
                 upgradeIncreaseIncrement = 0.35,
                 active = false,
@@ -551,7 +550,7 @@ var data = {
                 upgradeIncreaseEffect = 0,
                 level = 0,
                 description = "A staff crackling with the power of lightning, capable of summoning thunderous strikes. Wielding this staff can increase your lightning click kills by 550 per level.",
-                logo = '"images/Thunder Staff.png"',
+                logo = '"images/Thunder staff.png"',
                 type = 'weapon',
                 upgradeIncreaseIncrement = 950,
                 active = false,
@@ -567,7 +566,7 @@ var data = {
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "An axe forged from the heart of the earth, capable of causing tremors with each strike. Wielding this axe can increase your passive earth kills by 75% per level.",
-                logo = '"images/Earth Axe.png"',
+                logo = '"images/Earth axe.png"',
                 type = 'weapon',
                 upgradeIncreaseIncrement = 0.75,
                 active = false,
@@ -599,7 +598,7 @@ var data = {
                 upgradeIncreaseEffect = 0,
                 level = 0,
                 description = "A cloak infused with the power of lightning, enhancing agility and speed. Wearing this cloak can increase your lightning power by 5% of your passive kills per minute.",
-                logo = '"images/Lightning Cloak.png"',
+                logo = '"images/lightning cloak.png"',
                 type = 'cloak',
                 upgradeIncreaseIncrement = 0.05,
                 active = false,
@@ -615,7 +614,7 @@ var data = {
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "A helmet adorned with beastly features, providing unmatched beastly ferocity. Wearing this helmet can increase your passive beast based kills by 130% per level.",
-                logo = '"images/Beast Helmet.png"',
+                logo = '"images/beast helmet.png"',
                 type = 'helm',
                 upgradeIncreaseIncrement = 1.3,
                 active = false,
@@ -642,7 +641,7 @@ var data = {
             ],[
                 id = 11,
                 idName = "lightning_helmet",
-                namePassive = "Lightning Helmet",
+                namePassive = "Lightning helmet",
                 price = 1490000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
@@ -663,7 +662,7 @@ var data = {
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "Armor crafted from the scales of a mighty dragon, offering unparalleled protection and strength. Wearing this armor can increase your passive and active power by 35% per level.",
-                logo = '"images/Dragon Scale Armor.png"',
+                logo = '"images/Dragon scale Armor.png"',
                 type = 'chest',
                 upgradeIncreaseIncrement = 0.35,
                 active = false,
@@ -2773,6 +2772,11 @@ document.getElementById('cancelSFX').addEventListener('change', function() {
     }
 }
 
+window.setInterval( function(){
+    localStorage.setItem("autoSave", JSON.stringify(data)); 
+        
+},30000);
+
 
 
     $("#Save").on("click",function(Event){
@@ -2795,7 +2799,16 @@ document.getElementById('cancelSFX').addEventListener('change', function() {
     };
 
     function load(savename = 'SaveFile') {
-        Object.assign(data, JSON.parse(localStorage.getItem(savename) || '{}'));
+        let loadChoice = confirm("Do you want to load an auto savefile?");
+        if (loadChoice){
+            Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
+            console.log("auto save file loaded")
+        }
+        else{
+            Object.assign(data, JSON.parse(localStorage.getItem(savename) || '{}'));
+            console.log("manual save file loaded")
+        }
+        
         dataUpdate();
     };
 
@@ -2803,5 +2816,4 @@ document.getElementById('cancelSFX').addEventListener('change', function() {
         localStorage.setItem(savename, '{}');
         location.reload();
     }
-
 
