@@ -13,21 +13,23 @@ var backgroundmusic = [
 var data = {
     mytime: Date.now(),
     currentClicks: 0,
-    ClickPowerBooster: 1,
+    clickPowerBooster: 1,
     gameStarted: false,
+    prettyNumber: false,
     worldstage: 0,
     worldKilled: 0,
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints: 1500000000,
-    worshipper: 250000000,
+    deathpoints: 1,
+    worshipper: 1,
     divinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
     living: 8122775940,
     kills: 0,
     passiveKills: 0,
+    eventKills: 0,
     clicks: 0,
     clickKills: 0,
     // natural life cycle 
@@ -94,7 +96,7 @@ var data = {
             totalKills = 0, 
             level = 0,
             description =  "Toasters sometimes explode when people are trying to make toast. 'There is no such thing as free lunch'",
-            logo = '"images/toaster.png"',
+            logo = '"images/Toaster.png"',
             automatedFlag = false,
             artifactUpgrade = 0,
             visible = true,
@@ -926,7 +928,7 @@ function createUpgrades(){
         newUpgradeBoxlevel.id = newIdBox + '_level';
         document.getElementById(newIdBox + '_logo').appendChild(newUpgradeBoxlevel);
         //update the name based on DB name
-        $("#"+newIdBox + '_level').text("lvl " +data.passiveUpgrades[i][7]);
+        //$("#"+newIdBox + '_level').text("lvl " +data.passiveUpgrades[i][7]);
         //update the logo
                
 
@@ -948,7 +950,7 @@ function createUpgrades(){
         let newUpgradeBoxPrice = upgradePurchaseBoxPrice.cloneNode(false);
         newUpgradeBoxPrice.id = newIdBox + '_price';
         targetUpgradeContainerButton.appendChild(newUpgradeBoxPrice);
-        $("#"+newIdBox + '_price').text(data.passiveUpgrades[i][3]);
+        //$("#"+newIdBox + '_price').text(data.passiveUpgrades[i][3]);
 
         // progress bar in the upgrade button
         let newUpgradeBoxBar = upgradePurchaseBoxBar.cloneNode(false);
@@ -1001,7 +1003,8 @@ function createRelics(){
         newRelicBoxlevel.id = newIdRelicBox + '_level';
         document.getElementById(newIdRelicBox + '_logo').appendChild(newRelicBoxlevel);
         //update the name based on DB name
-        $("#"+newIdRelicBox + '_level').text("lvl " +data.relic[i][5]);
+        
+        //$("#"+newIdRelicBox + '_level').text("lvl " +data.relic[i][5]);
         //update the logo
                
 
@@ -1023,7 +1026,7 @@ function createRelics(){
         let newRelicBoxPrice = relicPurchaseBoxPrice.cloneNode(false);
         newRelicBoxPrice.id = newIdRelicBox + '_price';
         targetRelicContainerButton.appendChild(newRelicBoxPrice);
-        $("#"+newIdRelicBox + '_price').text(data.relic[i][3]);
+        //$("#"+newIdRelicBox + '_price').text(data.relic[i][3]);
 
     
     }
@@ -1127,12 +1130,14 @@ function createEvent(){
                                     data.living -= update;
                                     data.kills += update;
                                     data.deathpoints += update*0.5;
+                                    data.eventKills += update;
                                 break;
                                 case "percentage" :
                                     var update = data.sectEvent[i][3] * data.living;
                                     data.living -= update;
                                     data.kills += update;
                                     data.deathpoints += update*0.5;
+                                    data.eventKills += update;
                                     
                                     //data.deathpoints require update
             
@@ -1142,6 +1147,7 @@ function createEvent(){
                                     data.living -= update;
                                     data.kills += update;
                                     data.deathpoints += update*0.5;
+                                    data.eventKills += update;
                                 break;
                             }
 
@@ -1989,7 +1995,7 @@ function lightningPowerClick(){
                 }
             }
         
-    var clickKills = ((data.lightningKillsPerClick + addition) * multiplication * data.ClickPowerBooster) + partOfTotal
+    var clickKills = ((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal
 return clickKills
 }
 
@@ -2052,7 +2058,7 @@ $("#lightning_strike_button").on("click",function(Event){
         }
         data.totalupgradesbought += Number(data.purchaseAmount);  
         data.lightningLevel += Number(data.purchaseAmount);
-        $("#lightning_strike_level").text("lvl "+data.lightningLevel);    
+       dataUpdate();    
 
         $(Event.currentTarget).addClass("clicked");
             setTimeout(() => {
@@ -2082,7 +2088,7 @@ $("#passive_lightning_strike_button").on("click",function(Event){
             data.lightningPassiveCost *= Number(Math.pow(1.09,data.purchaseAmount-1)); 
             data.lightningPassiveSpeed *= Number(Math.pow(0.99,data.purchaseAmount-1));
         }
-        $("#passive_lightning_strike_level").text("lvl "+ data.lightningPassiveLevel); 
+        dataUpdate();
         $(Event.currentTarget).addClass("clicked");
             setTimeout(() => {
                 $(Event.currentTarget).removeClass("clicked");
@@ -2284,16 +2290,98 @@ function showPopup(content) {
     }, 6000); // The pop-up will disappear after 3 seconds
 }
 
+function prettyNumbers(inputNumber){
+    if (inputNumber> 1000000000000000000){
+        inputNumber = (inputNumber/1000000000000000000).toFixed(2)
+        return " " + inputNumber + " Qui"
+    }
+    if (inputNumber> 1000000000000000){
+        inputNumber = (inputNumber/1000000000000000).toFixed(2)
+        return " " + inputNumber + " Qua"
+    }
+    if (inputNumber> 1000000000000){
+        inputNumber = (inputNumber/1000000000000).toFixed(2)
+        return " " + inputNumber + " T"
+    }
+    if (inputNumber> 1000000000){
+        inputNumber = (inputNumber/1000000000).toFixed(2)
+        return " " + inputNumber + " B"
+    }
+    if (inputNumber> 1000000){
+        inputNumber = (inputNumber/1000000).toFixed(2)
+        return " " + inputNumber + " M"
+    }
+    if (inputNumber> 1000){
+        inputNumber = (inputNumber/1000).toFixed(2)
+        return " " + inputNumber + "  K"
+    }
+    else{
+        return " " + inputNumber 
+    }
+
+}
+
 
 //update all fields that show numbers        
 function dataUpdate(){
+    if(data.prettyNumber === true){
+        $("#score_living").text(prettyNumbers(data.living));
+        $("#score_death").text(prettyNumbers(data.kills));
+        $("#score_passive_death").text(prettyNumbers(data.passiveKills));
+        $("#score_divinities").text(prettyNumbers(data.divinities));
+        $("#score_deathpoints").text(prettyNumbers(data.deathpoints));
+        $("#score_worshipper").text(prettyNumbers(data.worshipper));
+
+        if(data.purchaseAmount<=1){
+            // updated prices for purchase 1
+            $("#lightning_strike_price").text(prettyNumbers(data.lightningCost));
+            $("#passive_lightning_strike_price").text(prettyNumbers(data.lightningPassiveCost));
+            for(i=0;i<data.passiveUpgrades.length;i++){
+                $("#"+data.passiveUpgrades[i][1]+"_price").text(prettyNumbers(data.passiveUpgrades[i][3])); 
+            
+            }
+        }
+        else{
+            //update prices for purchase more than 1
+            $("#lightning_strike_price").text(prettyNumbers(PriceCalc(data.lightningCost,1.08,data.purchaseAmount)));
+            $("#passive_lightning_strike_price").text(prettyNumbers(PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount)));
+            for(i=0;i<data.passiveUpgrades.length;i++){
+                // to be updated for everything + code for lvl up and for purchase to be written
+                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
+                $("#"+data.passiveUpgrades[i][1]+"_price").text(prettyNumbers(numberToDisplay));
+            }
+        }
+    }
+    else{
+        $("#score_living").text(" "+ Math.floor(data.living));
+        $("#score_death").text(" "+ Math.floor(data.kills));
+        $("#score_passive_death").text(" "+ Math.floor(data.passiveKills));
+        $("#score_divinities").text(" "+ Math.floor(data.divinities));
+        $("#score_deathpoints").text(" "+ Math.floor(data.deathpoints));
+        $("#score_worshipper").text(" "+ Math.floor(data.worshipper));
+
+        if(data.purchaseAmount<=1){
+            // updated prices for purchase 1
+            $("#lightning_strike_price").text(" "+ Math.floor(data.lightningCost));
+            $("#passive_lightning_strike_price").text(" "+ Math.floor(data.lightningPassiveCost));
+            for(i=0;i<data.passiveUpgrades.length;i++){
+                $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +Math.round(data.passiveUpgrades[i][3])); 
+            
+            }
+        }
+        else{
+            //update prices for purchase more than 1
+            $("#lightning_strike_price").text(" "+ PriceCalc(data.lightningCost,1.08,data.purchaseAmount));
+            $("#passive_lightning_strike_price").text(" "+ PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount));
+            for(i=0;i<data.passiveUpgrades.length;i++){
+                // to be updated for everything + code for lvl up and for purchase to be written
+                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
+                $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +(numberToDisplay));
+            }
+        }
+
+    }
     
-    $("#score_living").text(" "+ Math.floor(data.living));
-    $("#score_death").text(" "+ Math.floor(data.kills));
-    $("#score_passive_death").text(" "+ Math.floor(data.passiveKills));
-    $("#score_divinities").text(" "+ Math.floor(data.divinities));
-    $("#score_deathpoints").text(" "+ Math.floor(data.deathpoints));
-    $("#score_worshipper").text(" "+ Math.floor(data.worshipper));
 
     data.acolyteCost = 1500 + Math.round(data.deathpoints*0.02)*data.totalSectAcolytesAlive;
     $("#new_acolyte").text("Hire cultist:  "+ Math.floor(data.acolyteCost));
@@ -2310,25 +2398,7 @@ function dataUpdate(){
     $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + data.lightningKills +"<br> Ability Type: " + data.lightningBuffElement);
     $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills);
     
-    if(data.purchaseAmount<=1){
-        // updated prices for purchase 1
-        $("#lightning_strike_price").text(" "+ Math.floor(data.lightningCost));
-        $("#passive_lightning_strike_price").text(" "+ Math.floor(data.lightningPassiveCost));
-        for(i=0;i<data.passiveUpgrades.length;i++){
-            $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +Math.round(data.passiveUpgrades[i][3])); 
-        
-        }
-    }
-    else{
-        //update prices for purchase more than 1
-        $("#lightning_strike_price").text(" "+ PriceCalc(data.lightningCost,1.08,data.purchaseAmount));
-        $("#passive_lightning_strike_price").text(" "+ PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount));
-        for(i=0;i<data.passiveUpgrades.length;i++){
-            // to be updated for everything + code for lvl up and for purchase to be written
-            var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
-            $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +(numberToDisplay));
-        }
-    }
+    
     for(i=0;i<data.passiveUpgrades.length;i++){
         // update info on passives
         $("#"+data.passiveUpgrades[i][1]+"_level").text("lvl " + data.passiveUpgrades[i][7])
@@ -2361,7 +2431,7 @@ function dataUpdate(){
     $("#stats_lightningPassiveSpeed").text("1 strike/ "+ (10*data.lightningPassiveSpeed).toFixed(1) +" Sec");
     $("#stats_lightningPassiveCost").text(" "+ Math.floor(data.lightningPassiveCost));
     $("#stats_lightningKills").text(" "+ Math.floor(data.lightningKills));
-    $("#stats_lightninglevel").text(" "+ Math.floor(data.lightninglevel));
+    $("#stats_lightninglevel").text(" "+ Math.floor(data.lightningLevel));
 
     updateIdCard(selectedIdFromIdCard);
 
@@ -2411,22 +2481,22 @@ function powerbar(){
     if (data.currentClicks<50){
         $("#clicker_power_bar").css('opacity',"50%");
         $("#clicker_power_bar").css('height',"4px");
-        data.ClickPowerBooster=1;
+        data.clickPowerBooster=1;
     }
     if (data.currentClicks>=50){
         $("#clicker_power_bar").css('opacity',"65%");
         $("#clicker_power_bar").css('height',"4px");
-        data.ClickPowerBooster=1.5;
+        data.clickPowerBooster=1.5;
     }
     if (data.currentClicks>75){
         $("#clicker_power_bar").css('opacity',"85%");
         $("#clicker_power_bar").css('height',"4px");
-        data.ClickPowerBooster=2;
+        data.clickPowerBooster=2;
     }
     if (data.currentClicks>95){
         $("#clicker_power_bar").css('opacity',"100%");
         $("#clicker_power_bar").css('height',"5px");
-        data.ClickPowerBooster=3;
+        data.clickPowerBooster=3;
     }
 }
 
@@ -2498,9 +2568,8 @@ window.setInterval(function(){
     data.passiveKills += increment;
     
     //update all scores not updated in the increment function
-    $("#score_death").text(" "+ data.kills.toFixed(0));
-    $("#score_passive_death").text(" "+ Math.floor(data.passiveKills));
-    $("#score_deathpoints").text(" "+ Math.floor(data.deathpoints));
+    dataUpdate();
+
     // update timer    
     window.setTimeout( function(){
         ticker=0;
@@ -2740,6 +2809,13 @@ window.setInterval( function(){
 
 
 //game settings
+document.getElementById('number_checkbox').addEventListener('change', function() {
+    if (this.checked) {
+        data.prettyNumber = true;
+    } else {
+        data.prettyNumber = false;
+    }
+  });
 document.getElementById('cancelSFX').addEventListener('change', function() {
     if (this.checked) {
         data.sfx = false;
