@@ -3,12 +3,12 @@
 
 <head>
   <meta charset="utf-8">
-  
+  <meta name="viewport"
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <title>Death clicker</title>
   
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="styles.css">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
 </head>
 
 <body>
@@ -257,18 +257,6 @@
           <span id="stats_acolyteAmount" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">acolyteDamage</span> 
-          <span id="stats_acolyteDamage" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">buyacolyteCost</span> 
-          <span id="stats_buyacolyteCost" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">acolytelevel</span> 
-          <span id="stats_acolytelevel" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
           <span style="margin: auto; margin-left: 5%;">acolyteKills</span> 
           <span id="stats_acolyteKills" style="margin: auto"> 0</span>
         </div>
@@ -289,7 +277,11 @@
       </div>-->
       
       <div id="Settings" class="w3-container w3-display-container menuitem" style="display:none">
-          <div class="settings_component">
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Pretty Numbers</span> 
+          <input type="checkbox" id="number_checkbox" style="height: 50%; margin: auto;">
+      </div>  
+        <div class="settings_component">
             <span style="margin: auto; margin-left: 5%;">Remove SFX</span> 
             <input type="checkbox" id="cancelSFX" value="True" style="height: 50%; margin: auto;">
         </div>
