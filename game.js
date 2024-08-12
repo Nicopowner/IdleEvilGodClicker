@@ -11,6 +11,8 @@ var backgroundmusic = [
 ];
 
 var data = {
+    startRun: 0,
+    lastLoad:0,
     mytime: Date.now(),
     currentClicks: 0,
     clickPowerBooster: 1,
@@ -22,7 +24,7 @@ var data = {
     //scores
     score: 0,
     deathpoints: 1,
-    worshipper: 1,
+    worshipper: 100000000,
     divinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
@@ -757,7 +759,7 @@ var data = {
             killsEffect = 0.0015,
             typeEffect = 'percentage',
             costEvent = 1750000,
-            frequencyAllowed = 10000,
+            frequencyAllowed = 1,
             amountTriggered = 0,
             dependency = 'grump',
             pictureUrl = './images/a-bottle-of-bleach-.png',
@@ -771,7 +773,7 @@ var data = {
             description = 'Superheroes and supervillains clash in an epic battle, causing collateral damage.',
             killsEffect = 0.0075,
             typeEffect = 'percentage',
-            costEvent = 3150000,
+            costEvent = 81500000,
             frequencyAllowed = 15,
             amountTriggered = 0,
             dependency = '',
@@ -816,7 +818,7 @@ var data = {
             description = 'Putni gets elected during a free "election" in Russia',
             killsEffect = 10,
             typeEffect = 'absoluut',
-            costEvent = 1000000,
+            costEvent = 10000000,
             frequencyAllowed = 1,
             amountTriggered = 0,
             dependency = '',
@@ -831,8 +833,8 @@ var data = {
             description = 'Launch Nuclear missile to ensure the growth of the motherland',
             killsEffect = 0.05,
             typeEffect = 'percentage',
-            costEvent = 44500000,
-            frequencyAllowed = 1,
+            costEvent = 845000000,
+            frequencyAllowed = 100,
             amountTriggered = 0,
             dependency = 'putin',
             pictureUrl = './images/nuclear-bomb-.png',
@@ -846,7 +848,7 @@ var data = {
             description = 'A mass alien abduction event that abducts people all over the world',
             killsEffect = 0.005,
             typeEffect = 'percentage',
-            costEvent = 1750000,
+            costEvent = 37500000,
             frequencyAllowed = 20,
             amountTriggered = 0,
             dependency = '',
@@ -874,8 +876,8 @@ var data = {
             description = 'A mysterious virus turns people into zombies, causing chaos everywhere.',
             killsEffect = 0.10,
             typeEffect = 'percentage',
-            costEvent = 90000000,
-            frequencyAllowed = 10,
+            costEvent = 900000000,
+            frequencyAllowed = 2,
             amountTriggered = 0,
             dependency = '',
             pictureUrl = './images/zombie-apocalypse.png',
@@ -1103,7 +1105,7 @@ function createEvent(){
                     break;
             }
             
-            var contentDetails = '<span> <b>Name: </b>'+data.sectEvent[i][1]+' </span><br><span > <b>Description: </b>'+data.sectEvent[i][2]+' </span><br> <span> <b>Kills: </b>'+kills+'</span><br><span> <b> Cost: </b> '+data.sectEvent[i][5]+' Worshipper </span>'
+            var contentDetails = '<span> <b>Name: </b>'+data.sectEvent[i][1]+' </span><br><span > <b>Description: </b>'+data.sectEvent[i][2]+' </span><br> <span> <b>Kills: </b>'+kills+'</span><br><span id="sect_event_cost_'+data.sectEvent[i][0] +'"> <b> Cost: </b> '+data.sectEvent[i][5]+' Worshipper </span><br><span> <b>Total triggers allowed: </b>'+data.sectEvent[i][6]+' </span>'
             $("#"+newEventDetailsId).html(contentDetails)
 
             let newEventButton = eventButton.cloneNode(false);
@@ -1121,6 +1123,7 @@ function createEvent(){
                         if(data.worshipper>data.sectEvent[i][5] && data.sectEvent[i][6]>data.sectEvent[i][7]){   
                             data.worshipper-=data.sectEvent[i][5];
                             data.sectEvent[i][7] +=1;
+                            data.sectEvent[i][5]*=1.85;
                             if(data.sectEvent[i][6]===data.sectEvent[i][7]){
                                 $("#"+data.sectEvent[i][0]+"_button").addClass("unavailable_event_button")
                             }
@@ -1891,6 +1894,7 @@ mouseLocation.addEventListener("mousemove", e => {
 
 if(data.score === 0 && data.gameStarted === false){
     data.gameStarted = true;
+    data.startRun= Date.now(),
     createUpgrades();
     createRelics();
     createArmoryRelics();
@@ -1902,7 +1906,10 @@ if(data.score === 0 && data.gameStarted === false){
     localStorage.setItem('initial_situation', JSON.stringify(data));
 }
 
-
+window.onload = function() {
+    console.log('The page has fully loaded');
+    console.log(data.lastLoad,data.startRun)
+};
 
 
 
@@ -2351,6 +2358,9 @@ function dataUpdate(){
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(prettyNumbers(numberToDisplay));
             }
         }
+        for(i=0;i<data.sectEvent.length;i++){
+            $("#sect_event_cost_"+data.sectEvent[i][0]).html('<b> Cost: </b> '+ prettyNumbers(data.sectEvent[i][5])+' Worshipper'); 
+        }
     }
     else{
         $("#score_living").text(" "+ Math.floor(data.living));
@@ -2378,6 +2388,9 @@ function dataUpdate(){
                 var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +(numberToDisplay));
             }
+        }
+        for(i=0;i<data.sectEvent.length;i++){
+            $("#sect_event_cost_"+data.sectEvent[i][0]).html('<b> Cost: </b> '+data.sectEvent[i][5]+' Worshipper'); 
         }
 
     }
@@ -2850,6 +2863,7 @@ document.getElementById('cancelSFX').addEventListener('change', function() {
 
 window.setInterval( function(){
     localStorage.setItem("autoSave", JSON.stringify(data)); 
+    data.lastLoad = Date.now();
         
 },30000);
 
@@ -2871,6 +2885,7 @@ window.setInterval( function(){
     });
 
     function save(savename = 'SaveFile') {
+        data.lastLoad = Date.now();
         localStorage.setItem(savename, JSON.stringify(data)); 
     };
 
