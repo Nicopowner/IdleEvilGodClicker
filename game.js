@@ -2497,8 +2497,10 @@ function dataUpdate(){
 
     updateIdCard(selectedIdFromIdCard);
 
-    /* $("#stats_acolyteAmount").text(" "+ Math.floor(data.acolyteAmount));
-    $("#stats_acolyteDamage").text(" "+ Math.floor(data.acolyteDamage));
+     $("#stats_acolyteAmount").text(" "+ Math.floor(data.acolyteAmount));
+     $("#stats_acolyteAlive").text(" "+ Math.floor(data.totalSectAcolytesAlive));
+
+    /*$("#stats_acolyteDamage").text(" "+ Math.floor(data.acolyteDamage));
     $("#stats_buyacolyteCost").text(" "+ Math.floor(data.buyacolyteCost));
     $("#stats_acolytelevel").text(" "+ Math.floor(data.acolytelevel));
     $("#stats_acolyteKills").text(" "+ Math.floor(data.acolyteKills));
