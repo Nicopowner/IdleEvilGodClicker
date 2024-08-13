@@ -2372,7 +2372,7 @@ function prettyNumbers(inputNumber){
         return " " + inputNumber + "  K"
     }
     else{
-        return " " + inputNumber 
+        return " " + inputNumber.toFixed(2)
     }
 
 }
