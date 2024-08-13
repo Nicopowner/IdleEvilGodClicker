@@ -24,13 +24,14 @@ var data = {
     //scores
     score: 0,
     deathpoints: 1,
-    worshipper: 100000000,
+    worshipper: 0,
     divinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
     living: 8122775940,
     kills: 0,
     passiveKills: 0,
+    passiveOfflineKills: 0,
     eventKills: 0,
     clicks: 0,
     clickKills: 0,
@@ -71,6 +72,7 @@ var data = {
     incrementPricePassiveUpgrades: 1.15,
     incrementEffectPassiveUpgrades: 1.01,
     totalArtifacts: 0,
+    passiveKillsForOfflineTime: 0,
     passiveUpgrades : 
     [
         [   id = 1,
@@ -1907,8 +1909,54 @@ if(data.score === 0 && data.gameStarted === false){
 }
 
 window.onload = function() {
-    console.log('The page has fully loaded');
-    console.log(data.lastLoad,data.startRun)
+    //console.log(localStorage.getItem("autoSave"))
+    //Object.assign(data,JSON.parse(localStorage.getItem("autoSave"))
+    
+    if(localStorage.getItem("autoSave").length>2){
+        //var date = JSON.parse(localStorage.getItem("autoSave")).lastLoad
+        var dateLastAutoSaveFile = JSON.parse(localStorage.getItem("autoSave")).lastLoad;
+        
+        let loadChoice = confirm("Do you want to load an auto savefile? If you don't load the autoSave file it will be overwritten during gameplay. The Save file was saved on " + Date(dateLastAutoSaveFile));
+        if (loadChoice){
+            var timeAway = ((Date.now() - dateLastAutoSaveFile)/60000).toFixed(1)
+            var possiblePassiveKills = JSON.parse(localStorage.getItem("autoSave")).passiveKillsForOfflineTime * timeAway;
+
+            
+            //console.log(timeAway)
+            //+ dateLastAutoSaveFile - Date.now() 
+            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills + " passive kills while you were away for " + timeAway +" minutes");
+                if (PassiveKillsOverTime){
+                    Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
+                    data.deathpoints += possiblePassiveKills;
+                    data.passiveOfflineKills += possiblePassiveKills;
+                    data.passiveKills += possiblePassiveKills;
+                    dateLastAutoSaveFile.living -= possiblePassiveKills;
+
+                    console.log("auto save file loaded with passive kills")
+                }
+                else{
+                    Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
+                    console.log("auto save file loaded without passive kills")
+                }
+                
+                
+            }
+        else{
+            console.log("autosave file not loaded")
+        }
+    }
+
+/*
+    if (loadChoice){
+        Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
+        console.log("auto save file loaded")
+    }
+    else{
+        Object.assign(data, JSON.parse(localStorage.getItem(savename) || '{}'));
+        console.log("manual save file loaded")
+    }
+*/
+
 };
 
 
@@ -2117,9 +2165,10 @@ $(".upgrade_button").on("click",function(Event){
                     data.passiveUpgrades[i][7] += Number(data.purchaseAmount);
                     data.totalupgradesbought += Number(data.purchaseAmount);
                     data.numberPassiveUpgrades += Number(data.purchaseAmount);
+
                     //add increment to the kills per tick
                     data.passiveUpgrades[i][5] += ValueCalc(data.passiveUpgrades[i][4],data.incrementEffectPassiveUpgrades,data.purchaseAmount);
-                    
+                    data.passiveKillsForOfflineTime +=ValueCalc(data.passiveUpgrades[i][4],data.incrementEffectPassiveUpgrades,data.purchaseAmount);
                     if(data.purchaseAmount === 1){
                         //increment the price to the new price
                         data.passiveUpgrades[i][3] *= data.incrementPricePassiveUpgrades;
@@ -2905,6 +2954,7 @@ window.setInterval( function(){
 
     function clearSave(savename = 'SaveFile') {
         localStorage.setItem(savename, '{}');
+        localStorage.setItem("autoSave", '{}');
         location.reload();
     }
 
