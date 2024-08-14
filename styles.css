@@ -19,18 +19,19 @@ body {
   
 
 }
+
 @media screen and (max-width: 500px) {
   body {
     font-size: 13px;
   }
 }
+
 .unselectable {
   user-select: none;
   -moz-user-select: none; /* Firefox */
   -webkit-user-select: none; /* Safari and Chrome */
   -o-user-select: none; /* Opera */
 }
-
 
 #level-title {
   font-family: 'Press Start 2P', cursive;
@@ -46,6 +47,7 @@ body {
   background-image: url("images/space background.png");
   margin-left: auto;
   margin-right: auto;
+  touch-action:none; 
 
 }
 .title{
@@ -395,7 +397,7 @@ img{
 
 .cult_roster{
   display:flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
   flex-direction: row;
   row-gap: 3%;
   column-gap: 10px;
@@ -594,6 +596,8 @@ display: none;
   min-height: 500px;
   height: auto;
   animation: animatetop 0.4s;
+
+
 }
 
 @-webkit-keyframes animatetop {
@@ -750,6 +754,7 @@ display: none;
   z-index: 9999; /* On top of other elements */
   display: none; /* Hidden by default */
 }
+
 iframe{
   display: none !important;  
 }
