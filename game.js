@@ -1833,6 +1833,7 @@ $("#release_button").on("click",function(){
 $("#upgrade_acolyte").on("click",function(){
     if(data.sect[selectedIdFromIdCard][17]==="Alive"){
         if(data.deathpoints>data.sect[selectedIdFromIdCard][4]){
+            data.deathpoints-=data.sect[selectedIdFromIdCard][4];
             data.sect[selectedIdFromIdCard][17] = "In training";
             data.sect[selectedIdFromIdCard][19] += data.sect[selectedIdFromIdCard][4];
             data.sect[selectedIdFromIdCard][5] += 1;
