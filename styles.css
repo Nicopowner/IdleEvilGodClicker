@@ -620,7 +620,7 @@ display: none;
   width: 100%;
   max-width: 700px;
   min-height: 700px;
-  max-height:900px;
+  max-height:700px;
   height: auto;
   animation: animatetop 0.4s;
   overflow: hidden;
