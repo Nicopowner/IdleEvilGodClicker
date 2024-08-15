@@ -1501,7 +1501,6 @@ const unfortunateEvents = [
     "crossing the street and getting distracted by a text message.",
     "trying to climb the empire state from the outside.",
     "mistaking a lion's den in the zoo for the petting area.",
-    "touching a same gender co-worker in russia.",
     "undergoing a gender switch operation.",
     "trying to restart The Third Reich.",
     "searching for Anne Frank in the Anne Frank house in Amsterdam.",
