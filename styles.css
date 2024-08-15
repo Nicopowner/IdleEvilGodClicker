@@ -596,7 +596,8 @@ display: none;
   min-height: 500px;
   height: auto;
   animation: animatetop 0.4s;
-
+  overflow: hidden;
+  overflow-y: auto;
 
 }
 
