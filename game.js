@@ -1175,7 +1175,9 @@ function createEvent(){
                                     data.eventKills += update;
                                 break;
                             }
-
+                            //add the pop up screen EventPopUp
+                            var popupcontent = 'You activated "' + data.sectEvent[i][1] + '" resulting in the death of: ' + Math.round(update);
+                            showPopup(popupcontent);
                             for(a=0;a<data.sectEvent.length;a++){
                                 if(data.sectEvent[i][0] === data.sectEvent[a][8]){
                                     data.sectEvent[a][11] = true;
@@ -2600,6 +2602,13 @@ function dataUpdate(){
                 // to be updated for everything + code for lvl up and for purchase to be written
                 var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(prettyNumbers(numberToDisplay));
+                // update info on passives
+                $("#"+data.passiveUpgrades[i][1]+"_level").text("lvl " + data.passiveUpgrades[i][7])
+                $("#"+data.passiveUpgrades[i][1]+"_total_current_kills").text("Total kills: "+ prettyNumbers(data.passiveUpgrades[i][6]));
+            }
+            for(i=0;i<data.relic.length;i++){
+                $("#"+ data.relic[i][1] + '_level').text("lvl " +data.relic[i][5]);
+                $("#"+ data.relic[i][1] + '_price').text(prettyNumbers(data.relic[i][3]));
             }
         }
         else{
@@ -2621,6 +2630,13 @@ function dataUpdate(){
                 // to be updated for everything + code for lvl up and for purchase to be written
                 var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +(numberToDisplay));
+                // update info on passives
+                $("#"+data.passiveUpgrades[i][1]+"_level").text("lvl " + data.passiveUpgrades[i][7])
+                $("#"+data.passiveUpgrades[i][1]+"_total_current_kills").text("Total kills: "+ Math.floor(data.passiveUpgrades[i][6]));
+            }
+            for(i=0;i<data.relic.length;i++){
+                $("#"+ data.relic[i][1] + '_level').text("lvl " +data.relic[i][5]);
+                $("#"+ data.relic[i][1] + '_price').text(Math.round(data.relic[i][3]));
             }
         }
         else{
@@ -2651,16 +2667,7 @@ function dataUpdate(){
     $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills);
     
     
-    for(i=0;i<data.passiveUpgrades.length;i++){
-        // update info on passives
-        $("#"+data.passiveUpgrades[i][1]+"_level").text("lvl " + data.passiveUpgrades[i][7])
-        $("#"+data.passiveUpgrades[i][1]+"_total_current_kills").text("Total kills: "+ Math.floor(data.passiveUpgrades[i][6]));
-        
-    }
-    for(i=0;i<data.relic.length;i++){
-        $("#"+ data.relic[i][1] + '_level').text("lvl " +data.relic[i][5]);
-        $("#"+ data.relic[i][1] + '_price').text(Math.round(data.relic[i][3]));
-    }
+
     //stats
     $("#stats_score").text(" "+ Math.floor(data.score));
     $("#stats_deathpoints").text(" "+ Math.floor(data.deathpoints));
