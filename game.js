@@ -29,7 +29,7 @@ var data = {
     startingliving: 8122775940,
     newbornrate: 0.000034931,
     living: 8122775940,
-    kills: 0,
+    kills: 0, 
     passiveKills: 0,
     passiveOfflineKills: 0,
     eventKills: 0,
@@ -1932,7 +1932,12 @@ if(data.score === 0 && data.gameStarted === false){
 window.onload = function() {
     //console.log(localStorage.getItem("autoSave"))
     //Object.assign(data,JSON.parse(localStorage.getItem("autoSave"))
+    data.purchaseAmount = 1;
+    for(i=0;i<data.relic.length;i++){
+        data.relic[i][11] = false};
     
+    createArmoryRelics();
+
     if(localStorage.getItem("autoSave").length>2){
         //var date = JSON.parse(localStorage.getItem("autoSave")).lastLoad
         var dateLastAutoSaveFile = JSON.parse(localStorage.getItem("autoSave")).lastLoad;
@@ -1965,6 +1970,7 @@ window.onload = function() {
         else{
             console.log("autosave file not loaded")
         }
+        dataUpdate();
     }
 
 /*
@@ -2115,39 +2121,10 @@ function clickEffect(Event){
             $("#score_death_amount").addClass("hide");
         }, 150)
 }
-  
-//listener lightning strike purchase button
-$("#lightning_strike_button").on("click",function(Event){
-    purchaseClickEvent(Event);
-    /*var canPurchase = Event.currentTarget.classList.contains("buyable")
-    if(canPurchase === true && data.deathpoints>=PriceCalc(data.lightningCost,1.08,data.purchaseAmount)){
-        data.deathpoints -= PriceCalc(data.lightningCost,1.08,data.purchaseAmount);
-        
-         
-        data.lightningKillsPerClick += Math.round(ValueCalc(data.lightningUpgradeIncreaseEffect,1.02,data.purchaseAmount)); 
-        if(data.purchaseAmount === 1){
-            data.lightningUpgradeIncreaseEffect *= 1.02; 
-            data.lightningCost *= 1.08; 
-        }
-        else{
-        data.lightningUpgradeIncreaseEffect *= Number(Math.pow(1.02,data.purchaseAmount-1)); 
-        data.lightningCost *= Number(Math.pow(1.08,data.purchaseAmount-1));
-        }
-        data.totalupgradesbought += Number(data.purchaseAmount);  
-        data.lightningLevel += Number(data.purchaseAmount);
-       dataUpdate();    
-
-        $(Event.currentTarget).addClass("clicked");
-            setTimeout(() => {
-                $(Event.currentTarget).removeClass("clicked");
-            }, 150)        
-    }
-    else{     
-    }*/
-});
-
+/*
 //listener passive lightning strike button 
 $("#passive_lightning_strike_button").on("click",function(Event){
+    Event.stopPropagation();
     purchaseClickEvent(Event);
 /*    var canPurchase = Event.currentTarget.classList.contains("buyable");
     if(canPurchase === true && data.deathpoints>= PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount)){
@@ -2172,11 +2149,53 @@ $("#passive_lightning_strike_button").on("click",function(Event){
     }
     else{
         
-    }*/
+    }
 });
-
+*/
 $(".upgrade_button").on("click",function(Event){
-    purchaseClickEvent(Event);
+    var idCurrentTarget = Event.currentTarget.id;
+    if(data.purchaseAmount>0){
+        purchaseClickEvent(Event);
+    }
+    else{
+        if(idCurrentTarget === "passive_lightning_strike_button"){
+            while(data.deathpoints>= PriceCalc(data.lightningPassiveCost,1.09,1)){purchaseClickEvent(Event)}
+        }
+        if(idCurrentTarget === "lightning_strike_button" ){
+            while( data.deathpoints>= PriceCalc(data.lightningCost,1.09,1)){
+                purchaseClickEvent(Event)}
+        }
+        for(i=0;i<data.passiveUpgrades.length;i++){
+            if(idCurrentTarget === data.passiveUpgrades[i][1] + "_button"){
+                
+                while(data.deathpoints>PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1)){   
+                        
+
+                        if( data.deathpoints>PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1)){  
+                            //console.log("stage4",data.passiveUpgrades[i][1],data.passiveUpgrades[i][3])
+     
+                                //deduct the cost from the points
+                                data.deathpoints -= PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1);
+                                //increase the level of the passive
+                                data.passiveUpgrades[i][7] += Number(1);
+                                data.totalupgradesbought += Number(1);
+                                data.numberPassiveUpgrades += Number(1);
+            
+                                //add increment to the kills per tick
+                                data.passiveUpgrades[i][5] += ValueCalc(data.passiveUpgrades[i][4],data.incrementEffectPassiveUpgrades,1);
+                                data.passiveKillsForOfflineTime +=ValueCalc(data.passiveUpgrades[i][4],data.incrementEffectPassiveUpgrades,1);
+    
+                                //increment the price to the new price
+                                data.passiveUpgrades[i][3] *= Number(Math.pow(data.incrementPricePassiveUpgrades,1));
+                                //increment the upgrade effect 
+                                data.passiveUpgrades[i][4] *= Number(Math.pow(data.incrementEffectPassiveUpgrades,1));
+                        }
+                }
+
+            }
+        }
+    }
+    
     /*var canPurchase = Event.currentTarget.classList.contains("buyable");  
     for(i=0;i<data.passiveUpgrades.length;i++){
         if(Event.currentTarget.id === data.passiveUpgrades[i][1] + "_button"){   
@@ -2213,17 +2232,56 @@ $(".upgrade_button").on("click",function(Event){
             }
         }
     }*/
+});  
+//listener lightning strike purchase button
+/*
+$("#lightning_strike_button").on("click",function(Event){
+    purchaseClickEvent(Event);
+    /*var canPurchase = Event.currentTarget.classList.contains("buyable")
+    if(canPurchase === true && data.deathpoints>=PriceCalc(data.lightningCost,1.08,data.purchaseAmount)){
+        data.deathpoints -= PriceCalc(data.lightningCost,1.08,data.purchaseAmount);
+        
+         
+        data.lightningKillsPerClick += Math.round(ValueCalc(data.lightningUpgradeIncreaseEffect,1.02,data.purchaseAmount)); 
+        if(data.purchaseAmount === 1){
+            data.lightningUpgradeIncreaseEffect *= 1.02; 
+            data.lightningCost *= 1.08; 
+        }
+        else{
+        data.lightningUpgradeIncreaseEffect *= Number(Math.pow(1.02,data.purchaseAmount-1)); 
+        data.lightningCost *= Number(Math.pow(1.08,data.purchaseAmount-1));
+        }
+        data.totalupgradesbought += Number(data.purchaseAmount);  
+        data.lightningLevel += Number(data.purchaseAmount);
+       dataUpdate();    
+
+        $(Event.currentTarget).addClass("clicked");
+            setTimeout(() => {
+                $(Event.currentTarget).removeClass("clicked");
+            }, 150)        
+    }
+    else{     
+    }
 });
+
+*/
 
 
 function purchaseClickEvent(e){
     var canPurchase = e.currentTarget.classList.contains("buyable");
     var idCurrentTarget = e.currentTarget.id;
-    var numberToBuy = data.purchaseAmount;
+    var numberToBuy = 1;
+    if (data.purchaseAmount > 0){
+        numberToBuy=data.purchaseAmount;
+        
+    }
+    
     
     //console.log(canPurchase,idCurrentTarget,numberToBuy,e)    
     if(canPurchase === true){
+       
         if(idCurrentTarget === "passive_lightning_strike_button"){ 
+            
             if(data.deathpoints>= PriceCalc(data.lightningPassiveCost,1.09,numberToBuy)){
                 data.deathpoints -= PriceCalc(data.lightningPassiveCost,1.09,numberToBuy);
                     data.totalupgradesbought += Number(numberToBuy);
@@ -2234,7 +2292,9 @@ function purchaseClickEvent(e){
                 }
         }
         if(idCurrentTarget === "lightning_strike_button"){
+            
             if(data.deathpoints>=PriceCalc(data.lightningCost,1.08,numberToBuy)){
+                
                 //costs deducted
                 data.deathpoints -= PriceCalc(data.lightningCost,1.08,numberToBuy);
                 //kills to be added
@@ -2245,12 +2305,17 @@ function purchaseClickEvent(e){
                 //levels added to counters
                 data.totalupgradesbought += Number(numberToBuy);  
                 data.lightningLevel += Number(numberToBuy);
+                
             }
         }
         else{
             for(i=0;i<data.passiveUpgrades.length;i++){
+                //console.log("stage2",data.passiveUpgrades[i][1],data.passiveUpgrades[i][3])
+
                 if(idCurrentTarget === data.passiveUpgrades[i][1] + "_button"){   
-                    if( data.deathpoints>PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,numberToBuy)){   
+                   var pricePassive = data.passiveUpgrades[i][3];
+                  if( data.deathpoints>PriceCalc(pricePassive,data.incrementPricePassiveUpgrades,numberToBuy)){  
+                
                             //deduct the cost from the points
                             data.deathpoints -= PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,numberToBuy);
                             //increase the level of the passive
@@ -2404,17 +2469,26 @@ function highlightkill(increment){
 
 function upgradepurchablecheck(){
     //lighting    
-    
-    if(data.deathpoints>=PriceCalc(data.lightningCost,1.08,data.purchaseAmount))
+    var purchaseAmountCalc = 0
+    if (data.purchaseAmount > 0){
+        purchaseAmountCalc=data.purchaseAmount;
+        console.log(purchaseAmountCalc);
+    }
+    else{
+        purchaseAmountCalc=1;
+        console.log(purchaseAmountCalc);
+    }
+
+    if(data.deathpoints>=PriceCalc(data.lightningCost,1.08,purchaseAmountCalc))
         {$("#lightning_strike_button").addClass("buyable");}
     else{$("#lightning_strike_button").removeClass("buyable");}
     //passive lightning
-    if(data.deathpoints>=PriceCalc(data.lightningPassiveCost,1.07,data.purchaseAmount))
+    if(data.deathpoints>=PriceCalc(data.lightningPassiveCost,1.07,purchaseAmountCalc))
         {$("#passive_lightning_strike_button").addClass("buyable");}
     else{$("#passive_lightning_strike_button").removeClass("buyable");}
     //Passive upgrades
     for(i=0;i<data.passiveUpgrades.length;i++){
-        if(data.deathpoints>=PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount))
+        if(data.deathpoints>=PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,purchaseAmountCalc))
             {$("#"+data.passiveUpgrades[i][1]+"_button").addClass("buyable");}
         else
             {$("#"+data.passiveUpgrades[i][1]+"_button").removeClass("buyable");}
@@ -2528,6 +2602,15 @@ function dataUpdate(){
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(prettyNumbers(numberToDisplay));
             }
         }
+        else{
+            $("#lightning_strike_price").text(" Max ");
+            $("#passive_lightning_strike_price").text(" Max ");
+            for(i=0;i<data.passiveUpgrades.length;i++){
+                // to be updated for everything + code for lvl up and for purchase to be written
+                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1)
+                $("#"+data.passiveUpgrades[i][1]+"_price").text(" Max ");
+            }
+        }
     }
     else{ 
         
@@ -2541,14 +2624,13 @@ function dataUpdate(){
             }
         }
         else{
-            maxBuyableUpgrades();
-            /*$("#lightning_strike_price").text(" "+ PriceCalc(data.lightningCost,1.08,data.purchaseAmount));
-            $("#passive_lightning_strike_price").text(" "+ PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount));
+            $("#lightning_strike_price").text(" Max ");
+            $("#passive_lightning_strike_price").text(" Max ");
             for(i=0;i<data.passiveUpgrades.length;i++){
                 // to be updated for everything + code for lvl up and for purchase to be written
-                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)
-                $("#"+data.passiveUpgrades[i][1]+"_price").text(" " +(numberToDisplay));
-            }*/
+                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1)
+                $("#"+data.passiveUpgrades[i][1]+"_price").text(" Max ");
+            }
         }
     }
     
