@@ -1931,11 +1931,7 @@ if(data.score === 0 && data.gameStarted === false){
 window.onload = function() {
     //console.log(localStorage.getItem("autoSave"))
     //Object.assign(data,JSON.parse(localStorage.getItem("autoSave"))
-    data.purchaseAmount = 1;
-    for(i=0;i<data.relic.length;i++){
-        data.relic[i][11] = false};
     
-    createArmoryRelics();
 
     if(localStorage.getItem("autoSave").length>2){
         //var date = JSON.parse(localStorage.getItem("autoSave")).lastLoad
@@ -1969,6 +1965,11 @@ window.onload = function() {
         else{
             console.log("autosave file not loaded")
         }
+        data.purchaseAmount = 1;
+        for(i=0;i<data.relic.length;i++){
+            data.relic[i][11] = false};
+        
+        createArmoryRelics();
         dataUpdate();
     }
 
