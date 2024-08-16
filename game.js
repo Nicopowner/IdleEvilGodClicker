@@ -2713,8 +2713,15 @@ function dataUpdate(){
             $("#passive_lightning_strike_price").text(" Max ");
             for(i=0;i<data.passiveUpgrades.length;i++){
                 // to be updated for everything + code for lvl up and for purchase to be written
-                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1)
+                var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1) 
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(" Max ");
+                // update info on passives
+                $("#"+data.passiveUpgrades[i][1]+"_level").text("lvl " + data.passiveUpgrades[i][7])
+                $("#"+data.passiveUpgrades[i][1]+"_total_current_kills").text("Total kills: "+ prettyNumbers(data.passiveUpgrades[i][6]));
+            }
+            for(i=0;i<data.relic.length;i++){
+                $("#"+ data.relic[i][1] + '_level').text("lvl " +data.relic[i][5]);
+                $("#"+ data.relic[i][1] + '_price').text(prettyNumbers(data.relic[i][3]));
             }
         }
     }
@@ -2742,7 +2749,15 @@ function dataUpdate(){
             for(i=0;i<data.passiveUpgrades.length;i++){
                 // to be updated for everything + code for lvl up and for purchase to be written
                 var numberToDisplay = PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,1)
+                // update info on passives
+                $("#"+data.passiveUpgrades[i][1]+"_level").text("lvl " + data.passiveUpgrades[i][7])
+                $("#"+data.passiveUpgrades[i][1]+"_total_current_kills").text("Total kills: "+ Math.floor(data.passiveUpgrades[i][6]));
+
                 $("#"+data.passiveUpgrades[i][1]+"_price").text(" Max ");
+            }
+            for(i=0;i<data.relic.length;i++){
+                $("#"+ data.relic[i][1] + '_level').text("lvl " +data.relic[i][5]);
+                $("#"+ data.relic[i][1] + '_price').text(Math.round(data.relic[i][3]));
             }
         }
     }
