@@ -260,7 +260,9 @@ img{
   text-align: center;
   opacity: 60%;
 }
-
+#upgrade_acolyte{
+  margin-top: 20px;
+}
 .menuitem{
   overflow-y: auto;
 }
