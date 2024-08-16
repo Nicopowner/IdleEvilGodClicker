@@ -23,7 +23,7 @@ var data = {
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints: 100000000,
+    deathpoints: 1,
     worshipper: 0,
     divinities: 0,
     startingliving: 8122775940,
@@ -187,7 +187,7 @@ var data = {
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
-            description = "AA massive solar flare that disrupts all electronic devices leading to mass suicides among the professional gaming community",
+            description = "Massive solar flare that disrupts all electronic devices leading to mass suicides among the professional gaming community",
             logo = '"images/solarflare.png"',
             automatedFlag = false,
             artifactUpgrade = 1,
