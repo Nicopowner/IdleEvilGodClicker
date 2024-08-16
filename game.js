@@ -114,7 +114,7 @@ var data = {
         [   id = 2,
             idName = "bird_flu",
             namePassive = "The bird flu is back",
-            price = 800,
+            price = 700,
             upgradeIncreaseEffect = 135,
             killsPerTick = 0,
             totalKills = 0, 
@@ -128,10 +128,10 @@ var data = {
             buffType = 'passive',
             maxBuyable = 0,
         ],
-        [   id = 3.5,
+        [   id = 2.5,
             idName = "thunderstorm",
             namePassive = "Summer Storm",
-            price = 1500,
+            price = 1300,
             upgradeIncreaseEffect = 250,
             killsPerTick = 0,
             totalKills = 0, 
@@ -145,10 +145,27 @@ var data = {
             buffType = 'passive',
             maxBuyable = 0,
         ],
+        [   id = 2.6,
+            idName = "no_more_magic",
+            namePassive = "No more magic",
+            price = 3500,
+            upgradeIncreaseEffect = 600,
+            killsPerTick = 0,
+            totalKills = 0, 
+            level = 0,
+            description =  "Magicians all over the world fail at their magic tricks, resulting in people being split on stage, magicians drowning, and bunnies being squished in hats..",
+            logo = '"images/magician.png"',
+            automatedFlag = false,
+            artifactUpgrade = 0,
+            visible = true,
+            buffElement = ['fire','water'],
+            buffType = 'passive',
+            maxBuyable = 0,
+        ],
         [   id = 3,
             idName = "mosquito_flu",
             namePassive = "The flu strand spread by mosquitos",
-            price = 7500,
+            price = 6500,
             upgradeIncreaseEffect = 1000,
             killsPerTick = 0,
             totalKills = 0, 
@@ -161,12 +178,29 @@ var data = {
             buffElement = ['poison','beast'],
             buffType = 'passive',
             maxBuyable = 0,
+        ],[
+            id = 3.8,
+            idName = "solar_flare",
+            namePassive = "Solar flares",
+            price = 35000,
+            upgradeIncreaseEffect = 2400,
+            killsPerTick = 0,
+            totalKills = 0,
+            level = 0,
+            description = "AA massive solar flare that disrupts all electronic devices leading to mass suicides among the professional gaming community",
+            logo = '"images/solarflare.png"',
+            automatedFlag = false,
+            artifactUpgrade = 1,
+            visible = true,
+            buffElement = ['electricity', 'fire'],
+            buffType = 'passive',
+            maxBuyable = 0,
         ],
         [   id = 4,
             idName = "pig_flu",
             namePassive = "Pork meat is infected with a new flu strain",
-            price = 115000,
-            upgradeIncreaseEffect = 7500,
+            price = 70500,
+            upgradeIncreaseEffect = 8500,
             killsPerTick = 0,
             totalKills = 0, 
             level = 0,
@@ -179,11 +213,28 @@ var data = {
             buffType = 'passive',
             maxBuyable = 0,
         ],
+        [   id = 4.5,
+            idName = "blizzard",
+            namePassive = "Blizzard storm",
+            price = 215000,
+            upgradeIncreaseEffect = 14500,
+            killsPerTick = 0,
+            totalKills = 0, 
+            level = 0,
+            description =  "Random blizzards that strike a moments notice with no warning. '#See global warming is fake, I am cold now!' ..",
+            logo = '"images/blizzard.png"',
+            automatedFlag = false,
+            artifactUpgrade = 0,
+            visible = true,
+            buffElement = ['water','wind'],
+            buffType = 'passive',
+            maxBuyable = 0,
+        ],
         [   id = 5,
             idName = "spanish_flu",
             namePassive = "Spanish Flu",
             price = 452000,
-            upgradeIncreaseEffect = 20500,
+            upgradeIncreaseEffect = 30500,
             killsPerTick = 0,
             totalKills = 0, 
             level = 0,
@@ -200,7 +251,7 @@ var data = {
             idName = "Tornado",
             namePassive = "Wild Tornado",
             price = 774600,
-            upgradeIncreaseEffect = 37500,
+            upgradeIncreaseEffect = 45500,
             killsPerTick = 0,
             totalKills = 0, 
             level = 0,
@@ -216,7 +267,7 @@ var data = {
         [   id = 6,
             idName = "space_flu",
             namePassive = "Mysterious space Flu",
-            price = 1624600,
+            price = 1024600,
             upgradeIncreaseEffect = 66666,
             killsPerTick = 0,
             totalKills = 0, 
@@ -231,10 +282,29 @@ var data = {
             maxBuyable = 0,
         ],
         [
+            id = 6.6,
+            idName = "revenge_of_the_stray",
+            namePassive = "Revenge of the strays",
+            price = 1550000,
+            upgradeIncreaseEffect = 85000,
+            killsPerTick = 0,
+            totalKills = 0,
+            level = 0,
+            description = "Animals abandoned by their owners now seek revenge against the human race for abandoning them",
+            logo = '"images/revengeofthestrays.png"',
+            automatedFlag = false,
+            artifactUpgrade = 0,
+            visible = false,
+            buffElement = ['beast'],
+            buffType = 'passive',    
+            maxBuyable = 0,
+            
+        ],
+        [
             id = 6.5,
             idName = "fire_flu",
             namePassive = "Blazing Fire Flu",
-            price = 2850000,
+            price = 2050000,
             upgradeIncreaseEffect = 125000,
             killsPerTick = 0,
             totalKills = 0,
@@ -253,12 +323,12 @@ var data = {
             id = 7,
             idName = "mass_flooding",
             namePassive = "Mass Flooding",
-            price = 3940000,
+            price = 3040000,
             upgradeIncreaseEffect = 195000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
-            description = "Widespread flooding caused by heavy rainfall #proof that global warming is fake",
+            description = "Widespread flooding caused by heavy rainfall #more proof that global warming is fake",
             logo = '"images/flood.png"',
             automatedFlag = false,
             artifactUpgrade = 0,
@@ -271,7 +341,7 @@ var data = {
             id = 8,
             idName = "tsunami",
             namePassive = "Devastating Tsunami",
-            price = 9050000,
+            price = 7050000,
             upgradeIncreaseEffect = 430000,
             killsPerTick = 0,
             totalKills = 0,
@@ -288,7 +358,7 @@ var data = {
             id = 8.5,
             idName = "lightning_nova",
             namePassive = "Spontanious lightning nova",
-            price = 16950000,
+            price = 12950000,
             upgradeIncreaseEffect = 735000,
             killsPerTick = 0,
             totalKills = 0,
@@ -305,7 +375,7 @@ var data = {
             id = 9,
             idName = "hurricane",
             namePassive = "Ferocious Hurricane",
-            price = 22750000,
+            price = 15750000,
             upgradeIncreaseEffect = 950000,
             killsPerTick = 0,
             totalKills = 0,
@@ -323,7 +393,7 @@ var data = {
             id = 10,
             idName = "earthquake",
             namePassive = "Earthquake",
-            price = 29750000,
+            price = 23750000,
             upgradeIncreaseEffect = 1450000,
             killsPerTick = 0,
             totalKills = 0,
@@ -341,7 +411,7 @@ var data = {
             id = 11,
             idName = "wildfire",
             namePassive = "Raging Wildfire",
-            price = 39900000,
+            price = 31900000,
             upgradeIncreaseEffect = 1950000,
             killsPerTick = 0,
             totalKills = 0,
@@ -359,7 +429,7 @@ var data = {
             id = 12,
             idName = "volcano",
             namePassive = "Erupting Volcano",
-            price = 63500000,
+            price = 43500000,
             upgradeIncreaseEffect = 2400000,
             killsPerTick = 0,
             totalKills = 0,
@@ -377,13 +447,47 @@ var data = {
             id = 13,
             idName = "meteor",
             namePassive = "Falling Meteor",
-            price = 95000000,
+            price = 65000000,
             upgradeIncreaseEffect = 3200000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
             description = "A space rock entering the Earth's atmosphere, but as long as we 'don't look up' it is probably not there",
             logo = '"images/meteor.png"',
+            automatedFlag = false,
+            artifactUpgrade = 0,
+            visible = false,
+            buffElement = ['fire','earth','space'],
+            buffType = 'passive',
+            maxBuyable = 0,
+        ],[
+            id = 14,
+            idName = "blackhole",
+            namePassive = "Gravitational anomalies",
+            price = 95000000,
+            upgradeIncreaseEffect = 6100000,
+            killsPerTick = 0,
+            totalKills = 0,
+            level = 0,
+            description = "Gravitational anomalies that strike all around the world. Beyblade battles are much more difficult now, ... and a lot of poeple die",
+            logo = '"images/blackhole.png"',
+            automatedFlag = false,
+            artifactUpgrade = 0,
+            visible = false,
+            buffElement = ['earth','space'],
+            buffType = 'passive',
+            maxBuyable = 0,
+        ],[
+            id = 15,
+            idName = "massivemeteor",
+            namePassive = "MOAM, Mother of all Meteors",
+            price = 150000000,
+            upgradeIncreaseEffect = 9100000,
+            killsPerTick = 0,
+            totalKills = 0,
+            level = 0,
+            description = "A space rocks the size of the one that killed the dinosaurs entering the Earth's atmosphere. But it could be filled with gold, maybe ..",
+            logo = '"images/moam.png"',
             automatedFlag = false,
             artifactUpgrade = 0,
             visible = false,
@@ -672,7 +776,7 @@ var data = {
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "A helmet charged with the power of lightning, providing superior agility. Wearing this helmet can increase your active lightning power by 75% per level.",
-                logo = '"images/Lightning Helmet.png"',
+                logo = '"images/Lightning helmet.png"',
                 type = 'helm',
                 upgradeIncreaseIncrement = 0.75,
                 active = false,
@@ -939,6 +1043,7 @@ function createUpgrades(){
         upgradeContainer.appendChild(newUpgradeBox);
         //box that needs to contain the new items
         let targetUpgradeContainer = document.getElementById(newIdBox+"_component");
+        $("#"+newIdBox+"_component").css("display","none")
         
         //new attribute // add logo to the box
         let newUpgradeBoxLogo = upgradePurchaseBoxLogo.cloneNode(false);
@@ -955,14 +1060,12 @@ function createUpgrades(){
         //$("#"+newIdBox + '_level').text("lvl " +data.passiveUpgrades[i][7]);
         //update the logo
                
-
         //new attribute // add name to the box
         let newUpgradeBoxName = upgradePurchaseBoxName.cloneNode(false);
         newUpgradeBoxName.id = newIdBox + '_name';
         targetUpgradeContainer.appendChild(newUpgradeBoxName);
         //update the name based on DB name
         $("#"+newIdBox + '_name').text(data.passiveUpgrades[i][2]);
-
 
         //new attribute // add a button to the box
         let newUpgradeBoxButton = upgradePurchaseBoxButton.cloneNode(false);
@@ -2474,11 +2577,11 @@ function upgradepurchablecheck(){
     var purchaseAmountCalc = 0
     if (data.purchaseAmount > 0){
         purchaseAmountCalc=data.purchaseAmount;
-        console.log(purchaseAmountCalc);
+    //    console.log(purchaseAmountCalc);
     }
     else{
         purchaseAmountCalc=1;
-        console.log(purchaseAmountCalc);
+    //    console.log(purchaseAmountCalc);
     }
 
     if(data.deathpoints>=PriceCalc(data.lightningCost,1.07,purchaseAmountCalc))
@@ -2546,21 +2649,15 @@ function prettyNumbers(inputNumber){
 
 }
 
-function maxBuyableUpgrades(){
-    
-        //data.lightningMaxBuyable = Math.log((((data.deathpoints/data.lightningCost)))*(1-1.08)-1)/Math.log(1.08)
-        //console.log(data.lightningMaxBuyable,(data.deathpoints/data.lightningCost),(1-1.08)-1)
-        //console.log(Math.log((data.deathpoints/data.lightningCost)*(1-1.08)),Math.log(1.08))
-        // data.lightningPassiveMaxBuyable = Math.log((((data.deathpoints/data.lightningPassiveCost)))*(1-1.09)-1)/Math.log(1.09)
-        // console.log(data.lightningPassiveMaxBuyable)
-
-        //for(i=0;i<data.passiveUpgrades.length;i++){    
-        //}
-    /*
-    data.passiveUpgrades[i][15]
+function showNewAbility(){
+        
     for(i=0;i<data.passiveUpgrades.length;i++){
-        Math.log()/Math.log()
-    }*/
+        if(data.deathpoints > data.passiveUpgrades[i][3]*0.1){
+            $("#"+data.passiveUpgrades[i][1]+"_component").css("display",'inline-grid');
+ 
+        }        
+    }
+
 }
 
 //update all fields that show numbers        
@@ -2830,6 +2927,7 @@ window.setInterval(function(){
     
     //update all scores not updated in the increment function
     dataUpdate();
+    showNewAbility();
 
     // update timer    
     window.setTimeout( function(){
