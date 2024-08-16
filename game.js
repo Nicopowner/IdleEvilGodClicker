@@ -23,7 +23,7 @@ var data = {
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints: 1,
+    deathpoints: 100000000,
     worshipper: 0,
     divinities: 0,
     startingliving: 8122775940,
@@ -1944,6 +1944,7 @@ $("#upgrade_acolyte").on("click",function(){
             data.sect[selectedIdFromIdCard][4] = Math.round(data.sect[selectedIdFromIdCard][4] *data.incrementPriceAcolyteUpgrade);
             data.sect[selectedIdFromIdCard][7] += data.sect[selectedIdFromIdCard][8]
             data.sect[selectedIdFromIdCard][8] = Math.round(data.sect[selectedIdFromIdCard][8]*data.sect[selectedIdFromIdCard][18]);
+            
             data.totalLevels +=1;
 
             $('#pop_up_status').text("Status: "+ data.sect[selectedIdFromIdCard][17]);
@@ -1959,26 +1960,41 @@ function updateProfilePicture(cultistid){
         case (data.sect[cultistid][5] <3) :
             if(gender==='male'){data.sect[cultistid][16] = "images/male 1.svg";}
             else{data.sect[cultistid][16] = "images/female 1.svg";}
+            data.sect[cultistid][2] = levelsAcolyte[0];
         break;
         case (data.sect[cultistid][5] <6) :
             if(gender==='male'){data.sect[cultistid][16] = "images/male 2.svg";}
             else{data.sect[cultistid][16] = "images/female 2.svg";}
+            data.sect[cultistid][2] = levelsAcolyte[1];
         break;
         case (data.sect[cultistid][5] <9) :
             if(gender==='male'){data.sect[cultistid][16] = "images/male 3.svg";}
             else{data.sect[cultistid][16] = "images/female 3.svg";}
+            data.sect[cultistid][2] = levelsAcolyte[2];
         break;
         case (data.sect[cultistid][5] <12) :
             if(gender==='male'){data.sect[cultistid][16] = "images/male 4.svg";}
             else{data.sect[cultistid][16] = "images/female 4.svg";}
+            data.sect[cultistid][2] = levelsAcolyte[3];
         break;
         case (data.sect[cultistid][5] <15) :
             if(gender==='male'){data.sect[cultistid][16] = "images/male 5.svg";}
             else{data.sect[cultistid][16] = "images/female 5.svg";}
+            data.sect[cultistid][2] = levelsAcolyte[4];
         break;
-        case (data.sect[cultistid][5] >=15) :
+        case (data.sect[cultistid][5] <18) :
             if(gender==='male'){data.sect[cultistid][16] = "images/male 6.svg";}
             else{data.sect[cultistid][16] = "images/female 6.svg";}
+            data.sect[cultistid][2] = levelsAcolyte[5];
+        break;
+        case (data.sect[cultistid][5] <21) :
+            data.sect[cultistid][2] = levelsAcolyte[6];
+        break;
+        case (data.sect[cultistid][5] <24) :
+            data.sect[cultistid][2] = levelsAcolyte[7];
+        break;
+        case (data.sect[cultistid][5] >24) :
+            data.sect[cultistid][2] = levelsAcolyte[8];
         break;
         default:
 
