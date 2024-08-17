@@ -77,6 +77,23 @@ var data = {
     passiveKillsForOfflineTime: 0,
     passiveUpgrades : 
     [
+        [   id = 0.5,
+            idName = "death_button",
+            namePassive = "Death button",
+            price = 8,
+            upgradeIncreaseEffect = 1,
+            killsPerTick = 0,
+            totalKills = 0, 
+            level = 0,
+            description =  "A professional salesman goes around trying to sell 'death buttons' to people. If they click on the button, they get 1 million, but one person dies.",
+            logo = '"images/a-red-button-on-a-white-background.png"',
+            automatedFlag = false,
+            artifactUpgrade = 0,
+            visible = true,
+            buffElement = 'fire',
+            buffType = 'passive',
+            maxBuyable = 0,
+        ],
         [   id = 1,
             idName = "heavy_flu",
             namePassive = "Heavy Flu",
@@ -507,8 +524,25 @@ var data = {
     sect : [
 
     ],
-    incrementPriceRelics : 1.45,
+    incrementPriceRelics : 1.95,
     relic :[
+            [
+                id = 0.09,
+                idName = "beggars_cloak",
+                namePassive = "Beggar’s cloak ",
+                price = 1,
+                upgradeIncreaseEffect = 1,
+                level = 0,
+                description = "It covers you, but does not have much use otherwise. The slight warmth provided increases your lightning power by 0.1% per level.",
+                logo = '"images/beggarcloak.png"',
+                type = 'cloak',
+                upgradeIncreaseIncrement = 0.001,
+                active = false,
+                availableInArmory = false,
+                buffElement = 'lightning',
+                buffType = 'all',
+                buffMethod = 'percentage'
+            ],
             [
                 id = 0.1,
                 idName = "wooden_stick",
@@ -692,7 +726,7 @@ var data = {
                 id = 6,
                 idName = "earth_axe",
                 namePassive = "Earth Axe",
-                price = 11730000,
+                price = 7730000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "An axe forged from the heart of the earth, capable of causing tremors with each strike. Wielding this axe can increase your passive earth kills by 75% per level.",
@@ -708,7 +742,7 @@ var data = {
                 id = 7,
                 idName = "wind_bow",
                 namePassive = "Wind Bow",
-                price = 440000,
+                price = 1440000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "A bow that harnesses the power of the wind, capable of firing arrows with gale force. Wielding this bow can increase your passive wind kills by 42.5% per level.",
@@ -2042,6 +2076,7 @@ if(data.score === 0 && data.gameStarted === false){
     createRelics();
     createArmoryRelics();
     createEvent();
+    tutorial();
     worlddecay();
     loadingbar();
     powerbar();
@@ -2049,6 +2084,132 @@ if(data.score === 0 && data.gameStarted === false){
     localStorage.setItem('initial_situation', JSON.stringify(data));
 }
 
+function tutorial(){
+    var popup = document.getElementById('popup');
+    var content = ("Welcome to death clicker. Would you like to skip the totorial? <br> You can always find it in the Config tab!"+'<div id="See" class="cult_button" onclick="tutorialpart1()">Take tutorial</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('.popup').html(content)
+    $('.popup').css('top','40%')
+    popup.style.display = 'block';
+
+/*
+    setTimeout(function() {
+        popup.style.display = 'none';
+    }, 6000); // The pop-up will disappear after 6 seconds
+*/
+}
+
+
+
+function hidepopup(){
+    document.getElementById('popup').style.display = 'none';
+}
+
+function tutorialpart1(){
+    var content = ("On the left top you can see everyone alive on the planet Earth"+ '<div class="cult_button" onclick="tutorialpart2()">Ok</div>' +'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('.popup').html(content)
+    $('.score_header_left').css("border-color",'red')
+    $('.score_header_left').css("border-style","double")
+    
+}
+function tutorialpart2(){
+    
+    var content = ("As an evil god it is yourt task to exterminate the human race on earth. Each click will shoot down one lightningbolt, giving you 1 DeathPoint. You can see your deathpoints in the right top corner!"+ '<div class="cult_button" onclick="tutorialpart3()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('.popup').html(content)
+    
+    $('.score_header_left').css("border-color",'none')
+    $('.score_header_left').css("border-style","none")
+    $('.score_header_right').css("border-color",'red')
+    $('.score_header_right').css("border-style","double")
+}
+function tutorialpart3(){
+    var content = ("Your lightningbolts can be strengthend in 3 ways:<br> The PowerBar, Upgrades, and Relics"+ '<div class="cult_button" onclick="tutorialpart4()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('.popup').html(content)
+    $('.score_header_right').css("border-color",'none')
+    $('.score_header_right').css("border-style","none")
+
+
+}
+
+function tutorialpart4(){
+    var content = ("The power bar can be seen above the planet and increases for each click"+ '<div class="cult_button" onclick="tutorialpart5()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('.popup').html(content)
+
+}
+function tutorialpart5(){
+    var content = ("The upgrades can be seen in the bottom, here you can find all upgrades that directly strengthen your godly powers (so also your clicks)!"+ '<div class="cult_button" onclick="tutorialpart6()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('#lightning_strike_component').css("border-color",'red')
+    $('#lightning_strike_component').css("border-style","double")
+    $('.popup').html(content)
+}
+function tutorialpart6(){
+    var content = ("The passive lightning strike upgrade increases the speed of you automatic lightning bolts, their standard drop rate is 1/10seconds"+ '<div class="cult_button" onclick="tutorialpart7()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('#lightning_strike_component').css("border-color",'none')
+    $('#lightning_strike_component').css("border-style","none")
+    $('#passive_lightning_strike_component').css("border-color",'red')
+    $('#passive_lightning_strike_component').css("border-style","double")
+    $('.popup').html(content)
+}
+function tutorialpart7(){
+    var content = ("You can also use your deathpoints to buy passive upgrades, these effect kill people over time"+ '<div class="cult_button" onclick="tutorialpart8()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('#passive_lightning_strike_component').css("border-color",'none')
+    $('#passive_lightning_strike_component').css("border-style","none")
+    $('#death_button_component').css("border-color",'red')
+    $('#death_button_component').css("border-style","double")
+    $('.popup').html(content)
+}
+function tutorialpart8(){
+    var content = ("When hoverning/clicking over the name of the upgrade you can see more detials about the passive power up"+ '<div class="cult_button" onclick="tutorialpart9()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('#death_button_component').css("border-color",'none')
+    $('#death_button_component').css("border-style","none")
+    $('.popup').html(content)
+}
+function tutorialpart9(){
+    var content = ("You can also use your deathpoints to buy relics in the relics tab, these strengthen your powers. Each Relic buffs one or more elements!"+ '<div class="cult_button" onclick="tutorialpart10()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    menu('Relic')
+    $('#death_button_component').css("border-color",'none')
+    $('#death_button_component').css("border-style","none")
+    $('.popup').html(content) 
+}
+function tutorialpart10(){
+    var content = ("You can purchase the beggers cloak, it will atleast cover you up! Once bought open the armory and equip it by dragging it to the correct slot or clicking it"+ '<div class="cult_button" onclick="tutorialpart11()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    $('.popup').html(content) 
+}
+
+function tutorialpart11(){
+    document.getElementById('popup').style.display = 'none';
+
+    setTimeout(() => {
+        document.getElementById('popup').style.display = 'block';
+        var content = ("Good now that we coverd you up, we can move on!"+ '<div class="cult_button" onclick="tutorialpart12()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+        $('.popup').html(content) 
+    }, 5000) 
+} 
+function tutorialpart12(){
+    menu('Cult')
+    var content = ("In the cult you can find your own Sect of worshippers that will worship you. You can buy and train cultists with deathpoints. They will inturn generate worshipper points for you. But be careful they can die!"+ '<div class="cult_button" onclick="tutorialpart13()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+        $('.popup').html(content) 
+}
+function tutorialpart13(){
+    
+    var content = ("You can use the worshipper earned to activate events that will effect the population of the planet."+ '<div class="cult_button" onclick="tutorialpart14()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+        $('.popup').html(content) 
+}
+function tutorialpart14(){
+    menu('Settings')
+    var content = ("You can change the settings in the settings tab"+ '<div class="cult_button" onclick="tutorialpart15()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+        $('.popup').html(content) 
+}
+function tutorialpart15(){
+    menu('Stats')
+    var content = ("Last but not least you can see your stats in the stats tab"+ '<div class="cult_button" onclick="tutorialpart16()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+        $('.popup').html(content) 
+}
+function tutorialpart16(){ 
+    menu('Stats')
+    var content = ("Happy hunting! and if you want to revist the tutorial you can find it in the settings"+ '<div class="cult_button" onclick="hidepopup()">End tutorial</div>')
+        $('.popup').html(content) 
+}
+//$('.popup').css('top','18%')
 window.onload = function() {
     //console.log(localStorage.getItem("autoSave"))
     //Object.assign(data,JSON.parse(localStorage.getItem("autoSave"))
@@ -2072,7 +2233,9 @@ window.onload = function() {
                     data.deathpoints += possiblePassiveKills;
                     data.passiveOfflineKills += possiblePassiveKills;
                     data.passiveKills += possiblePassiveKills;
-                    dateLastAutoSaveFile.living -= possiblePassiveKills;
+                    data.score += possiblePassiveKills;
+                    data.kills += possiblePassiveKills;
+                    data.living -= possiblePassiveKills;
 
                     console.log("auto save file loaded with passive kills")
                 }
@@ -2140,11 +2303,41 @@ $(".clicker_area").on("click",function(Event){
 
         setTimeout(() => {
             $("#to_remove").remove();
-           
         }, 1450)  
-
 });
+/*
+function displayActivity(passivePowerName, PassivePowerURL, size) {
+    
+    
+    let div = document.querySelector('#planet');
+    // Get the coordinates
+    let rect = div.getBoundingClientRect();
+    let x = rect.left;
+    let y = rect.top;
+    let xend = div.offsetWidth;
+    let yend = div.offsetHeight;
+    var rangex = xend + x;
+    var rangey = yend + y;
+    
+    console.log('X:', x, 'Y:', y, "Xend: ",xend ,"Yend: ", yend,rangex, rangey);
+    
+    let tempPower = upgradePurchaseBoxLogo.cloneNode(false);
+    tempPower.id = passivePowerName + '_to_remove';
+    tempPower.classList = ("passivePowerName_to_remove");
+    //tempPower.style.setProperty('left',x +"px");
+    //tempPower.style.setProperty('top',y+"px");
+    div.appendChild(tempPower);
+    document.getElementById(passivePowerName + '_to_remove').innerHTML = '<img src= ' +PassivePowerURL + ' style="height: '+ size +'px; ">'
+    console.log(passivePowerName + '_to_remove' + 'innerHTML = <img src= ' +PassivePowerURL + ' style="height: '+ size +'px; ">')
 
+    
+    setTimeout(() => {
+        $("#"+passivePowerName +"_to_remove").remove();
+    }, 5250) 
+
+    
+}
+*/
 $(".clicker_area").on("click",function(Event){
     //update of the numbers
     clickEvent();
@@ -2156,7 +2349,6 @@ $(".clicker_area").on("click",function(Event){
     loadingbar();
     //powerbar for the click power
     powerbar();
-    
 });
 
 data.upgradesExisting = document.getElementsByClassName('upgrade_component').length;
@@ -2242,37 +2434,7 @@ function clickEffect(Event){
             $("#score_death_amount").addClass("hide");
         }, 150)
 }
-/*
-//listener passive lightning strike button 
-$("#passive_lightning_strike_button").on("click",function(Event){
-    Event.stopPropagation();
-    purchaseClickEvent(Event);
-/*    var canPurchase = Event.currentTarget.classList.contains("buyable");
-    if(canPurchase === true && data.deathpoints>= PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount)){
-        data.deathpoints -= PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount);
-        
-        data.totalupgradesbought += Number(data.purchaseAmount);
-        data.lightningPassiveLevel += Number(data.purchaseAmount);
-        //passive speed for ticker
-        if(data.purchaseAmount === 1){
-            data.lightningPassiveCost *= 1.09; 
-            data.lightningPassiveSpeed *= 0.99;
-        }
-        else{
-            data.lightningPassiveCost *= Number(Math.pow(1.09,data.purchaseAmount-1)); 
-            data.lightningPassiveSpeed *= Number(Math.pow(0.99,data.purchaseAmount-1));
-        }
-        dataUpdate();
-        $(Event.currentTarget).addClass("clicked");
-            setTimeout(() => {
-                $(Event.currentTarget).removeClass("clicked");
-            }, 150)
-    }
-    else{
-        
-    }
-});
-*/
+
 $(".upgrade_button").on("click",function(Event){
     var idCurrentTarget = Event.currentTarget.id;
     if(data.purchaseAmount>0){
@@ -2312,80 +2474,13 @@ $(".upgrade_button").on("click",function(Event){
                                 data.passiveUpgrades[i][4] *= Number(Math.pow(data.incrementEffectPassiveUpgrades,1));
                         }
                 }
-
             }
         }
     }
     
-    /*var canPurchase = Event.currentTarget.classList.contains("buyable");  
-    for(i=0;i<data.passiveUpgrades.length;i++){
-        if(Event.currentTarget.id === data.passiveUpgrades[i][1] + "_button"){   
-            if(canPurchase === true && data.deathpoints>PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount)){   
-                    //deduct the cost from the points
-                    data.deathpoints -= PriceCalc(data.passiveUpgrades[i][3],data.incrementPricePassiveUpgrades,data.purchaseAmount);
-                    //increase the level of the passive
-                    data.passiveUpgrades[i][7] += Number(data.purchaseAmount);
-                    data.totalupgradesbought += Number(data.purchaseAmount);
-                    data.numberPassiveUpgrades += Number(data.purchaseAmount);
-
-                    //add increment to the kills per tick
-                    data.passiveUpgrades[i][5] += ValueCalc(data.passiveUpgrades[i][4],data.incrementEffectPassiveUpgrades,data.purchaseAmount);
-                    data.passiveKillsForOfflineTime +=ValueCalc(data.passiveUpgrades[i][4],data.incrementEffectPassiveUpgrades,data.purchaseAmount);
-                    if(data.purchaseAmount === 1){
-                        //increment the price to the new price
-                        data.passiveUpgrades[i][3] *= data.incrementPricePassiveUpgrades;
-                        //increment the upgrade effect 
-                        data.passiveUpgrades[i][4] *= data.incrementEffectPassiveUpgrades;
-                    } 
-                    else{
-                        //increment the price to the new price
-                        data.passiveUpgrades[i][3] *= Number(Math.pow(data.incrementPricePassiveUpgrades,data.purchaseAmount));
-                        //increment the upgrade effect 
-                        data.passiveUpgrades[i][4] *= Number(Math.pow(data.incrementEffectPassiveUpgrades,data.purchaseAmount));
-                    } ; 
-                    //visual of the click
-                        $(Event.currentTarget).addClass("clicked");
-                        setTimeout(() => {
-                            $(Event.currentTarget).removeClass("clicked");
-                        }, 150)
-            }
-            else{               
-            }
-        }
-    }*/
+  
 });  
-//listener lightning strike purchase button
-/*
-$("#lightning_strike_button").on("click",function(Event){
-    purchaseClickEvent(Event);
-    /*var canPurchase = Event.currentTarget.classList.contains("buyable")
-    if(canPurchase === true && data.deathpoints>=PriceCalc(data.lightningCost,1.08,data.purchaseAmount)){
-        data.deathpoints -= PriceCalc(data.lightningCost,1.08,data.purchaseAmount);
-        
-         
-        data.lightningKillsPerClick += Math.round(ValueCalc(data.lightningUpgradeIncreaseEffect,1.02,data.purchaseAmount)); 
-        if(data.purchaseAmount === 1){
-            data.lightningUpgradeIncreaseEffect *= 1.02; 
-            data.lightningCost *= 1.08; 
-        }
-        else{
-        data.lightningUpgradeIncreaseEffect *= Number(Math.pow(1.02,data.purchaseAmount-1)); 
-        data.lightningCost *= Number(Math.pow(1.08,data.purchaseAmount-1));
-        }
-        data.totalupgradesbought += Number(data.purchaseAmount);  
-        data.lightningLevel += Number(data.purchaseAmount);
-       dataUpdate();    
 
-        $(Event.currentTarget).addClass("clicked");
-            setTimeout(() => {
-                $(Event.currentTarget).removeClass("clicked");
-            }, 150)        
-    }
-    else{     
-    }
-});
-
-*/
 
 
 function purchaseClickEvent(e){
@@ -2626,12 +2721,13 @@ function upgradepurchablecheck(){
 function showPopup(content) {
     var popup = document.getElementById('popup');
     $('.popup').html(content)
+    $('.popup').css('top','18%')
     
 
     popup.style.display = 'block';
     setTimeout(function() {
         popup.style.display = 'none';
-    }, 6000); // The pop-up will disappear after 3 seconds
+    }, 6000); // The pop-up will disappear after 6 seconds
 }
 
 function prettyNumbers(inputNumber){
@@ -2675,6 +2771,10 @@ function showNewAbility(){
     }
 
 }
+
+
+
+
 
 //update all fields that show numbers        
 function dataUpdate(){
@@ -2941,8 +3041,12 @@ function passiveKillCalculation (){
         data.passiveUpgrades[i][6] += localIncrement;
         $("#"+data.passiveUpgrades[i][1]+"_total_kills_per_second").text(" (KPS: "+ (localIncrement.toFixed(1)+ ")"));
         increment += localIncrement
+        
+        //if(data.passiveUpgrades[i][5]>0){
+            
+        //   displayActivity(data.passiveUpgrades[i][1],data.passiveUpgrades[i][9],10+Math.round(data.passiveUpgrades[i][5]/3));
+        //}
     }
-
     return increment
 }
 
