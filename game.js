@@ -2069,19 +2069,79 @@ mouseLocation.addEventListener("mousemove", e => {
 });
 
 
+//$('.popup').css('top','18%')
+window.onload = function() {
+    //console.log(localStorage.getItem("autoSave"))
+    //Object.assign(data,JSON.parse(localStorage.getItem("autoSave"))
+    
+    //console.log("page loaded")
+    if(localStorage.getItem("autoSave").length>2){
+        //var date = JSON.parse(localStorage.getItem("autoSave")).lastLoad
+        var dateLastAutoSaveFile = JSON.parse(localStorage.getItem("autoSave")).lastLoad;
+        //console.log("test if game has been loaded previously")
+        let loadChoice = confirm("Do you want to load an auto savefile? If you don't load the autoSave file it will be overwritten during gameplay. The Save file was saved on " + Date(dateLastAutoSaveFile));
+        if (loadChoice){
+            var timeAway = ((Date.now() - dateLastAutoSaveFile)/60000).toFixed(1)
+            var possiblePassiveKills = JSON.parse(localStorage.getItem("autoSave")).passiveKillsForOfflineTime * timeAway;
+
+            
+            //console.log(timeAway)
+            //+ dateLastAutoSaveFile - Date.now() 
+            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills + " passive kills while you were away for " + timeAway +" minutes");
+                if (PassiveKillsOverTime){
+                    Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
+                    data.deathpoints += possiblePassiveKills;
+                    data.passiveOfflineKills += possiblePassiveKills;
+                    data.passiveKills += possiblePassiveKills;
+                    data.score += possiblePassiveKills;
+                    data.kills += possiblePassiveKills;
+                    data.living -= possiblePassiveKills;
+
+                    console.log("auto save file loaded with passive kills")
+                }
+                else{
+                    Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
+                    console.log("auto save file loaded without passive kills")
+                }
+                
+                
+            }
+        else{
+            console.log("autosave file not loaded")
+        }
+        data.purchaseAmount = 1;
+        for(i=0;i<data.relic.length;i++){
+            data.relic[i][11] = false
+        };
+        
+        createArmoryRelics();
+        dataUpdate();
+
+    }
+    if(data.score===0){
+        //console.log("Run tutorial if game has not been loaded previously")
+        tutorial();
+    }
+
+};
+
+
 if(data.score === 0 && data.gameStarted === false){
+    //console.log("game sequence started")
     data.gameStarted = true;
     data.startRun= Date.now(),
     createUpgrades();
     createRelics();
     createArmoryRelics();
     createEvent();
-    tutorial();
     worlddecay();
     loadingbar();
     powerbar();
   //  playbackgroundmusic();
     localStorage.setItem('initial_situation', JSON.stringify(data));
+    
+    
+    
 }
 
 function tutorial(){
@@ -2091,11 +2151,6 @@ function tutorial(){
     $('.popup').css('top','40%')
     popup.style.display = 'block';
 
-/*
-    setTimeout(function() {
-        popup.style.display = 'none';
-    }, 6000); // The pop-up will disappear after 6 seconds
-*/
 }
 
 
@@ -2209,68 +2264,6 @@ function tutorialpart16(){
     var content = ("Happy hunting! and if you want to revist the tutorial you can find it in the settings"+ '<div class="cult_button" onclick="hidepopup()">End tutorial</div>')
         $('.popup').html(content) 
 }
-//$('.popup').css('top','18%')
-window.onload = function() {
-    //console.log(localStorage.getItem("autoSave"))
-    //Object.assign(data,JSON.parse(localStorage.getItem("autoSave"))
-    
-
-    if(localStorage.getItem("autoSave").length>2){
-        //var date = JSON.parse(localStorage.getItem("autoSave")).lastLoad
-        var dateLastAutoSaveFile = JSON.parse(localStorage.getItem("autoSave")).lastLoad;
-        
-        let loadChoice = confirm("Do you want to load an auto savefile? If you don't load the autoSave file it will be overwritten during gameplay. The Save file was saved on " + Date(dateLastAutoSaveFile));
-        if (loadChoice){
-            var timeAway = ((Date.now() - dateLastAutoSaveFile)/60000).toFixed(1)
-            var possiblePassiveKills = JSON.parse(localStorage.getItem("autoSave")).passiveKillsForOfflineTime * timeAway;
-
-            
-            //console.log(timeAway)
-            //+ dateLastAutoSaveFile - Date.now() 
-            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills + " passive kills while you were away for " + timeAway +" minutes");
-                if (PassiveKillsOverTime){
-                    Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
-                    data.deathpoints += possiblePassiveKills;
-                    data.passiveOfflineKills += possiblePassiveKills;
-                    data.passiveKills += possiblePassiveKills;
-                    data.score += possiblePassiveKills;
-                    data.kills += possiblePassiveKills;
-                    data.living -= possiblePassiveKills;
-
-                    console.log("auto save file loaded with passive kills")
-                }
-                else{
-                    Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
-                    console.log("auto save file loaded without passive kills")
-                }
-                
-                
-            }
-        else{
-            console.log("autosave file not loaded")
-        }
-        data.purchaseAmount = 1;
-        for(i=0;i<data.relic.length;i++){
-            data.relic[i][11] = false};
-        
-        createArmoryRelics();
-        dataUpdate();
-    }
-
-/*
-    if (loadChoice){
-        Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
-        console.log("auto save file loaded")
-    }
-    else{
-        Object.assign(data, JSON.parse(localStorage.getItem(savename) || '{}'));
-        console.log("manual save file loaded")
-    }
-*/
-
-};
-
-
 
 $("#new_acolyte").on('click',function(){
     if(data.deathpoints>data.acolyteCost){
