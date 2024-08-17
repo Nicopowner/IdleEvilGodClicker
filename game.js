@@ -17,7 +17,7 @@ var data = {
     currentClicks: 0,
     clickPowerBooster: 1,
     gameStarted: false,
-    prettyNumber: false,
+    prettyNumber: true,
     worldstage: 0,
     worldKilled: 0,
     worldLivingGrowth: 137,
@@ -3298,9 +3298,9 @@ window.setInterval( function(){
 //game settings
 document.getElementById('number_checkbox').addEventListener('change', function() {
     if (this.checked) {
-        data.prettyNumber = true;
-    } else {
         data.prettyNumber = false;
+    } else {
+        data.prettyNumber = true;
     }
   });
 document.getElementById('cancelSFX').addEventListener('change', function() {
