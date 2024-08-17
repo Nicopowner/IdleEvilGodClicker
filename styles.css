@@ -92,7 +92,7 @@ body {
   border-radius: 10%;
   text-align: left;
   background: linear-gradient(to right,#065288, #003459);
-}
+  }
 .clicker_area{
   display: flex;
   justify-content:center;
@@ -487,7 +487,7 @@ display: none;
   display: none;
   position: fixed;
   max-width: 650px;
-  top: 15%;
+  top: 18%;
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 20px;
