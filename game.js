@@ -13,28 +13,35 @@ var backgroundmusic = [
 var data = {
     startRun: 0,
     lastLoad:0,
+    worldSurvivalTime:0,
     mytime: Date.now(),
     currentClicks: 0,
     clickPowerBooster: 1,
     gameStarted: false,
     prettyNumber: true,
     worldstage: 0,
+    reincarnations: 0,
     worldKilled: 0,
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints: 1,
+    deathpoints:1,
     worshipper: 0,
     divinities: 0,
+    potentialDivinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
     living: 8122775940,
     kills: 0, 
+    killsReincarnation: 0,
     passiveKills: 0,
+    passiveKillsReincarnation: 0,
     passiveOfflineKills: 0,
+    offlineStrength: 0.05,
     eventKills: 0,
     clicks: 0,
     clickKills: 0,
+    clickKillsReincarnation: 0,
     // natural life cycle 
     daytics: 0,
     minutesInGame: 0,
@@ -80,8 +87,8 @@ var data = {
         [   id = 0.5,
             idName = "death_button",
             namePassive = "Death button",
-            price = 8,
-            upgradeIncreaseEffect = 1,
+            price = 9,
+            upgradeIncreaseEffect = 3,
             killsPerTick = 0,
             totalKills = 0, 
             level = 0,
@@ -181,13 +188,13 @@ var data = {
         ],
         [   id = 3,
             idName = "mosquito_flu",
-            namePassive = "The flu strand spread by mosquitos",
+            namePassive = "The mosquito flu ",
             price = 6500,
             upgradeIncreaseEffect = 1000,
             killsPerTick = 0,
             totalKills = 0, 
             level = 0,
-            description =  "The one thing that could make mosquitos more hated",
+            description =  "The one thing that could make mosquitos more hated, they now spread the a dangerous flu virus",
             logo = '"images/mosquito flu.png"',
             automatedFlag = false,
             artifactUpgrade = 0,
@@ -215,7 +222,7 @@ var data = {
         ],
         [   id = 4,
             idName = "pig_flu",
-            namePassive = "Pork meat is infected with a new flu strain",
+            namePassive = "Pork flu",
             price = 70500,
             upgradeIncreaseEffect = 8500,
             killsPerTick = 0,
@@ -681,10 +688,10 @@ var data = {
                 price = 795000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
-                description = "A mace imbued with the essence of fire, capable of incinerating rocks with a single touch. Wielding this mace can increase your passive fire kills by 40% per level.",
+                description = "A mace imbued with the essence of fire, capable of incinerating rocks with a single touch. Wielding this mace can increase your passive fire kills by 35% per level.",
                 logo = '"images/fire mace.png"',
                 type = 'weapon',
-                upgradeIncreaseIncrement = 0.4,
+                upgradeIncreaseIncrement = 0.35,
                 active = false,
                 availableInArmory = false,
                 buffElement = 'fire',
@@ -729,10 +736,10 @@ var data = {
                 price = 7730000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
-                description = "An axe forged from the heart of the earth, capable of causing tremors with each strike. Wielding this axe can increase your passive earth kills by 75% per level.",
+                description = "An axe forged from the heart of the earth, capable of causing tremors with each strike. Wielding this axe can increase your passive earth kills by 55% per level.",
                 logo = '"images/Earth axe.png"',
                 type = 'weapon',
-                upgradeIncreaseIncrement = 0.75,
+                upgradeIncreaseIncrement = 0.55,
                 active = false,
                 availableInArmory = false,
                 buffElement = 'earth',
@@ -793,10 +800,10 @@ var data = {
                 price = 4000000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
-                description = "A scarf imbued with the essence of fire, providing its wielder a fiery aura. Wearing this scarf can increase your passive fire attacks by 45% per level.",
+                description = "A scarf imbued with the essence of fire, providing its wielder a fiery aura. Wearing this scarf can increase your passive fire attacks by 15% per level.",
                 logo = '"images/Fire Scarf.png"',
                 type = 'cloak',
-                upgradeIncreaseIncrement = 0.45,
+                upgradeIncreaseIncrement = 0.15,
                 active = false,
                 availableInArmory = false,
                 buffElement = 'fire',
@@ -825,10 +832,10 @@ var data = {
                 price = 15500000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
-                description = "Armor crafted from the scales of a mighty dragon, offering unparalleled protection and strength. Wearing this armor can increase your passive and active power by 55% per level.",
+                description = "Armor crafted from the scales of a mighty dragon, offering unparalleled protection and strength. Wearing this armor can increase your passive and active power by 25% per level.",
                 logo = '"images/Dragon scale Armor.png"',
                 type = 'chest',
-                upgradeIncreaseIncrement = 0.55,
+                upgradeIncreaseIncrement = 0.25,
                 active = false,
                 availableInArmory = false,
                 buffElement = 'all',
@@ -841,10 +848,10 @@ var data = {
                 price = 70000000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
-                description = "A ring forged in the depths of the underworld, granting its wearer the power of ancient demons. Wearing this ring can increase your all your power by 30% per level.",
+                description = "A ring forged in the depths of the underworld, granting its wearer the power of ancient demons. Wearing this ring can increase your all your power by 20% per level.",
                 logo = '"images/Demon Ring.png"',
                 type = 'ring',
-                upgradeIncreaseIncrement = 0.30,
+                upgradeIncreaseIncrement = 0.20,
                 active = false,
                 availableInArmory = false,
                 buffElement = 'all',
@@ -1048,7 +1055,7 @@ var data = {
     ]
 
 }
-
+var armoryVisibility = true;
 
 var ticker = 0;
 var selectedIdFromIdCard = 0;    
@@ -1066,6 +1073,8 @@ let upgradePurchaseBoxPrice = document.getElementById("lightning_strike_price");
 let upgradePurchaseBoxBar = document.getElementById("lightning_strike_bar");
 let upgradePurchaseBoxBarResult = document.getElementById("lightning_strike_bar_result");
 let upgradePurchaseBoxMoreInfo = document.getElementById("lightning_strike_more_info");
+let statComponent = document.getElementById("passive_calc_all_upgrades");
+
 
 function createUpgrades(){
     for(i=0;i<data.passiveUpgrades.length;i++){
@@ -1128,6 +1137,15 @@ function createUpgrades(){
         newUpgradeBoxMoreInfo.id = newIdBox + '_more_info';
         upgradeContainer.appendChild(newUpgradeBoxMoreInfo);
         $("#"+newIdBox + '_more_info').html("Description: "+ data.passiveUpgrades[i][8] +".<br> Upgrade effect: +" + data.passiveUpgrades[i][4] + ' kills per minute.<br><span id= "' + data.passiveUpgrades[i][1] + '_total_current_kills"> Total kills: ' + data.passiveUpgrades[i][6] +"</span> " +' <span id= "' + data.passiveUpgrades[i][1] +'_total_kills_per_second">'+ (data.passiveUpgrades[i][5]/60).toFixed(1) +')</span>' +"<br> Ability Type: " + data.passiveUpgrades[i][13]  /*+ " <br> balance: " + data.passiveUpgrades[i][3]/data.passiveUpgrades[i][4] */ );
+
+
+        let newStatComponent = statComponent.cloneNode(false);
+        newStatComponent.id = newIdBox+"_stats"
+        newStatComponent.classList = "settings_component"
+        document.getElementById("passive_calc_all_upgrades").appendChild(newStatComponent)
+        $("#"+newIdBox+"_stats").html('<span style="margin: auto; margin-left: 5%;">'+data.passiveUpgrades[i][2]+'</span><span id="passive_calc_'+data.passiveUpgrades[i][1]+'" style="margin: auto"> 0</span>')
+         
+          
     }
 } 
 
@@ -1500,6 +1518,24 @@ function clickArmory(){
     //<img src="images/helm area.svg" alt="Description of the image" height="100px"></img>
 }
 
+$("#switch_button").on("click",function(){
+if(armoryVisibility===true){
+    $("#switch_button").text("See Armory");
+    armoryVisibility=false;
+    $(".armory_section").css("display","none");
+    $("#armory_stats").css("display","grid");
+}
+else{
+    armoryVisibility=true;
+    $("#switch_button").text("See Stats");
+    $(".armory_section").css("display","flex");
+    $("#armory_stats").css("display","none");
+}
+
+
+});
+
+
 
 const idCardBox = document.getElementById("id_card_cultist");
 
@@ -1654,252 +1690,21 @@ const unfortunateEvents = [
 ///let idCardBox = document.getElementById("new_acolyte");
 
 const jobs =[
-    "Software Developer",
-    "Teacher",
-    "Nurse",
-    "Graphic Designer",
-    "Electrician",
-    "Chef",
-    "Plumber",
-    "Accountant",
     "Lawyer",
-    "Architect",
     "Journalist",
-    "Pharmacist",
-    "Dentist",
     "Pilot",
-    "Police Officer",
-    "Firefighter",
-    "Librarian",
-    "Veterinarian",
-    "Photographer",
-    "Musician",
     "Actor",
-    "Scientist",
-    "Engineer",
-    "Mechanic",
-    "Carpenter",
-    "Hairdresser",
-    "Bartender",
-    "Waiter",
-    "Receptionist",
     "Salesperson",
-    "Marketing Manager",
-    "HR Manager",
-    "IT Support Specialist",
-    "Web Developer",
-    "Data Analyst",
-    "Financial Analyst",
-    "Project Manager",
-    "Consultant",
-    "Real Estate Agent",
-    "Translator",
-    "Interpreter",
-    "Social Worker",
-    "Psychologist",
-    "Therapist",
-    "Fitness Trainer",
-    "Yoga Instructor",
-    "Personal Trainer",
-    "Nutritionist",
-    "Dietitian",
-    "Chiropractor",
     "Massage Therapist",
-    "Acupuncturist",
-    "Speech Therapist",
-    "Occupational Therapist",
-    "Physical Therapist",
-    "Radiologist",
-    "Surgeon",
-    "Anesthesiologist",
-    "Cardiologist",
-    "Dermatologist",
-    "Neurologist",
-    "Pathologist",
-    "Pediatrician",
-    "Psychiatrist",
-    "Pulmonologist",
-    "Rheumatologist",
-    "Urologist",
-    "Veterinary Technician",
-    "Zoologist",
-    "Marine Biologist",
-    "Environmental Scientist",
-    "Geologist",
-    "Meteorologist",
-    "Astronomer",
-    "Astrophysicist",
-    "Biochemist",
-    "Biologist",
-    "Chemist",
-    "Physicist",
-    "Mathematician",
-    "Statistician",
-    "Economist",
-    "Sociologist",
-    "Anthropologist",
-    "Archaeologist",
-    "Historian",
-    "Political Scientist",
-    "Philosopher",
-    "Theologian",
-    "Linguist",
-    "Literary Critic",
-    "Art Historian",
-    "Museum Curator",
-    "Archivist",
-    "Conservator",
-    "Art Restorer",
-    "Art Dealer",
-    "Gallery Owner",
-    "Auctioneer",
-    "Antique Dealer",
-    "Jeweler",
-    "Watchmaker",
-    "Goldsmith",
-    "Silversmith",
     "Blacksmith",
     "Potter",
-    "Glassblower",
-    "Weaver",
-    "Tailor",
-    "Seamstress",
-    "Fashion Designer",
-    "Costume Designer",
-    "Set Designer",
-    "Lighting Technician",
-    "Sound Technician",
-    "Stage Manager",
-    "Director",
-    "Producer",
-    "Screenwriter",
-    "Playwright",
-    "Novelist",
-    "Poet",
-    "Essayist",
-    "Journalist",
-    "Editor",
-    "Publisher",
-    "Literary Agent",
-    "Bookstore Owner",
-    "Librarian",
-    "Archivist",
-    "Historian",
-    "Genealogist",
-    "Cartographer",
-    "Surveyor",
-    "Urban Planner",
-    "Landscape Architect",
-    "Interior Designer",
     "Furniture Designer",
-    "Industrial Designer",
-    "Graphic Designer",
-    "Web Designer",
-    "UX/UI Designer",
-    "Animator",
-    "Illustrator",
-    "Comic Book Artist",
-    "Storyboard Artist",
-    "Concept Artist",
-    "Game Designer",
-    "Game Developer",
-    "Game Tester",
-    "Software Engineer",
-    "Hardware Engineer",
-    "Network Engineer",
-    "Systems Administrator",
-    "Database Administrator",
-    "Cybersecurity Specialist",
-    "IT Manager",
-    "Chief Technology Officer",
-    "Chief Information Officer",
-    "Snake Milker",
-    "Pet Food Taster",
-    "Professional Sleeper",
-    "Paranormal Guide",
-    "Dog Surfing Instructor",
-    "Professional Cuddler",
-    "Crime Scene Cleaner",
-    "Ethical Hacker",
-    "Fortune Cookie Writer",
-    "Professional Mourner",
-    "Human Statue",
-    "Water Slide Tester",
-    "Professional Line Stander",
-    "Odor Judge",
-    "Iceberg Mover",
-    "Gumologist",
-    "Chicken Sexer",
-    "Face Feeler",
-    "Professional Whistler",
-    "Pet Psychic",
-    "Feng Shui Consultant",
     "Professional Mermaid",
     "Illegal Arms Dealer",
     "Drug Dealer",
     "Counterfeiter",
     "Hacker",
-    "Smuggler",
-    "Poacher",
-    "Pirate",
-    "Hitman",
-    "Money Launderer",
-    "Human Trafficker",
-    "Black Market Organ Dealer",
-    "Illegal Logger",
-    "Illegal Miner",
-    "Illegal Fisherman",
-    "Illegal Wildlife Trader",
-    "Illegal Waste Dumper",
-    "Graffiti Artist",
-    "Illegal Street Racer",
-    "Gambler",
-    "Prostitute",
-    "Illegal Bookmaker",
-    "Loan Shark",
-    "Illegal Fireworks Seller",
-    "Tattoo Artist",
-    "Tattoo Removal Specialist",
-    "Exotic Dancer",
-    "Escort",
-    "Illegal Fortune Teller",
-    "Illegal Astrologer",
-    "Illegal Crystal Healer",
-    "Reiki Practitioner",
-    "Energy Healer",
-    "Illegal Shaman",
-    "Illegal Witch",
-    "Illegal Alchemist",
-    "Demonologist",
-    "Ghost Hunter",
-    "Illegal Paranormal Investigator",
-    "Illegal UFO Hunter",
-    "Illegal Cryptozoologist",
-    "Bigfoot Hunter",
-    "Loch Ness Monster Hunter",
-    "Illegal Yeti Hunter",
-    "Vampire Hunter",
-    "Werewolf Hunter",
     "Time Traveler",
-    "Illegal Dimension Hopper",
-    "Illegal Quantum Physicist",
-    "Illegal String Theorist",
-    "Dark Matter Researcher",
-    "Dark Energy Researcher",
-    "Illegal Time Machine Builder",
-    "Illegal Teleporter Builder",
-    "Perpetual Motion Machine Builder",
-    "Illegal baby cloner",
-    "Illegal Organ trafficker",
-    "Illegal Robot Builder",
-    "Illegal Drone Builder",
-    "Illegal Space Pirate",
-    "Illegal Asteroid Miner",
-    "Illegal Space Colonist",
-    "Illegal Space Explorer",
-    "Illegal Space Tourist",
-    "Illegal Space Laboratory Builder",
-    "Illegal Space Factory Builder"
 ]
 
 
@@ -2083,11 +1888,21 @@ window.onload = function() {
         if (loadChoice){
             var timeAway = ((Date.now() - dateLastAutoSaveFile)/60000).toFixed(1)
             var possiblePassiveKills = JSON.parse(localStorage.getItem("autoSave")).passiveKillsForOfflineTime * timeAway;
+            //code recommended by copilot
+            
+            let autoSaveData = JSON.parse(localStorage.getItem("autoSave"));
+            
+            if (!autoSaveData.offlineStrength) {
+                autoSaveData.offlineStrength = 0.05;
+                localStorage.setItem("autoSave", JSON.stringify(autoSaveData))
+            }
+            //end recommendation
 
+            var possiblePassiveKills = possiblePassiveKills * JSON.parse(localStorage.getItem("autoSave")).offlineStrength;
             
             //console.log(timeAway)
             //+ dateLastAutoSaveFile - Date.now() 
-            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills + " passive kills while you were away for " + timeAway +" minutes");
+            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills.toFixed(1) + " passive kills while you were away for " + timeAway +" minutes. Due to your absence all effects only worked at 5% of their normal efficiency!");
                 if (PassiveKillsOverTime){
                     Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
                     data.deathpoints += possiblePassiveKills;
@@ -2205,7 +2020,7 @@ function tutorialpart6(){
     $('.popup').html(content)
 }
 function tutorialpart7(){
-    var content = ("You can also use your deathpoints to buy passive upgrades, these effect kill people over time"+ '<div class="cult_button" onclick="tutorialpart8()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    var content = ("You can also use your deathpoints to buy passive upgrades such as the 'death button', these effect kill people over time"+ '<div class="cult_button" onclick="tutorialpart8()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('#passive_lightning_strike_component').css("border-color",'none')
     $('#passive_lightning_strike_component').css("border-style","none")
     $('#death_button_component').css("border-color",'red')
@@ -2383,8 +2198,35 @@ function lightningPowerClick(){
                 }
             }
         
-    var clickKills = ((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal
+    var clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
 return clickKills
+}
+function clickPowerExplenation(){
+    var multiplication = 1;
+    var addition = 0;
+    var partOfTotal = 0;
+            //loop through all relics
+            for(i=0;i<data.relic.length;i++){
+                //check if they are active
+                if( data.relic[i][10] === true){
+                    //check their buff type
+                    if( data.relic[i][13] === "active"|| data.relic[i][13] === "all"){
+                        //apply the buff
+                        if(data.relic[i][14] === "percentage"){
+                            multiplication *= data.relic[i][4];
+                        }
+                        if(data.relic[i][14] === "absolute"){
+                            addition += data.relic[i][4];
+                        } 
+                        if(data.relic[i][14] === "percentageOfTotal"){
+                            partOfTotal += data.relic[i][4] * passiveKillCalculation();
+                        } 
+                    }    
+                }
+            }
+        
+    var clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
+return [clickKills,data.lightningKillsPerClick ,addition,multiplication,data.clickPowerBooster,partOfTotal,data.divinities]
 }
 
 //action when click is made
@@ -2613,6 +2455,12 @@ $('.id_card_cultist').on("click",function(){
 });
 
 //more info
+$("#reincarnation_name").mouseenter(function(){
+    $("#reincarnation_more_info").css("display",'block');
+});
+$("#reincarnation_name").mouseleave(function(){
+    $("#reincarnation_more_info").css("display",'none');
+});
 $("#lightning_strike_name").mouseenter(function(){
     $("#lightning_strike_more_info").css("display",'block');
 });
@@ -2873,6 +2721,55 @@ function dataUpdate(){
     
    
     data.acolyteCost = 1500 + Math.round(data.deathpoints*0.02)*data.totalSectAcolytesAlive;
+
+    if(data.prettyNumber === true){
+        $("#new_acolyte").text("Hire cultist:  "+ prettyNumbers(data.acolyteCost));
+
+        //$("#buy_acolyte_price").text(" "+ Math.floor(data.buyacolyteCost));
+    
+        // Update levels
+        $("#lightning_strike_level").text("lvl "+ data.lightningLevel);
+        $("#passive_lightning_strike_level").text("lvl "+ data.lightningPassiveLevel);
+        /*
+        $("#heavy_flu_price").text(" "+ Math.floor(data.passiveUpgrades[0][3]));
+        $("#heavy_malaria_price").text(" "+ Math.floor(data.passiveUpgrades[1][3]));
+        */
+        $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + data.lightningKills +"<br> Ability Type: " + data.lightningBuffElement);
+        $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills);
+        //$("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself");
+        
+        $("#click_power").text(prettyNumbers(clickPowerExplenation()[0]) + " = (((" + clickPowerExplenation()[1].toFixed(1) + "+" + clickPowerExplenation()[2].toFixed(1) + ")*" + clickPowerExplenation()[3].toFixed(1) + "*" + clickPowerExplenation()[4].toFixed(1)+") + " + clickPowerExplenation()[5].toFixed(1)+") * (if any: "+ Math.round(data.divinities)+")");
+        //clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
+        $("#passive_power").text(prettyNumbers(passiveKillCalculation()))
+        $("#passive_calc_power").text(prettyNumbers(passiveKillCalculation()))
+    
+    
+        
+        //stats 
+        $("#stats_score").text(" "+ prettyNumbers(data.score));
+        $("#stats_deathpoints").text(" "+ prettyNumbers(data.deathpoints));
+        $("#stats_worshipper").text(" "+ prettyNumbers(data.worshipper));
+        $("#stats_living").text(" "+ prettyNumbers(data.living));
+        $("#stats_death").text(" "+ prettyNumbers(data.kills));
+        $("#stats_passive_kills").text(" "+ prettyNumbers(data.passiveKills)); 
+        $("#stats_divinities").text(" "+ prettyNumbers(data.divinities)); 
+        $("#stats_click_kills").text(" "+ prettyNumbers(data.clickKills));
+        $("#stats_clicks").text(" "+ prettyNumbers(data.clicks));
+        // natural life cycle
+        $("#stats_daytics").text(" "+ prettyNumbers(data.daytics));
+        $("#stats_naturalbirths").text(" "+ prettyNumbers(data.naturalbirths));
+        $("#stats_naturaldeaths").text(" "+ prettyNumbers(data.naturaldeaths));
+        //upgrades
+        //ligthning strike
+        $("#stats_lightningKillsPerClick").text(" "+ prettyNumbers(data.lightningKillsPerClick));
+        $("#stats_lightningCost").text(" "+ prettyNumbers(data.lightningCost));
+        // lightning strike passive speed
+        $("#stats_lightningPassiveSpeed").text("1 strike/ "+ (10*data.lightningPassiveSpeed).toFixed(1) +" Sec");
+        $("#stats_lightningPassiveCost").text(" "+ prettyNumbers(data.lightningPassiveCost));
+        $("#stats_lightningKills").text(" "+ prettyNumbers(data.lightningKills));
+        $("#stats_lightninglevel").text(" "+ prettyNumbers(data.lightningLevel));
+    }
+    else{
     $("#new_acolyte").text("Hire cultist:  "+ Math.floor(data.acolyteCost));
 
     //$("#buy_acolyte_price").text(" "+ Math.floor(data.buyacolyteCost));
@@ -2886,17 +2783,23 @@ function dataUpdate(){
     */
     $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + data.lightningKills +"<br> Ability Type: " + data.lightningBuffElement);
     $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills);
+    //$("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself");
     
-    
+    $("#click_power").text(clickPowerExplenation()[0].toFixed(0) + " = (((" + clickPowerExplenation()[1].toFixed(1) + "+" + clickPowerExplenation()[2].toFixed(1) + ")*" + clickPowerExplenation()[3].toFixed(1) + "*" + clickPowerExplenation()[4].toFixed(1)+") + " + clickPowerExplenation()[5].toFixed(1)+") * (if any: "+ Math.round(data.divinities)+")");
+    //clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
+    $("#passive_power").text(passiveKillCalculation().toFixed(1))
+    $("#passive_calc_power").text(passiveKillCalculation().toFixed(1))
 
-    //stats
+
+    
+    //stats 
     $("#stats_score").text(" "+ Math.floor(data.score));
     $("#stats_deathpoints").text(" "+ Math.floor(data.deathpoints));
     $("#stats_worshipper").text(" "+ Math.floor(data.worshipper));
     $("#stats_living").text(" "+ Math.floor(data.living));
     $("#stats_death").text(" "+ Math.floor(data.kills));
     $("#stats_passive_kills").text(" "+ Math.floor(data.passiveKills)); 
-    $("#stats_divinities").text(" "+ Math.floor(data.divinities));
+    $("#stats_divinities").text(" "+ Math.floor(data.divinities)); 
     $("#stats_click_kills").text(" "+ Math.floor(data.clickKills));
     $("#stats_clicks").text(" "+ Math.floor(data.clicks));
     // natural life cycle
@@ -2912,12 +2815,77 @@ function dataUpdate(){
     $("#stats_lightningPassiveCost").text(" "+ Math.floor(data.lightningPassiveCost));
     $("#stats_lightningKills").text(" "+ Math.floor(data.lightningKills));
     $("#stats_lightninglevel").text(" "+ Math.floor(data.lightningLevel));
+    }    
+
+    //return [poison, electricity, wind, water, fire, earth, beast, all, active, passive, alltypes ];
+    $("#armory_stat_poison").text(relicPowerCalc()[0].toFixed(2));
+    $("#armory_stat_electricity").text(relicPowerCalc()[1].toFixed(2))
+    $("#armory_stat_wind").text(relicPowerCalc()[2].toFixed(2))
+    $("#armory_stat_water").text(relicPowerCalc()[3].toFixed(2))
+    $("#armory_stat_fire").text(relicPowerCalc()[4].toFixed(2))
+    $("#armory_stat_earth").text(relicPowerCalc()[5].toFixed(2))
+    $("#armory_stat_beast").text(relicPowerCalc()[6].toFixed(2))
+    $("#armory_stat_all").text(relicPowerCalc()[7].toFixed(2))
+    $("#armory_stat_active").text(relicPowerCalc()[8].toFixed(2))
+    $("#armory_stat_passive").text(relicPowerCalc()[9].toFixed(2))
+    $("#armory_stat_alltypes").text(relicPowerCalc()[10].toFixed(2))
+
 
     updateIdCard(selectedIdFromIdCard);
 
      $("#stats_acolyteAmount").text(" "+ Math.floor(data.acolyteAmount));
      $("#stats_acolyteAlive").text(" "+ Math.floor(data.totalSectAcolytesAlive));
 
+    if(data.deathpoints>1000000){
+        $("#reincarnation_component").css("display","grid");
+        $("#reincarnation_button").addClass("buyable");
+        var proportion =data.deathpoints
+    switch(true){
+        case data.deathpoints<9999999:
+            data.potentialDivinities = 1;
+            break;
+        case data.deathpoints<20000000:
+            
+            data.potentialDivinities = data.deathpoints/10000000;
+            break;
+        case data.deathpoints<50000000:
+            proportion = data.deathpoints-20000000 
+            data.potentialDivinities = Math.round(proportion/12500000);
+            data.potentialDivinities += 2;
+            break;    
+        case data.deathpoints<100000000:
+            proportion = data.deathpoints-50000000 
+            data.potentialDivinities = Math.round(proportion/14500000);
+            
+            data.potentialDivinities += 2+2.4;
+            break;
+        case data.deathpoints<300000000:
+            proportion = data.deathpoints-100000000 
+            data.potentialDivinities = Math.round(proportion/17500000);
+            data.potentialDivinities += 2+2.4+3.4;
+        break;
+        case data.deathpoints<800000000:
+            proportion = data.deathpoints-300000000 
+            data.potentialDivinities = Math.round(proportion/25500000);
+            data.potentialDivinities += 2+2.4+3.4+11.4;
+            break;
+        case data.deathpoints<1500000000:
+            proportion = data.deathpoints-800000000 
+            data.potentialDivinities = Math.round(proportion/45500000);
+            data.potentialDivinities += 2+2.4+3.4+11.4+19.6;
+            break;
+        case data.deathpoints<10000000000:
+            proportion = data.deathpoints-1500000000 
+            data.potentialDivinities = Math.round(proportion/100000000);
+            data.potentialDivinities += 2+2.4+3.4+11.4+19.6+10.7;
+            break;
+        case data.deathpoints<100000000000:
+            proportion = data.deathpoints-10000000000 
+            data.potentialDivinities = Math.round(proportion/1000000000);
+            data.potentialDivinities += 2+2.4+3.4+11.4+19.6+10.7+85;
+            break;
+    }}
+    $("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself (3 divinities = clickpower *4). Each divinity will increase your passive power abilities by 75%!<br> you can get "+ data.potentialDivinities.toFixed(1) +" divinities if you reincarnate now!") 
     /*$("#stats_acolyteDamage").text(" "+ Math.floor(data.acolyteDamage));
     $("#stats_buyacolyteCost").text(" "+ Math.floor(data.buyacolyteCost));
     $("#stats_acolytelevel").text(" "+ Math.floor(data.acolytelevel));
@@ -3022,25 +2990,97 @@ function passiveKillCalculation (){
                                 //console.log(multiplication,data.relic[i][4])
                             }
                             if(data.relic[a][14] === "absolute"){
-                                addition += data.relic[a][4]
+                                addition += data.relic[a][4] 
                             } 
                         }
                     }    
                 }
             }
        
-        localIncrement = (data.passiveUpgrades[i][5] + addition)*multiplication/60
+        localIncrement = ((data.passiveUpgrades[i][5] + addition)*multiplication/60)+(((data.passiveUpgrades[i][5] + addition)*multiplication/60)*(data.divinities*0.75))
  
         data.passiveUpgrades[i][6] += localIncrement;
         $("#"+data.passiveUpgrades[i][1]+"_total_kills_per_second").text(" (KPS: "+ (localIncrement.toFixed(1)+ ")"));
         increment += localIncrement
-        
-        //if(data.passiveUpgrades[i][5]>0){
-            
-        //   displayActivity(data.passiveUpgrades[i][1],data.passiveUpgrades[i][9],10+Math.round(data.passiveUpgrades[i][5]/3));
-        //}
+        if(data.prettyNumber === true){
+            $("#passive_calc_"+data.passiveUpgrades[i][1]+"").text(prettyNumbers(localIncrement*60))
+        }
+        else{
+            $("#passive_calc_"+data.passiveUpgrades[i][1]+"").text((localIncrement*60).toFixed(0))
+        }
+   
     }
     return increment
+}
+
+
+function relicPowerCalc(){
+            
+        var poison = 1;
+        var electricity = 1;
+        var wind = 1;
+        var water = 1;
+        var fire = 1;
+        var earth = 1;
+        var beast = 1;
+        var all = 1;
+        var active = 1;
+        var passive = 1;
+        var alltypes = 1;
+
+
+        //loop through all relics
+        for(a=0;a<data.relic.length;a++){
+            //check if they are active
+            if( data.relic[a][10] === true){
+                //check their buff type
+                switch(true){
+                    case(data.relic[a][13] === "passive"):
+                        if(data.relic[a][14] === "percentage"){passive *= data.relic[a][4]}
+                        //else(passiveAbsolute += data.relic[a][4])
+                        break;
+                    case(data.relic[a][13] === "active"):
+                        if(data.relic[a][14] === "percentage"){active *= data.relic[a][4]}
+                        //else(activeAbsolute += data.relic[a][4])
+                        break;
+                    case(data.relic[a][13] === "all"):
+                        if(data.relic[a][14] === "percentage"){alltypes *= data.relic[a][4]}
+                        //else(alltypesAbsolute += data.relic[a][4])
+                        break;
+                    default:
+                }
+                switch(true){
+                    case(data.relic[a][12]==="poison"):
+                        if(data.relic[a][14] === "percentage"){poison *= data.relic[a][4]}
+                        break;
+                    case(data.relic[a][12]==="electricity"):
+                        if(data.relic[a][14] === "percentage"){electricity *= data.relic[a][4]}
+                        break;    
+                    case(data.relic[a][12]==="wind"):
+                        if(data.relic[a][14] === "percentage"){wind *= data.relic[a][4]}
+                        break;
+                    case(data.relic[a][12]==="water"):
+                        if(data.relic[a][14] === "percentage"){water *= data.relic[a][4]}
+                        break;
+                    case(data.relic[a][12]==="fire"):
+                        if(data.relic[a][14] === "percentage"){fire *= data.relic[a][4]}
+                        break;
+                    case(data.relic[a][12]==="earth"):
+                        if(data.relic[a][14] === "percentage"){earth *= data.relic[a][4]}
+                        break;
+                    case(data.relic[a][12]==="beast"):
+                        if(data.relic[a][14] === "percentage"){beast *= data.relic[a][4]}
+                        break;
+                    case(data.relic[a][12]==="all"):
+                        if(data.relic[a][14] === "percentage"){all *= data.relic[a][4]}
+                        break;
+                    default:
+                    }
+
+            }
+        }
+    return [poison, electricity, wind, water, fire, earth, beast, all, active, passive, alltypes ];
+
 }
 
 window.setInterval(function(){
@@ -3144,6 +3184,62 @@ function lifeupdate(){
 
 }
 
+$("#reincarnation_button").on("click",function(){
+    
+    var popup = document.getElementById('popup');
+    
+    popup.style.display = 'block';
+
+    var content = ("For the small price of <b>Everything you own</b> you can reincarnate? I am emphasizing here, you will lose everything, are you sure you want to reincarnate? <br> You will get <b>"+ data.potentialDivinities.toFixed(0) + "</b> divinities"+'<div class="cult_button" onclick="reincarnation()">Yes I want to reincarnate</div>'+'<div class="cult_button" style="margin-top:15px;" onclick="hidepopup()">No I am not ready</div>')
+    $('.popup').html(content)
+    $('.popup').css('top','40%')
+    
+});
+
+function reincarnation(){
+    dataUpdate();
+    localStorage.setItem("relics_gameend", JSON.stringify(data.relic));
+    var a = data.score;
+    var b =data.divinities;
+    var c =data.kills;
+    var d =data.passiveKills;
+    var e =data.clicks;
+    var f =data.clickKills;
+    var g =data.daytics;
+    var h =data.naturalbirths;
+    var i =data.naturaldeaths;
+    var j =data.sfx;
+    var k =data.backgroundMusicFlag;
+    var l =data.musicVolume;
+    var m =data.totalArtifacts;
+    var n =data.reincarnations;
+    var t = data.potentialDivinities
+    
+    Object.assign(data, JSON.parse(localStorage.getItem('initial_situation') || '{}'));
+    Object.assign(data.relic, JSON.parse(localStorage.getItem('relics_gameend') || '{}'));
+    data.score = a;
+    data.divinities = b;
+    data.killsReincarnation += c;
+    data.passiveKillsReincarnation += d;
+    data.clickKillsReincarnation += f;
+    data.clicks = e;
+    data.daytics = g;
+    data.naturalbirths = h;
+    data.naturaldeaths = i;
+    data.sfx = j;
+    data.backgroundMusicFlag = k;
+    data.musicVolume = l;
+    data.totalArtifacts = m;
+    data.reincarnations = n+1;
+    data.startingliving = data.living;
+    data.divinities = t;
+    dataUpdate();
+    alert("You are left with nothing but your relics and your newly earned divinties... Good luck");
+    document.getElementById('popup').style.display = 'none';
+
+}
+
+
 function gameEnd(growth, stage){
     
 
@@ -3173,7 +3269,12 @@ function gameEnd(growth, stage){
             var m =data.totalArtifacts;
             var n =data.worldstage;
             var o =data.worldLivingGrowth;
+            var p =data.killsReincarnation;
+            var q =data.passiveKillsReincarnation;
+            var r =data.clickKillsReincarnation ;
+            var s =data.reincarnations
             
+
         
             Object.assign(data, JSON.parse(localStorage.getItem('initial_situation') || '{}'));
             Object.assign(data.relic, JSON.parse(localStorage.getItem('relics_gameend') || '{}'));
@@ -3196,6 +3297,12 @@ function gameEnd(growth, stage){
             data.newbornrate *=100;
             data.startingliving = data.living;
             data.worldLivingGrowth = o *13.66;
+            data.killsReincarnation += c+p;
+            data.passiveKillsReincarnation += d+q;
+            data.clickKillsReincarnation += f+r;
+            data.reincarnations = s;
+            
+
             
             worlddecay();
             $("#overlay").show();
