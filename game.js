@@ -6,7 +6,7 @@ var groan = [
 ];
 
 var backgroundmusic = [
-    new Audio('sounds/background music.wav'),
+    new Audio('sounds/backgroundmusic.mp3'),
     
 ];
 
