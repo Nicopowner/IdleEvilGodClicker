@@ -66,6 +66,20 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             <button id="select_max" class="w3-button selector_button" onclick="buyamount('max')" style="height: 25px; padding:0px;">xMax</button>
           </div>
         </div>
+        <div class="reincarnation_component" id="reincarnation_component">
+          
+          <div class="upgrade_name" id="reincarnation_name">
+            Reincarnate 
+            <span id="reincarnation_increase_amount"></span>
+          </div>
+          <div class="reincarnation_button" id="reincarnation_button" type="button">
+              
+              <div class="upgrade_price" id="reincarnation_price">Everything!</div>
+              
+          </div>
+        </div>
+        <div class="reincarnation_more_info" id="reincarnation_more_info">Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself (3 divinities = clickpower *4). Each divinity will increase your passive power abilities by 75%! </div>
+
         <div class="upgrade_component" id="lightning_strike_component">
             <div class = "upgrade_logo" id="lightning_strike_logo">
               
@@ -177,7 +191,16 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
        <!--Stats-->
       <div id="Stats" class="w3-container w3-display-container menuitem" style="display:none">
-        
+        <div class="settings_component">
+          <span style="margin: auto; margin-left: 5%;">Click Power</span> 
+          <span id="click_power" style="margin: auto"> 0</span>
+        </div>
+        <div id="passive_calc_all_upgrades">
+          <div class="settings_component" id="passive_calc_all_upgrades">
+            <span style="margin: auto; margin-left: 5%;">Passive kills per minute</span> 
+            <span id="passive_calc_power" style="margin: auto"> 0</span>
+          </div>
+        </div>
         <div class="settings_component">
           <span style="margin: auto; margin-left: 5%;">Score</span> 
           <span id="stats_score" style="margin: auto"> 0</span>
@@ -215,43 +238,43 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           <span id="stats_daytics" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">naturalbirths</span> 
+          <span style="margin: auto; margin-left: 5%;">natural births</span> 
           <span id="stats_naturalbirths" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">naturaldeaths</span> 
+          <span style="margin: auto; margin-left: 5%;">natural deaths</span> 
           <span id="stats_naturaldeaths" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">upgradesExisting</span> 
+          <span style="margin: auto; margin-left: 5%;">upgrades Existing</span> 
           <span id="stats_upgradesExisting" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">totalupgradesbought</span> 
+          <span style="margin: auto; margin-left: 5%;">total upgrades bought</span> 
           <span id="stats_totalupgradesbought" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightningKillsPerClick</span> 
+          <span style="margin: auto; margin-left: 5%;">lightning Kills Per Click</span> 
           <span id="stats_lightningKillsPerClick" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightningCost</span> 
+          <span style="margin: auto; margin-left: 5%;">lightning Cost</span> 
           <span id="stats_lightningCost" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightningPassiveSpeed</span> 
+          <span style="margin: auto; margin-left: 5%;">lightning Passive Speed</span> 
           <span id="stats_lightningPassiveSpeed" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightningPassiveCost</span> 
+          <span style="margin: auto; margin-left: 5%;">lightning Passive Cost</span> 
           <span id="stats_lightningPassiveCost" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightningKills</span> 
+          <span style="margin: auto; margin-left: 5%;">lightning Kills</span> 
           <span id="stats_lightningKills" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightninglevel</span> 
+          <span style="margin: auto; margin-left: 5%;">lightning level</span> 
           <span id="stats_lightninglevel" style="margin: auto"> 0</span>
         </div>
         <div class="settings_component">
@@ -328,6 +351,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           <span class="close" id="close_armory">&times;</span>
           
           <div > Equipment area
+            <div id="selector" style="display: flex;">
+              <div id="switch_button" class="cult_button">See Stats</div>
+            </div>
             <div id="top_armory_section" class="armory_section"> 
               <div id="helm" class="helm">
                 <img src="images/helm area.svg" alt="Description of the image" height="100px">
@@ -357,7 +383,54 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
                 <img src="images/shoe area.svg" alt="Description of the image" height="100px">
               </div>
             </div>
-            
+            <div id="armory_stats">
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">poison</span> 
+                <span id="armory_stat_poison" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">electricity</span> 
+                <span id="armory_stat_electricity" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">wind</span> 
+                <span id="armory_stat_wind" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">water</span> 
+                <span id="armory_stat_water" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">fire</span> 
+                <span id="armory_stat_fire" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">earth</span> 
+                <span id="armory_stat_earth" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">beast</span> 
+                <span id="armory_stat_beast" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">all</span> 
+                <span id="armory_stat_all" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">active</span> 
+                <span id="armory_stat_active" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">passive</span> 
+                <span id="armory_stat_passive" style="margin: auto"> 0</span>
+              </div>
+              <div class="armory_component">
+                <span style="margin: auto; margin-left: 5%;">alltypes</span> 
+                <span id="armory_stat_alltypes" style="margin: auto"> 0</span>
+              </div>
+
+
+            </div>
         </div> 
 
         <div class="relic_armory_area armory_section" >
