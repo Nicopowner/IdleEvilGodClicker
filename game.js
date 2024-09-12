@@ -6,7 +6,7 @@ var groan = [
 ];
 
 var backgroundmusic = [
-    new Audio('sounds/backgroundmusic.mp3'),
+    new Audio('sounds/backgroundmusic.mp3'), 
     
 ];
 
@@ -31,6 +31,7 @@ var data = {
     potentialDivinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
+    factorLiving:1,
     living: 8122775940,
     kills: 0, 
     killsReincarnation: 0,
@@ -347,8 +348,8 @@ var data = {
             id = 7,
             idName = "mass_flooding",
             namePassive = "Mass Flooding",
-            price = 3040000,
-            upgradeIncreaseEffect = 195000,
+            price = 5040000,
+            upgradeIncreaseEffect = 295000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -365,8 +366,8 @@ var data = {
             id = 8,
             idName = "tsunami",
             namePassive = "Devastating Tsunami",
-            price = 7050000,
-            upgradeIncreaseEffect = 430000,
+            price = 9050000,
+            upgradeIncreaseEffect = 630000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -382,8 +383,8 @@ var data = {
             id = 8.5,
             idName = "lightning_nova",
             namePassive = "Spontanious lightning nova",
-            price = 12950000,
-            upgradeIncreaseEffect = 735000,
+            price = 15950000,
+            upgradeIncreaseEffect = 935000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -392,15 +393,15 @@ var data = {
             automatedFlag = false,
             artifactUpgrade = 0,
             visible = false,
-            buffElement = ['lightning','air'],
+            buffElement = ['lightning','wind'],
             buffType = 'passive', 
             maxBuyable = 0,
         ],[
             id = 9,
             idName = "hurricane",
             namePassive = "Ferocious Hurricane",
-            price = 15750000,
-            upgradeIncreaseEffect = 950000,
+            price = 19750000,
+            upgradeIncreaseEffect = 1250000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -409,7 +410,7 @@ var data = {
             automatedFlag = false,
             artifactUpgrade = 0,
             visible = false,
-            buffElement = ['water','air'],
+            buffElement = ['water','wind'],
             buffType = 'passive',  
             maxBuyable = 0,
         ],
@@ -417,8 +418,8 @@ var data = {
             id = 10,
             idName = "earthquake",
             namePassive = "Earthquake",
-            price = 23750000,
-            upgradeIncreaseEffect = 1450000,
+            price = 26750000,
+            upgradeIncreaseEffect = 1650000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -435,8 +436,8 @@ var data = {
             id = 11,
             idName = "wildfire",
             namePassive = "Raging Wildfire",
-            price = 31900000,
-            upgradeIncreaseEffect = 1950000,
+            price = 36900000,
+            upgradeIncreaseEffect = 2150000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -453,8 +454,8 @@ var data = {
             id = 12,
             idName = "volcano",
             namePassive = "Erupting Volcano",
-            price = 43500000,
-            upgradeIncreaseEffect = 2400000,
+            price = 47500000,
+            upgradeIncreaseEffect = 2600000,
             killsPerTick = 0,
             totalKills = 0,
             level = 0,
@@ -471,7 +472,7 @@ var data = {
             id = 13,
             idName = "meteor",
             namePassive = "Falling Meteor",
-            price = 65000000,
+            price = 75000000,
             upgradeIncreaseEffect = 3200000,
             killsPerTick = 0,
             totalKills = 0,
@@ -488,7 +489,7 @@ var data = {
             id = 14,
             idName = "blackhole",
             namePassive = "Gravitational anomalies",
-            price = 95000000,
+            price = 125000000,
             upgradeIncreaseEffect = 6100000,
             killsPerTick = 0,
             totalKills = 0,
@@ -505,7 +506,7 @@ var data = {
             id = 15,
             idName = "massivemeteor",
             namePassive = "MOAM, Mother of all Meteors",
-            price = 150000000,
+            price = 210000000,
             upgradeIncreaseEffect = 9100000,
             killsPerTick = 0,
             totalKills = 0,
@@ -1059,6 +1060,7 @@ var armoryVisibility = true;
 
 var ticker = 0;
 var selectedIdFromIdCard = 0;    
+var hidden = false; 
 
 const upgradeContainer = document.querySelector("#Upgrades");
 let lightningStrikeEffect = document.getElementById("lightning_strike_effect");
@@ -1598,8 +1600,6 @@ const unfortunateEvents = [
     "being attacked during a home invasion.",
     "being abducted during a bachelor party.",
     "experiencing severe mental distress from cyberbullying.",
-    "consuming contaminated food.",
-    "Accidentally drowning.",
     "accidentally coming in contact with an electrical source.",
     "being struck by falling debris.",
     "having an unexpected encounter with a dangerous animal.",
@@ -1615,20 +1615,9 @@ const unfortunateEvents = [
     "being In the path of a tornado.",
     "being Affected by a severe storm.",
     "being Struck by lightning.",
-    "Suffering from extreme heat during a heatwave.",
-    "Suffering from extreme cold exposure.",
-    "Lacking access to water.",
-    "prayer for the cause.",
-    "Accidentally overdosing on drugs.",
+    "praying for the cause.",
+    "overdosing on drugs.",
     "failing to take his own life.",
-    "being shot by disgruntled ex colleague. ",
-    "being Caught in a conflict zone during a war.",
-    "being Targeted in a genocide.",
-    "being trafficked by a criminal organization.",
-    "being stabbed by thier partner",
-    "being shot by a family member",
-    "being abused domesticly.",
-    "being Caught in gang-related violence.",
     "being Killed during a robbery.",
     "being Caught in a fishnet during a nightime swim.",
     "slipping over a banana.",
@@ -1640,7 +1629,6 @@ const unfortunateEvents = [
     "falling during an afternoon run.",
     "falling into a woodchipper.",
     "tripping over their own shoelaces",
-    "choking on a piece of broccoli",
     "getting stuck in a revolving door",
     "being buried under a mountain of laundry",
     "slipping on a bar of soap",
@@ -1663,24 +1651,18 @@ const unfortunateEvents = [
     "trying to eat his cat.",
     "popping a vein on the toilet",
     "running away from the police to escape a speeding ticket.",
-    "enjoying choking on a peice of squid.",
+    "choking on a peice of squid.",
     "playing russian roulet.",
     "listening to the opera",
     "contemplating the meaning of life.",
-    "falling asleep in the sun",
     "climbing the Mount Everest",
     "trying to steal the North Korean flag",
-    "protesting for womens rights in Russia",
-    "protesting against the goverment in Russia",
-    "trying to order water in Russia",
     "crossing the street and getting distracted by a text message.",
     "trying to climb the empire state from the outside.",
     "mistaking a lion's den in the zoo for the petting area.",
     "undergoing a gender switch operation.",
-    "trying to restart The Third Reich.",
     "searching for Anne Frank in the Anne Frank house in Amsterdam.",
     "walking down the street.",
-    "fighting for freedom in Ukrain.",
     "playing a game of cards.",
     "sleeping.",
     "losing a game of truth or dare.",
@@ -1972,6 +1954,16 @@ function tutorial(){
 
 function hidepopup(){
     document.getElementById('popup').style.display = 'none';
+        $('.score_header_left').css("border-color",'none')
+        $('.score_header_left').css("border-style","none")
+        $('.score_header_right').css("border-color",'none')
+        $('.score_header_right').css("border-style","none")
+        $('#lightning_strike_component').css("border-color",'none')
+        $('#lightning_strike_component').css("border-style","none")
+        $('#passive_lightning_strike_component').css("border-color",'none')
+        $('#passive_lightning_strike_component').css("border-style","none")
+        $('#death_button_component').css("border-color",'none')
+        $('#death_button_component').css("border-style","none")
 }
 
 function tutorialpart1(){
@@ -2000,6 +1992,9 @@ function tutorialpart3(){
 
 }
 
+
+
+
 function tutorialpart4(){
     var content = ("The power bar can be seen above the planet and increases for each click"+ '<div class="cult_button" onclick="tutorialpart5()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('.popup').html(content)
@@ -2007,6 +2002,7 @@ function tutorialpart4(){
 }
 function tutorialpart5(){
     var content = ("The upgrades can be seen in the bottom, here you can find all upgrades that directly strengthen your godly powers (so also your clicks)!"+ '<div class="cult_button" onclick="tutorialpart6()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    menu('Upgrades')
     $('#lightning_strike_component').css("border-color",'red')
     $('#lightning_strike_component').css("border-style","double")
     $('.popup').html(content)
@@ -3050,25 +3046,25 @@ function relicPowerCalc(){
                     default:
                 }
                 switch(true){
-                    case(data.relic[a][12]==="poison"):
+                    case(data.relic[a][12]==="poison"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){poison *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="electricity"):
+                    case(data.relic[a][12]==="electricity"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){electricity *= data.relic[a][4]}
                         break;    
-                    case(data.relic[a][12]==="wind"):
+                    case(data.relic[a][12]==="wind"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){wind *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="water"):
+                    case(data.relic[a][12]==="water"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){water *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="fire"):
+                    case(data.relic[a][12]==="fire"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){fire *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="earth"):
+                    case(data.relic[a][12]==="earth"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){earth *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="beast"):
+                    case(data.relic[a][12]==="beast"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){beast *= data.relic[a][4]}
                         break;
                     case(data.relic[a][12]==="all"):
@@ -3355,6 +3351,26 @@ function menu(menuitem) {
     dataUpdate();
 
 }
+$("#focus").on("click",function(Event){
+
+    // to fix
+    if (hidden === false){
+        $(".upgrade_area").css("max-height",10+"%")
+        $(".clicker_area").css("height",70+"%")
+        $("#focus").text("Maximize")
+        //console.log("min")
+        hidden=true;
+    }
+    else{
+
+        $(".upgrade_area").css("max-height",45+"%")
+        $(".clicker_area").css("height",35+"%")
+        $("#focus").text("Minimize")
+        //console.log("max")
+        hidden=false;
+    }
+
+});
 
 $(".selector_button").on("click",function(Event){
     $(".selector_button").removeClass("selector_button_clicked");
