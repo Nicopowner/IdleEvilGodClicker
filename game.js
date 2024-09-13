@@ -1057,7 +1057,7 @@ var data = {
 
 }
 var armoryVisibility = true;
-
+var passiveTrigger = false;
 var ticker = 0;
 var selectedIdFromIdCard = 0;    
 var hidden = false; 
@@ -2994,8 +2994,11 @@ function passiveKillCalculation (){
             }
        
         localIncrement = ((data.passiveUpgrades[i][5] + addition)*multiplication/60)+(((data.passiveUpgrades[i][5] + addition)*multiplication/60)*(data.divinities*0.75))
- 
+        
+        if (passiveTrigger === true){
         data.passiveUpgrades[i][6] += localIncrement;
+        }
+
         $("#"+data.passiveUpgrades[i][1]+"_total_kills_per_second").text(" (KPS: "+ (localIncrement.toFixed(1)+ ")"));
         increment += localIncrement
         if(data.prettyNumber === true){
@@ -3081,8 +3084,9 @@ function relicPowerCalc(){
 
 window.setInterval(function(){
     var increment = 0;
+    passiveTrigger = true;
     increment = passiveKillCalculation();
-    
+    passiveTrigger = false;
     //update the data
     funincrement(increment);
 
