@@ -19,6 +19,7 @@ var data = {
     clickPowerBooster: 1,
     gameStarted: false,
     prettyNumber: true,
+    removePassiveVisuals: false,
     worldstage: 0,
     reincarnations: 0,
     worldKilled: 0,
@@ -1061,6 +1062,7 @@ var passiveTrigger = false;
 var ticker = 0;
 var selectedIdFromIdCard = 0;    
 var hidden = false; 
+
 
 const upgradeContainer = document.querySelector("#Upgrades");
 let lightningStrikeEffect = document.getElementById("lightning_strike_effect");
@@ -2995,8 +2997,11 @@ function passiveKillCalculation (){
        
         localIncrement = ((data.passiveUpgrades[i][5] + addition)*multiplication/60)+(((data.passiveUpgrades[i][5] + addition)*multiplication/60)*(data.divinities*0.75))
         
-        if (passiveTrigger === true){
+        if (passiveTrigger === true && data.passiveUpgrades[i][7] > 0){
         data.passiveUpgrades[i][6] += localIncrement;
+            if(data.removePassiveVisuals === false){
+                displayPassivePower(data.passiveUpgrades[i][9],data.passiveUpgrades[i][7],data.passiveUpgrades[i][0])
+            }
         }
 
         $("#"+data.passiveUpgrades[i][1]+"_total_kills_per_second").text(" (KPS: "+ (localIncrement.toFixed(1)+ ")"));
@@ -3010,6 +3015,46 @@ function passiveKillCalculation (){
    
     }
     return increment
+}
+
+function displayPassivePower(image,lvl,id){
+    const element = document.getElementById("planet");
+    var rect = element.getBoundingClientRect();
+    console.log(rect.top, rect.right, rect.bottom, rect.left); 
+    var xLocation = Math.round(Math.random() * (rect.right- rect.left));
+    var yLocation = Math.round(Math.random() * (rect.bottom - rect.top));
+
+
+    let img = document.createElement('img');
+
+    let imageUrl = image.replace('"','');
+    imageUrl = imageUrl.replace('"','');
+
+   
+    img.src = imageUrl;
+    var size = 5;
+    if((id * lvl)>50){size = 50}
+    else{size = 5 +(id * lvl)}
+    var width = size;
+    var height = size;
+    img.width = width;
+    img.height = height;
+    img.alt = imageUrl;
+
+
+    img.style.position = 'absolute';
+    img.style.left = (xLocation + rect.left - size) + "px"; 
+    img.style.top = (yLocation + rect.top - size) + "px";  
+
+    document.body.appendChild(img);
+
+    var randomRemovalTime = 50 + Math.round(Math.random()*550)
+
+    setTimeout(() => {
+        document.body.removeChild(img);
+      }, randomRemovalTime);
+
+
 }
 
 
@@ -3428,6 +3473,13 @@ document.getElementById('number_checkbox').addEventListener('change', function()
         data.prettyNumber = false;
     } else {
         data.prettyNumber = true;
+    }
+  });
+document.getElementById('passive_checkbox').addEventListener('change', function() {
+    if (this.checked) {
+        data.removePassiveVisuals = true;
+    } else {
+        data.removePassiveVisuals = false;
     }
   });
 document.getElementById('cancelSFX').addEventListener('change', function() {
