@@ -26,7 +26,7 @@ var data = {
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints:1,
+    deathpoints:10000,
     worshipper: 0,
     divinities: 0,
     potentialDivinities: 0,
@@ -864,7 +864,7 @@ var data = {
     sectEvent :[
         [
             id = "festival",
-            nameEvent = 'Sacfrifice festival',
+            nameEvent = 'Sacrifice festival',
             description = 'Each Acolyte sacrifes 5 People per level.',
             killsEffect = 5,
             typeEffect = 'sect',
@@ -1841,9 +1841,9 @@ function updateIdCard(id){
         $('#pop_up_job').text("Job: "+ data.sect[cultistid][15]);
         $('#pop_up_level_name').text("Level: "+ data.sect[cultistid][2]);
         $('#pop_up_level').text("level: "+ data.sect[cultistid][5]);
-        $('#pop_up_age').text("Age: "+ data.sect[cultistid][10]);
-        $('#pop_up_worshipper').text("Worshipper: "+ data.sect[cultistid][7]);
-        $('#pop_up_total_worshipper').text("Total worshipper: "+ data.sect[cultistid][6]);
+        $('#pop_up_age').text("Age: "+ Math.round(data.sect[cultistid][10]));
+        $('#pop_up_worshipper').text("Worshipper: "+ Math.round(data.sect[cultistid][7]));
+        $('#pop_up_total_worshipper').text("Total worshipper: "+ Math.round(data.sect[cultistid][6]));
         $('#pop_up_status').text("Status: "+ data.sect[cultistid][17]);
         $("#upgrade_acolyte").text("Sent cultee to training: "+ data.sect[cultistid][4]);
     }
@@ -3155,18 +3155,18 @@ window.setInterval(function(){
         var deathReason = unfortunateEvents[Math.round(Math.random()*unfortunateEvents.length)];
         
         if(data.sect[i][12]===1){
-            data.sect[i][10] = data.sect[i][10]+1;
-            data.worshipper += data.sect[i][7];
-            data.sect[i][6] += data.sect[i][7];
-            $("#id_card_age_"+data.sect[i][0]).text("Age: "+ data.sect[i][10]);
+            data.sect[i][10] = data.sect[i][10]+0.1;
+            data.worshipper += data.sect[i][7]/10;
+            data.sect[i][6] += data.sect[i][7]/10;
+            $("#id_card_age_"+data.sect[i][0]).text("Age: "+ Math.round(data.sect[i][10]));
             
             if(data.sect[i][13] ==="male"){var gender = " He " }else{ var gender = " She " }
             if( data.sect[selectedIdFromIdCard][17] === "In training"){
                 data.sect[selectedIdFromIdCard][17] = "Alive";
             }
-            if(data.sect[i][10]===data.sect[i][11]){
+            if(Math.round(data.sect[i][10])==data.sect[i][11]){
                 
-                showPopup(('<span class="close" id="close_pop_up">&times;</span>'+"Breaking News: "+ data.sect[i][1]+ " "+ data.sect[i][14]+' died at the age of '+data.sect[i][10] + "."+ gender + "died while "+ deathReason.toLocaleLowerCase()))
+                showPopup(('<span class="close" id="close_pop_up">&times;</span>'+"Breaking News: "+ data.sect[i][1]+ " "+ data.sect[i][14]+' died at the age of '+ Math.round(data.sect[i][10]) + "."+ gender + "died while "+ deathReason.toLocaleLowerCase()))
                 $("#id_card_cultist_"+data.sect[i][0]).addClass("crossed-div")
                 $('#close_pop_up').on("click",function(){
                     $('#popup').css("display","none");
@@ -3185,33 +3185,27 @@ window.setInterval(function(){
 
 /*  
                 SECT Content example
-              0  id = 1,
-              1  acolyteName = "Ben",
-              2  acolyteKills= 0,
-              3  buyacolyteCost= 1250,
-              4  acolytelevel= 1,
-              5  acolyteKills= 0,
-              6  acolyteWorshipperPerSecond= 0,
-              7  acolyteWorshipperIncrease= 10,
-              8  acolytePromotionLevel =1,
-              9  acolyteMaxAge = 0,
-              10  acolyteWorshipperGenerated = 0
 
-               0 id data.totalSectAcolytes,
-              1  name,
-              2 lvl name  "Initiate Acolyte"
-              3 kills  ,0,
-              4 cost  (data.acolyteCost),
-              5 lvl  1,
-              6 worshipper  0,
-              7 starting worshipper / tic  initialWorshipper,
-              8 growth  worshipperGrowth,
-              9  1,
-              10 age  age,
-              11 max age  maxAge
-              12 Alive =1
-              13 gender
-              14 last name
+                0 ID :0
+                1 Name :"Abigail"
+                2 Status :"Initiate Acolyte"
+                3:0
+                4 Upgrade cost:2000
+                5 level:1
+                6 total ws earned:968
+                7 worshpper per sec:88
+                8 worshipper increase:14
+                9:1
+                10 current age:33
+                11 max age:33
+                12 alive bln:0
+                13:"female"
+                14:"Lopez"
+                15:"Actor"
+                16:"images/female 1.svg"
+                17:"Deceased"
+                18:1.1005505440899828
+                total ws generated:0
 
 
 */
@@ -3561,4 +3555,3 @@ window.setInterval( function(){
         localStorage.setItem("autoSave", '{}');
         location.reload();
     }
-
