@@ -687,6 +687,7 @@ display: none;
   background: linear-gradient(to right,#065288, #003459);
   display:flex;
   flex-direction: column;
+  
 }
 .event_details{
   font: 200;
