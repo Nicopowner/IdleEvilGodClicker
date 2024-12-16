@@ -20,13 +20,14 @@ var data = {
     gameStarted: false,
     prettyNumber: true,
     removePassiveVisuals: false,
+    popupOpen: false,
     worldstage: 0,
     reincarnations: 0,
     worldKilled: 0,
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints:1,
+    deathpoints:10000,
     worshipper: 0,
     divinities: 0,
     potentialDivinities: 0,
@@ -1741,6 +1742,7 @@ function createIdCard(){
         updateIdCard(id);
         //$('#id_card_detail_pop_up').css
         $('#id_card_detail_pop_up').css("display","block");
+        data.popupOpen = true;
     });
    
 
@@ -1949,7 +1951,7 @@ function tutorial(){
     $('.popup').html(content)
     $('.popup').css('top','40%')
     popup.style.display = 'block';
-
+    data.popupOpen = true;
 }
 
 
@@ -1966,6 +1968,7 @@ function hidepopup(){
         $('#passive_lightning_strike_component').css("border-style","none")
         $('#death_button_component').css("border-color",'none')
         $('#death_button_component').css("border-style","none")
+        data.popupOpen = false;
 }
 
 function tutorialpart1(){
@@ -2435,22 +2438,25 @@ $(".relic_button").on("click",function(Event){
 
 $('#close_armory').on("click",function(){
     $('#armory_screen').css("display","none");
+    data.popupOpen = false;
 });
 
 $('#close_id_card').on("click",function(){
     $('#id_card_detail_pop_up').css("display","none");
+    data.popupOpen = false;
 });
 
 
 
 $('#armory_button').on("click",function(){
     $('#armory_screen').css("display","block");
+    data.popupOpen = true;
 });
 
-$('.id_card_cultist').on("click",function(){
-
+/*$('.id_card_cultist').on("click",function(){
+    data.popupOpen = true;
     $('#id_card_detail_pop_up').css("display","block")
-});
+});*/
 
 //more info
 $("#reincarnation_name").mouseenter(function(){
@@ -2488,10 +2494,12 @@ $(".upgrade_name").mouseleave(function(Event){
 
 $("#close_events").on("click",function(){
     $('#event_screen_full').css("display","none")
+    data.popupOpen = false;
 });
 
 $("#events_button").on("click",function(){
     $('#event_screen_full').css("display","block")
+    data.popupOpen = true;
 });
 
 //create a purchase logic for the x10 and x100 purchases
@@ -2999,7 +3007,7 @@ function passiveKillCalculation (){
         
         if (passiveTrigger === true && data.passiveUpgrades[i][7] > 0){
         data.passiveUpgrades[i][6] += localIncrement;
-            if(data.removePassiveVisuals === false){
+            if(data.removePassiveVisuals === false && data.popupOpen === false){
                 displayPassivePower(data.passiveUpgrades[i][9],data.passiveUpgrades[i][7],data.passiveUpgrades[i][0])
             }
         }
@@ -3458,6 +3466,7 @@ window.setInterval( function(){
         if(data.currentClicks <=1){data.currentClicks=1}
         
 },500);
+
 
 
 
