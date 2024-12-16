@@ -27,7 +27,7 @@ var data = {
     worldLivingGrowth: 137,
     //scores
     score: 0,
-    deathpoints:10000,
+    deathpoints:1,
     worshipper: 0,
     divinities: 0,
     potentialDivinities: 0,
