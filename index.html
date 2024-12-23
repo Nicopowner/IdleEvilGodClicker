@@ -4,7 +4,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Death clicker</title>
   
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
@@ -26,7 +27,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <div class="score_header_right">
           DeathPoints:<span id="score_deathpoints"> </span><br>
           Worshipper:<span id="score_worshipper"> </span><br>
-          Divinities:<span id="score_divinities"> </span>
+          Divinities:<span id="score_divinities"> </span> <span style="float: right;">Gems:<span id="score_gems"> </span></span>
         </div>
       </div>  
       <div class="clicker_power_bar"><div class="clicker_power_bar_result" id="clicker_power_bar"></div></div>
@@ -50,7 +51,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <button class="w3-bar-item w3-button" onclick="menu('Cult')">Cult</button>
         <button class="w3-bar-item w3-button" onclick="menu('Relic')">Relics</button>
         <button class="w3-bar-item w3-button" onclick="menu('Settings')">Config</button>
-        <button class="w3-bar-item w3-button" onclick="menu('Stats')">Stats</button>
+        <button class="w3-bar-item w3-button" onclick="menu('Stats')">Stats & Achievements</button>
         <button class="w3-bar-item w3-button" onclick="menu('Shop')">Shop</button>
         <button class="w3-button" onclick="focus()" id="focus">Minimize</button>
       </div>
@@ -141,8 +142,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
       <div id="Cult" class="w3-container w3-display-container menuitem" style="display:none">
         <div id="buttons" class="cult_button_roster">
-          <div id="events_button" class="cult_button">Events</div>
+          
           <div id="new_acolyte" class="cult_button">Hire New Acolyte</div>
+          <div id="events_button" class="cult_button">Events</div>
         </div>
           <div id="cult_roster" class="cult_roster">
             <span style="color: #000;">Here you can look at the cultists that you hired, they will collect worshipper for you. You can use the worshipper to purchase events.</span>
@@ -192,103 +194,122 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
        <!--Stats-->
       <div id="Stats" class="w3-container w3-display-container menuitem" style="display:none">
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Click Power</span> 
-          <span id="click_power" style="margin: auto"> 0</span>
-        </div>
-        <div id="passive_calc_all_upgrades">
-          <div class="settings_component" id="passive_calc_all_upgrades">
-            <span style="margin: auto; margin-left: 5%;">Passive kills per minute</span> 
-            <span id="passive_calc_power" style="margin: auto"> 0</span>
+          
+         
+          <div id="update_view_stats" style= "margin-top:10px; margin-bottom:10px; width: 100%;" class="cult_button"> Stats </div>
+             
+
+
+        <div id="all_stats_list">
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Click Power and how it works</span> 
+            <span id="click_power" style="margin: auto"> 0</span>
+          </div>
+          <div class="toggle" id="passive_stats_toggle"> Passive upgrade kills per Minutes (toggle)
+            <span class="arrow">&#9660;</span>
+            
+          </div>
+          <div id="passive_calc_all_upgrades">
+            <div class="settings_component" id="passive_calc_all_upgrades_kills">
+              <span style="margin: auto; margin-left: 5%;">Passive kills per minute</span> 
+              <span id="passive_calc_power" style="margin: auto"> 0</span>
+            </div>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Score</span> 
+            <span id="stats_score" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Deathpoints</span> 
+            <span id="stats_deathpoints" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Worshipper</span> 
+            <span id="stats_worshipper" style="margin: auto">0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Divinities</span> 
+            <span id="stats_divinities" style="margin: auto">0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Kills</span> 
+            <span id="stats_death" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Passive kills</span> 
+            <span id="stats_passive_kills" style="margin: auto">0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Total clicks</span> 
+            <span id="stats_clicks" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Total click kills</span> 
+            <span id="stats_click_kills" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">days in game</span> 
+            <span id="stats_daytics" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">natural births</span> 
+            <span id="stats_naturalbirths" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">natural deaths</span> 
+            <span id="stats_naturaldeaths" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">upgrades Existing</span> 
+            <span id="stats_upgradesExisting" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">total upgrades bought</span> 
+            <span id="stats_totalupgradesbought" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">lightning Kills Per Click</span> 
+            <span id="stats_lightningKillsPerClick" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">lightning Cost</span> 
+            <span id="stats_lightningCost" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">lightning Passive Speed</span> 
+            <span id="stats_lightningPassiveSpeed" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">lightning Passive Cost</span> 
+            <span id="stats_lightningPassiveCost" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">lightning Kills</span> 
+            <span id="stats_lightningKills" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">lightning level</span> 
+            <span id="stats_lightninglevel" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Number of Acolytes</span> 
+            <span id="stats_acolyteAmount" style="margin: auto"> 0</span>
+          </div>
+          <div class="settings_component">
+            <span style="margin: auto; margin-left: 5%;">Acolytes Alive</span> 
+            <span id="stats_acolyteAlive" style="margin: auto"> 0</span>
           </div>
         </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Score</span> 
-          <span id="stats_score" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Deathpoints</span> 
-          <span id="stats_deathpoints" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Worshipper</span> 
-          <span id="stats_worshipper" style="margin: auto">0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Divinities</span> 
-          <span id="stats_divinities" style="margin: auto">0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Kills</span> 
-          <span id="stats_death" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Passive kills</span> 
-          <span id="stats_passive_kills" style="margin: auto">0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Total clicks</span> 
-          <span id="stats_clicks" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Total click kills</span> 
-          <span id="stats_click_kills" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">days in game</span> 
-          <span id="stats_daytics" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">natural births</span> 
-          <span id="stats_naturalbirths" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">natural deaths</span> 
-          <span id="stats_naturaldeaths" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">upgrades Existing</span> 
-          <span id="stats_upgradesExisting" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">total upgrades bought</span> 
-          <span id="stats_totalupgradesbought" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightning Kills Per Click</span> 
-          <span id="stats_lightningKillsPerClick" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightning Cost</span> 
-          <span id="stats_lightningCost" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightning Passive Speed</span> 
-          <span id="stats_lightningPassiveSpeed" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightning Passive Cost</span> 
-          <span id="stats_lightningPassiveCost" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightning Kills</span> 
-          <span id="stats_lightningKills" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">lightning level</span> 
-          <span id="stats_lightninglevel" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Number of Acolytes</span> 
-          <span id="stats_acolyteAmount" style="margin: auto"> 0</span>
-        </div>
-        <div class="settings_component">
-          <span style="margin: auto; margin-left: 5%;">Acolytes Alive</span> 
-          <span id="stats_acolyteAlive" style="margin: auto"> 0</span>
-        </div>
         
         
-        
+        <div id="all_achievements_list">
+          <form style="color:black;"> 
+            <label style="float: left;" for="myCheckbox">Hide Claimed:</label> 
+            <input style="float: left;" type="checkbox" id="claimed" name="cliamed" value="checked"> 
+            
+          </form>
+        </div>
+           
 
       </div>
       <!--settings
@@ -326,13 +347,22 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       <div class="save_component">
         <button class="settings_button" id="tutorial" onclick="tutorial()">Tutorial</button>
       </div>
+
       
       <div class="save_component">
         <button class="settings_button" id="Save">Save</button>
         <button class="settings_button" id="Load">Load</button>
         <button class="settings_button" id="Reset">Reset Save</button>
       </div>
-        
+      <br>
+      <br>
+
+      <div>
+       
+        <input type="checkbox" id="notachieved" name="notachieved" value="checked"> 
+        <label for="myCheckbox">Show all achievements not achieved:</label> 
+            
+      </div>  
       
       </div>
       <div id="Shop" class="w3-container w3-display-container menuitem" style="display:none">
@@ -343,8 +373,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           <a href="https://www.patreon.com/idledeathclicker/shop" target="_blank" rel="noopener noreferrer">
             <button class="cult_button" id="Support" >Support the developer!</button>
           </a>
+          <br>
           <a href="https://www.patreon.com/idledeathclicker/membership" target="_blank" rel="noopener noreferrer">
-            <button style="margin-top: 15px;" class="cult_button" id="Support" >I want to impact developement!</button>
+            <button style="margin-top: 15px; margin-bottom: 15px;" class="cult_button" id="Support" >I want to impact developement!</button>
           </a>
         </div>
         
@@ -476,8 +507,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
           </div>
           <div class="id_card_detail_pop_up_buttons">
             <div >
-              <div id="release_button" class="cult_button">Release cultee from service</div>
-              <div id="upgrade_acolyte" class="cult_button">Sent cultee to training</div>
+              <div id="release_button" style="margin-bottom: 10px;" class="cult_button">Release cultee from service</div>
+              <div id="upgrade_acolyte" style="margin-bottom: 10px;" class="cult_button">Sent cultee to training</div>
+              
             </div>
             
           </div>
