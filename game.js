@@ -30,6 +30,7 @@ var data = {
     deathpoints:1,
     worshipper: 0,
     divinities: 0,
+    gems: 0,
     potentialDivinities: 0,
     startingliving: 8122775940,
     newbornrate: 0.000034931,
@@ -1055,14 +1056,163 @@ var data = {
             canCreate = true,
             created = false
         ]
+    ],
+    achievements: [
+        [ idnumber = 0, id = 'First Strike', description = 'Kill your first human.', reward = 15, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 1, id = 'Passive Aggressor', description = 'Kill 100 humans with passive upgrades.', reward = 15, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100, reason='Passive', image="images/world smaller stage 1.png" , testid = 300],
+        [ idnumber = 2, id = 'Thunderous Applause', description = 'Kill 100 humans with lighting strikes.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 3, id = 'Storm Bringer', description = 'Kill 1,000 humans with lighting strikes.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 4, id = 'Silent But Deadly', description = 'Kill 1,000 humans with passive upgrades.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000, reason='Passive', image="images/world smaller stage 1.png" , testid = 300],
+        [ idnumber = 5, id = 'Death Dealer', description = 'Kill your first 10,000 humans.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000, reason='Points', image="images/world smaller stage 1.png" , testid = 200],
+        [ idnumber = 6, id = 'Electric Executioner', description = 'Kill 10,000 humans with lighting strikes.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 7, id = 'Passive Perfectionist', description = 'Kill 10,000 humans with passive upgrades.', reward = 25, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000, reason='Passive', image="images/world smaller stage 1.png" , testid = 300],
+        [ idnumber = 8, id = 'Master of Mayhem', description = 'Accumulate 100,000 death points.', reward = 40, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000, reason='Points', image="images/world smaller stage 1.png" , testid = 200],
+        [ idnumber = 9, id = 'Lightning Count', description = 'Kill 100,000 humans with lighting strikes.', reward = 70, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 10, id = 'Passive Executioner', description = 'Kill 100,000 humans with passive upgrades.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000, reason='Passive', image="images/world smaller stage 1.png" , testid = 300],
+        [ idnumber = 11, id = 'Death Incarnate', description = 'Accumulate 1,000,000 death points.', reward = 70, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000, reason='Points', image="images/world smaller stage 2.png" , testid = 200],
+        [ idnumber = 12, id = 'Lightning Lord', description = 'Kill 1,000,000 humans with lighting strikes.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 13, id = 'Passive Count', description = 'Kill 1,000,000 humans with passive upgrades.', reward = 70, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000, reason='Passive', image="images/world smaller stage 2.png" , testid = 300],
+        [ idnumber = 14, id = 'Rider of the Apocalypse', description = 'Accumulate 10,000,000 death points.', reward = 120, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000, reason='Points', image="images/world smaller stage 2.png" , testid = 200],
+        [ idnumber = 15, id = 'Lightning King', description = 'Kill 10,000,000 humans with lighting strikes.', reward = 150, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 16, id = 'Passive Lord', description = 'Kill 10,000,000 humans with passive upgrades.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000, reason='Passive', image="images/world smaller stage 2.png" , testid = 300],
+        [ idnumber = 17, id = 'Lightning Emperor', description = 'Kill 100,000,000 humans with lighting strikes.', reward = 200, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 18, id = 'Passive King', description = 'Kill 100,000,000 humans with passive upgrades.', reward = 150, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000000, reason='Passive', image="images/world smaller stage 3.png" , testid = 300],
+        [ idnumber = 19, id = "Death's Right Hand", description = 'Accumulate 100,000,000 death points.', reward = 200, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000000, reason='Points', image="images/world smaller stage 3.png" , testid = 200],
+        [ idnumber = 20, id = 'Lightning Demi-god', description = 'Kill 1,000,000,000 humans with lighting strikes.', reward = 250, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 21, id = 'Passive Emperor', description = 'Kill 1,000,000,000 humans with passive upgrades.', reward = 200, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000000, reason='Passive', image="images/world smaller stage 4.png" , testid = 300],
+        [ idnumber = 22, id = 'Death god', description = 'Accumulate 1,000,000,000 death points.', reward = 120, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000000, reason='Passive', image="images/world smaller stage 4.png" , testid = 300],
+        [ idnumber = 23, id = 'Zues', description = 'Kill 10,000,000,000 humans with lighting strikes.', reward = 400, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000000, reason='Lightning', image="images/lightning.png" , testid = 100],
+        [ idnumber = 24, id = 'Passive Demi-god', description = 'Kill 10,000,000,000 humans with passive upgrades.', reward = 300, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000000, reason='Passive', image="images/world smaller stage 5.png" , testid = 300],
+        [ idnumber = 25, id = 'Apocalypse Now', description = 'Accumulate 10,000,000,000 death points.', reward = 200, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000000, reason='Points', image="images/world smaller stage 5.png" , testid = 200],
+        [ idnumber = 26, id = 'Sneeze Starter', description = 'Kill 200 humans with the heavy flu.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 200, reason='Heavy Flu', image="images/heavy flu.png" , testid = 1],
+        [ idnumber = 27, id = 'Flu Fighter', description = 'Kill 2,000 humans with the heavy flu.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2000, reason='Heavy Flu', image="images/heavy flu.png" , testid = 1],
+        [ idnumber = 28, id = 'Virus Veteran', description = 'Kill 20,000 humans with the heavy flu.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 20000, reason='Heavy Flu', image="images/heavy flu.png" , testid = 1],
+        [ idnumber = 29, id = 'Pandemic Pro', description = 'Kill 200,000 humans with the heavy flu.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 200000, reason='Heavy Flu', image="images/heavy flu.png" , testid = 1],
+        [ idnumber = 30, id = 'Flu Overlord', description = 'Kill 2,000,000 humans with the heavy flu.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2000000, reason='Heavy Flu', image="images/heavy flu.png" , testid = 1],
+        [ idnumber = 31, id = 'Toast Terrorist', description = 'Kill 500 humans with Spontaneous Toaster Combustion.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 500, reason='Spontaneous Toaster Combustion', image="images/Toaster.png" , testid = 2],
+        [ idnumber = 32, id = 'Kitchen Killer', description = 'Kill 5,000 humans with Spontaneous Toaster Combustion.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 500, reason='Spontaneous Toaster Combustion', image="images/Toaster.png" , testid = 2],
+        [ idnumber = 33, id = 'Toaster Tyrant', description = 'Kill 50,000 humans with Spontaneous Toaster Combustion.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 5000, reason='Spontaneous Toaster Combustion', image="images/Toaster.png" , testid = 2],
+        [ idnumber = 34, id = 'Combustion Conqueror', description = 'Kill 500,000 humans with Spontaneous Toaster Combustion.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 50000, reason='Spontaneous Toaster Combustion', image="images/Toaster.png" , testid = 2],
+        [ idnumber = 35, id = 'Toaster Tormentor', description = 'Kill 5,000,000 humans with Spontaneous Toaster Combustion.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 500000, reason='Spontaneous Toaster Combustion', image="images/Toaster.png" , testid = 2],
+        [ idnumber = 36, id = 'Egg-celent Executioner', description = 'Kill 1,350 humans with The Bird Flu is Back.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1350, reason='The Bird Flu is Back', image="images/bird flu.png" , testid = 3],
+        [ idnumber = 37, id = 'Poultry Plague', description = 'Kill 13,500 humans with The Bird Flu is Back.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 13500, reason='The Bird Flu is Back', image="images/bird flu.png" , testid = 3],
+        [ idnumber = 38, id = 'Avian Annihilator', description = 'Kill 135,000 humans with The Bird Flu is Back.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 135000, reason='The Bird Flu is Back', image="images/bird flu.png" , testid = 3],
+        [ idnumber = 39, id = 'Feathered Fatality', description = 'Kill 1,350,000 humans with The Bird Flu is Back.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1350000, reason='The Bird Flu is Back', image="images/bird flu.png" , testid = 3],
+        [ idnumber = 40, id = 'Bird Flu Baron', description = 'Kill 13,500,000 humans with The Bird Flu is Back.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 13500000, reason='The Bird Flu is Back', image="images/bird flu.png" , testid = 3],
+        [ idnumber = 41, id = 'Storm Sprinter', description = 'Kill 2,500 humans with Summer Storm.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2500, reason='Summer Storm', image="images/thunderstorm.png" , testid = 4],
+        [ idnumber = 42, id = 'Thunder Thrasher', description = 'Kill 25,000 humans with Summer Storm.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 25000, reason='Summer Storm', image="images/thunderstorm.png" , testid = 4],
+        [ idnumber = 43, id = 'Lightning Legend', description = 'Kill 250,000 humans with Summer Storm.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 250000, reason='Summer Storm', image="images/thunderstorm.png" , testid = 4],
+        [ idnumber = 44, id = 'Electrifying Executioner', description = 'Kill 2,500,000 humans with Summer Storm.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2500000, reason='Summer Storm', image="images/thunderstorm.png" , testid = 4],
+        [ idnumber = 45, id = 'Storm Sovereign', description = 'Kill 25,000,000 humans with Summer Storm.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 25000000, reason='Summer Storm', image="images/thunderstorm.png" , testid = 4],
+        [ idnumber = 46, id = 'Magic Malefactor', description = 'Kill 6,000 humans with No More Magic.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6000, reason='No More Magic', image="images/magician.png" , testid = 5],
+        [ idnumber = 47, id = 'Trick Terrorist', description = 'Kill 60,000 humans with No More Magic.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6000, reason='No More Magic', image="images/magician.png" , testid = 5],
+        [ idnumber = 48, id = 'Illusion Instigator', description = 'Kill 600,000 humans with No More Magic.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 60000, reason='No More Magic', image="images/magician.png" , testid = 5],
+        [ idnumber = 49, id = 'Spell Slayer', description = 'Kill 6,000,000 humans with No More Magic.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 600000, reason='No More Magic', image="images/magician.png" , testid = 5],
+        [ idnumber = 50, id = 'Arcane Annihilator', description = 'Kill 60,000,000 humans with No More Magic.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6000000, reason='No More Magic', image="images/magician.png" , testid = 5],
+        [ idnumber = 51, id = 'Buzzing Butcher', description = 'Kill 10,000 humans with The Mosquito Flu.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000, reason='The Mosquito Flu', image="images/mosquito flu.png" , testid = 6],
+        [ idnumber = 52, id = 'Mosquito Menace', description = 'Kill 100,000 humans with The Mosquito Flu.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000, reason='The Mosquito Flu', image="images/mosquito flu.png" , testid = 6],
+        [ idnumber = 53, id = 'Insect Invader', description = 'Kill 1,000,000 humans with The Mosquito Flu.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1000000, reason='The Mosquito Flu', image="images/mosquito flu.png" , testid = 6],
+        [ idnumber = 54, id = 'Plague Pro', description = 'Kill 10,000,000 humans with The Mosquito Flu.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 10000000, reason='The Mosquito Flu', image="images/mosquito flu.png" , testid = 6],
+        [ idnumber = 55, id = 'Flu Fiend', description = 'Kill 100,000,000 humans with The Mosquito Flu.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 100000000, reason='The Mosquito Flu', image="images/mosquito flu.png" , testid = 6],
+        [ idnumber = 56, id = 'Flare Fighter', description = 'Kill 24,000 humans with Solar Flares.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 24000, reason='Solar Flares', image="images/solarflare.png" , testid = 7],
+        [ idnumber = 57, id = 'Solar Saboteur', description = 'Kill 240,000 humans with Solar Flares.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 240000, reason='Solar Flares', image="images/solarflare.png" , testid = 7],
+        [ idnumber = 58, id = 'Radiation Reaper', description = 'Kill 2,400,000 humans with Solar Flares.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2400000, reason='Solar Flares', image="images/solarflare.png" , testid = 7],
+        [ idnumber = 59, id = 'Flare Forger', description = 'Kill 24,000,000 humans with Solar Flares.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 24000000, reason='Solar Flares', image="images/solarflare.png" , testid = 7],
+        [ idnumber = 60, id = 'Sun Scourge', description = 'Kill 240,000,000 humans with Solar Flares.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 240000000, reason='Solar Flares', image="images/solarflare.png" , testid = 7],
+        [ idnumber = 61, id = 'Swine Slayer', description = 'Kill 85,000 humans with Pork Flu.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 85000, reason='Pork Flu', image="images/pig flu.png" , testid = 8],
+        [ idnumber = 62, id = 'Pig Plague', description = 'Kill 850,000 humans with Pork Flu.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 85000, reason='Pork Flu', image="images/pig flu.png" , testid = 8],
+        [ idnumber = 63, id = 'Pork Pestilence', description = 'Kill 8,500,000 humans with Pork Flu.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 850000, reason='Pork Flu', image="images/pig flu.png" , testid = 8],
+        [ idnumber = 64, id = 'Ham Harbinger', description = 'Kill 85,000,000 humans with Pork Flu.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 8500000, reason='Pork Flu', image="images/pig flu.png" , testid = 8],
+        [ idnumber = 65, id = 'Bacon Banisher', description = 'Kill 850,000,000 humans with Pork Flu.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 85000000, reason='Pork Flu', image="images/pig flu.png" , testid = 8],
+        [ idnumber = 66, id = 'Blizzard Bringer', description = 'Kill 145,000 humans with Blizzard Storm.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 145000, reason='Blizzard Storm', image="images/blizzard.png" , testid = 9],
+        [ idnumber = 67, id = 'Snowstorm Slayer', description = 'Kill 1,450,000 humans with Blizzard Storm.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1450000, reason='Blizzard Storm', image="images/blizzard.png" , testid = 9],
+        [ idnumber = 68, id = 'Winter Wraith', description = 'Kill 14,500,000 humans with Blizzard Storm.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 14500000, reason='Blizzard Storm', image="images/blizzard.png" , testid = 9],
+        [ idnumber = 69, id = 'Frost Fiend', description = 'Kill 145,000,000 humans with Blizzard Storm.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 145000000, reason='Blizzard Storm', image="images/blizzard.png" , testid = 9],
+        [ idnumber = 70, id = 'Ice Emperor', description = 'Kill 1,450,000,000 humans with Blizzard Storm.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1450000000, reason='Blizzard Storm', image="images/blizzard.png" , testid = 9],
+        [ idnumber = 71, id = 'Retro Reaper', description = 'Kill 305,000 humans with Spanish Flu.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 305000, reason='Spanish Flu', image="images/Spanish Flu.png" , testid = 10],
+        [ idnumber = 72, id = 'Vintage Virus', description = 'Kill 3,050,000 humans with Spanish Flu.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 3050000, reason='Spanish Flu', image="images/Spanish Flu.png" , testid = 10],
+        [ idnumber = 73, id = 'Historic Harbinger', description = 'Kill 30,500,000 humans with Spanish Flu.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 30500000, reason='Spanish Flu', image="images/Spanish Flu.png" , testid = 10],
+        [ idnumber = 74, id = 'Past Plague', description = 'Kill 305,000,000 humans with Spanish Flu.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 305000000, reason='Spanish Flu', image="images/Spanish Flu.png" , testid = 10],
+        [ idnumber = 75, id = 'Time-Travelling Terror', description = 'Kill 3,050,000,000 humans with Spanish Flu.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 3050000000, reason='Spanish Flu', image="images/Spanish Flu.png" , testid = 10],
+        [ idnumber = 76, id = 'Tornado Tyrant', description = 'Kill 455,000 humans with Wild Tornado.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 455000, reason='Wild Tornado', image="images/tornado.png" , testid = 11],
+        [ idnumber = 77, id = 'Twister Terrorist', description = 'Kill 4,550,000 humans with Wild Tornado.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 455000, reason='Wild Tornado', image="images/tornado.png" , testid = 11],
+        [ idnumber = 78, id = 'Cyclone Crusher', description = 'Kill 45,500,000 humans with Wild Tornado.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 4550000, reason='Wild Tornado', image="images/tornado.png" , testid = 11],
+        [ idnumber = 79, id = 'Vortex Villain', description = 'Kill 455,000,000 humans with Wild Tornado.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 45500000, reason='Wild Tornado', image="images/tornado.png" , testid = 11],
+        [ idnumber = 80, id = 'Storm Sovereign', description = 'Kill 4,550,000,000 humans with Wild Tornado.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 455000000, reason='Wild Tornado', image="images/tornado.png" , testid = 11],
+        [ idnumber = 81, id = 'Cosmic Contagion', description = 'Kill 666,660 humans with Mysterious Space Flu.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 666660, reason='Mysterious Space Flu', image="images/Alien Flu.png" , testid = 12],
+        [ idnumber = 82, id = 'Alien Affliction', description = 'Kill 6,666,600 humans with Mysterious Space Flu.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6666600, reason='Mysterious Space Flu', image="images/Alien Flu.png" , testid = 12],
+        [ idnumber = 83, id = 'Interstellar Infection', description = 'Kill 66,666,000 humans with Mysterious Space Flu.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 66666000, reason='Mysterious Space Flu', image="images/Alien Flu.png" , testid = 12],
+        [ idnumber = 84, id = 'Galactic Germ', description = 'Kill 666,660,000 humans with Mysterious Space Flu.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 666660000, reason='Mysterious Space Flu', image="images/Alien Flu.png" , testid = 12],
+        [ idnumber = 85, id = 'Space Plague Sovereign', description = 'Kill 6,666,600,000 humans with Mysterious Space Flu.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6666600000, reason='Mysterious Space Flu', image="images/Alien Flu.png" , testid = 12],
+        [ idnumber = 86, id = 'Revenge Starter', description = 'Kill 850,000 humans with Revenge of the Strays.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 850000, reason='Revenge of the Strays', image="images/revengeofthestrays.png" , testid = 13],
+        [ idnumber = 87, id = 'Stray Slayer', description = 'Kill 8,500,000 humans with Revenge of the Strays.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 8500000, reason='Revenge of the Strays', image="images/revengeofthestrays.png" , testid = 13],
+        [ idnumber = 88, id = 'Animal Avenger', description = 'Kill 85,000,000 humans with Revenge of the Strays.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 85000000, reason='Revenge of the Strays', image="images/revengeofthestrays.png" , testid = 13],
+        [ idnumber = 89, id = 'Pet Punisher', description = 'Kill 850,000,000 humans with Revenge of the Strays.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 850000000, reason='Revenge of the Strays', image="images/revengeofthestrays.png" , testid = 13],
+        [ idnumber = 90, id = 'Revenge Ruler', description = 'Kill 8,500,000,000 humans with Revenge of the Strays.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 8500000000, reason='Revenge of the Strays', image="images/revengeofthestrays.png" , testid = 13],
+        [ idnumber = 91, id = 'Combustion Craze', description = 'Kill 1,250,000 humans with Blazing Fire Flu.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1250000, reason='Blazing Fire Flu', image="images/fire flu.png" , testid = 14],
+        [ idnumber = 92, id = 'Blaze Bringer', description = 'Kill 12,500,000 humans with Blazing Fire Flu.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1250000, reason='Blazing Fire Flu', image="images/fire flu.png" , testid = 14],
+        [ idnumber = 93, id = 'Inferno Instigator', description = 'Kill 125,000,000 humans with Blazing Fire Flu.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 12500000, reason='Blazing Fire Flu', image="images/fire flu.png" , testid = 14],
+        [ idnumber = 94, id = 'Firestorm Fiend', description = 'Kill 1,250,000,000 humans with Blazing Fire Flu.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 125000000, reason='Blazing Fire Flu', image="images/fire flu.png" , testid = 14],
+        [ idnumber = 95, id = 'Flame Overlord', description = 'Kill 12,500,000,000 humans with Blazing Fire Flu.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1250000000, reason='Blazing Fire Flu', image="images/fire flu.png" , testid = 14],
+        [ idnumber = 96, id = 'Flood Founder', description = 'Kill 2,950,000 humans with Mass Flooding.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2950000, reason='Mass Flooding', image="images/flood.png" , testid = 15],
+        [ idnumber = 97, id = 'Deluge Demolisher', description = 'Kill 29,500,000 humans with Mass Flooding.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 29500000, reason='Mass Flooding', image="images/flood.png" , testid = 15],
+        [ idnumber = 98, id = 'Aqua Annihilator', description = 'Kill 295,000,000 humans with Mass Flooding.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 295000000, reason='Mass Flooding', image="images/flood.png" , testid = 15],
+        [ idnumber = 99, id = 'Water Warlord', description = 'Kill 2,950,000,000 humans with Mass Flooding.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2950000000, reason='Mass Flooding', image="images/flood.png" , testid = 15],
+        [ idnumber = 100, id = 'Ocean Overlord', description = 'Kill 29,500,000,000 humans with Mass Flooding.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 29500000000, reason='Mass Flooding', image="images/flood.png" , testid = 15],
+        [ idnumber = 101, id = 'Wave Wrecker', description = 'Kill 6,300,000 humans with Devastating Tsunami.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6300000, reason='Devastating Tsunami', image="images/tsunami.png" , testid = 16],
+        [ idnumber = 102, id = 'Tsunami Terrorist', description = 'Kill 63,000,000 humans with Devastating Tsunami.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 63000000, reason='Devastating Tsunami', image="images/tsunami.png" , testid = 16],
+        [ idnumber = 103, id = 'Sea Slayer', description = 'Kill 630,000,000 humans with Devastating Tsunami.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 630000000, reason='Devastating Tsunami', image="images/tsunami.png" , testid = 16],
+        [ idnumber = 104, id = 'Ocean Obliterator', description = 'Kill 6,300,000,000 humans with Devastating Tsunami.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6300000000, reason='Devastating Tsunami', image="images/tsunami.png" , testid = 16],
+        [ idnumber = 105, id = 'Tidal Tyrant', description = 'Kill 63,000,000,000 humans with Devastating Tsunami.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 63000000000, reason='Devastating Tsunami', image="images/tsunami.png" , testid = 16],
+        [ idnumber = 106, id = 'Nova Neophyte', description = 'Kill 9,350,000 humans with Spontaneous Lightning Nova.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 9350000, reason='Spontaneous Lightning Nova', image="images/nova ball.png" , testid = 17],
+        [ idnumber = 107, id = 'Lightning Liberator', description = 'Kill 93,500,000 humans with Spontaneous Lightning Nova.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 9350000, reason='Spontaneous Lightning Nova', image="images/nova ball.png" , testid = 17],
+        [ idnumber = 108, id = 'Shockwave Slayer', description = 'Kill 935,000,000 humans with Spontaneous Lightning Nova.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 93500000, reason='Spontaneous Lightning Nova', image="images/nova ball.png" , testid = 17],
+        [ idnumber = 109, id = 'Nova Nemesis', description = 'Kill 9,350,000,000 humans with Spontaneous Lightning Nova.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 935000000, reason='Spontaneous Lightning Nova', image="images/nova ball.png" , testid = 17],
+        [ idnumber = 110, id = 'Electro Emperor', description = 'Kill 93,500,000,000 humans with Spontaneous Lightning Nova.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 9350000000, reason='Spontaneous Lightning Nova', image="images/nova ball.png" , testid = 17],
+        [ idnumber = 111, id = 'Gale Giver', description = 'Kill 12,500,000 humans with Ferocious Hurricane.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 12500000, reason='Ferocious Hurricane', image="images/hurricane.png" , testid = 18],
+        [ idnumber = 112, id = 'Storm Supplanter', description = 'Kill 125,000,000 humans with Ferocious Hurricane.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 125000000, reason='Ferocious Hurricane', image="images/hurricane.png" , testid = 18],
+        [ idnumber = 113, id = 'Tempest Tyrant', description = 'Kill 1,250,000,000 humans with Ferocious Hurricane.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1250000000, reason='Ferocious Hurricane', image="images/hurricane.png" , testid = 18],
+        [ idnumber = 114, id = 'Cyclone Sovereign', description = 'Kill 12,500,000,000 humans with Ferocious Hurricane.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 12500000000, reason='Ferocious Hurricane', image="images/hurricane.png" , testid = 18],
+        [ idnumber = 115, id = 'Hurricane Hero', description = 'Kill 125,000,000,000 humans with Ferocious Hurricane.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 125000000000, reason='Ferocious Hurricane', image="images/hurricane.png" , testid = 18],
+        [ idnumber = 116, id = 'Quake Quencher', description = 'Kill 16,500,000 humans with Earthquake.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 16500000, reason='Earthquake', image="images/earthquake.png" , testid = 19],
+        [ idnumber = 117, id = 'Tremor Tyrant', description = 'Kill 165,000,000 humans with Earthquake.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 165000000, reason='Earthquake', image="images/earthquake.png" , testid = 19],
+        [ idnumber = 118, id = 'Seismic Slayer', description = 'Kill 1,650,000,000 humans with Earthquake.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 1650000000, reason='Earthquake', image="images/earthquake.png" , testid = 19],
+        [ idnumber = 119, id = 'Quake Conqueror', description = 'Kill 16,500,000,000 humans with Earthquake.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 16500000000, reason='Earthquake', image="images/earthquake.png" , testid = 19],
+        [ idnumber = 120, id = 'Earthquake Emperor', description = 'Kill 165,000,000,000 humans with Earthquake.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 165000000000, reason='Earthquake', image="images/earthquake.png" , testid = 19],
+        [ idnumber = 121, id = 'Blaze Beginner', description = 'Kill 21,500,000 humans with Raging Wildfire.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 21500000, reason='Raging Wildfire', image="images/wild fire.png" , testid = 20],
+        [ idnumber = 122, id = 'Firestorm Fighter', description = 'Kill 215,000,000 humans with Raging Wildfire.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 21500000, reason='Raging Wildfire', image="images/wild fire.png" , testid = 20],
+        [ idnumber = 123, id = 'Inferno Instigator', description = 'Kill 2,150,000,000 humans with Raging Wildfire.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 215000000, reason='Raging Wildfire', image="images/wild fire.png" , testid = 20],
+        [ idnumber = 124, id = 'Wildfire Warlord', description = 'Kill 21,500,000,000 humans with Raging Wildfire.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2150000000, reason='Raging Wildfire', image="images/wild fire.png" , testid = 20],
+        [ idnumber = 125, id = 'Flame Overlord', description = 'Kill 215,000,000,000 humans with Raging Wildfire.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 21500000000, reason='Raging Wildfire', image="images/wild fire.png" , testid = 20],
+        [ idnumber = 126, id = 'Volcano Virtuoso', description = 'Kill 26,000,000 humans with Erupting Volcano.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 26000000, reason='Erupting Volcano', image="images/vulcano.png" , testid = 21],
+        [ idnumber = 127, id = 'Lava Lord', description = 'Kill 260,000,000 humans with Erupting Volcano.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 260000000, reason='Erupting Volcano', image="images/vulcano.png" , testid = 21],
+        [ idnumber = 128, id = 'Eruption Expert', description = 'Kill 2,600,000,000 humans with Erupting Volcano.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 2600000000, reason='Erupting Volcano', image="images/vulcano.png" , testid = 21],
+        [ idnumber = 129, id = 'Magma Monarch', description = 'Kill 26,000,000,000 humans with Erupting Volcano.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 26000000000, reason='Erupting Volcano', image="images/vulcano.png" , testid = 21],
+        [ idnumber = 130, id = 'Volcanic Vanquisher', description = 'Kill 260,000,000,000 humans with Erupting Volcano.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 260000000000, reason='Erupting Volcano', image="images/vulcano.png" , testid = 21],
+        [ idnumber = 131, id = 'Meteor Menace', description = 'Kill 32,000,000 humans with Falling Meteor.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 32000000, reason='Falling Meteor', image="images/meteor.png" , testid = 22],
+        [ idnumber = 132, id = 'Comet Conqueror', description = 'Kill 320,000,000 humans with Falling Meteor.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 320000000, reason='Falling Meteor', image="images/meteor.png" , testid = 22],
+        [ idnumber = 133, id = 'Asteroid Annihilator', description = 'Kill 3,200,000,000 humans with Falling Meteor.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 3200000000, reason='Falling Meteor', image="images/meteor.png" , testid = 22],
+        [ idnumber = 134, id = 'Space Rock Reaper', description = 'Kill 32,000,000,000 humans with Falling Meteor.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 32000000000, reason='Falling Meteor', image="images/meteor.png" , testid = 22],
+        [ idnumber = 135, id = 'Celestial Catastrophe', description = 'Kill 320,000,000,000 humans with Falling Meteor.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 320000000000, reason='Falling Meteor', image="images/meteor.png" , testid = 22],
+        [ idnumber = 136, id = 'Gravity Goof', description = 'Kill 61,000,000 humans with Gravitational Anomalies.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 61000000, reason='Gravitational Anomalies', image="images/blackhole.png" , testid = 23],
+        [ idnumber = 137, id = 'Anomaly Artist', description = 'Kill 610,000,000 humans with Gravitational Anomalies.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 61000000, reason='Gravitational Anomalies', image="images/blackhole.png" , testid = 23],
+        [ idnumber = 138, id = 'Force of Nature', description = 'Kill 6,100,000,000 humans with Gravitational Anomalies.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 610000000, reason='Gravitational Anomalies', image="images/blackhole.png" , testid = 23],
+        [ idnumber = 139, id = 'Gravitational Goliath', description = 'Kill 61,000,000,000 humans with Gravitational Anomalies.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 6100000000, reason='Gravitational Anomalies', image="images/blackhole.png" , testid = 23],
+        [ idnumber = 140, id = 'Physics Phenom', description = 'Kill 610,000,000,000 humans with Gravitational Anomalies.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 61000000000, reason='Gravitational Anomalies', image="images/blackhole.png" , testid = 23],
+        [ idnumber = 141, id = 'Impact Initiator', description = 'Kill 91,000,000 humans with MOAM, Mother of All Meteors.', reward = 10, achieved = false, claimed = false, dateAchieved = '', killsrequired = 91000000, reason='MOAM, Mother of All Meteors', image="images/moam.png" , testid = 24],
+        [ idnumber = 142, id = 'Destruction Dealer', description = 'Kill 910,000,000 humans with MOAM, Mother of All Meteors.', reward = 20, achieved = false, claimed = false, dateAchieved = '', killsrequired = 910000000, reason='MOAM, Mother of All Meteors', image="images/moam.png" , testid = 24],
+        [ idnumber = 143, id = 'Cosmic Crusher', description = 'Kill 9,100,000,000 humans with MOAM, Mother of All Meteors.', reward = 30, achieved = false, claimed = false, dateAchieved = '', killsrequired = 9100000000, reason='MOAM, Mother of All Meteors', image="images/moam.png" , testid = 24],
+        [ idnumber = 144, id = 'Space Scourge', description = 'Kill 91,000,000,000 humans with MOAM, Mother of All Meteors.', reward = 50, achieved = false, claimed = false, dateAchieved = '', killsrequired = 91000000000, reason='MOAM, Mother of All Meteors', image="images/moam.png" , testid = 24],
+        [ idnumber = 145, id = 'Planet Pulverizer', description = 'Kill 910,000,000,000 humans with MOAM, Mother of All Meteors.', reward = 100, achieved = false, claimed = false, dateAchieved = '', killsrequired = 910000000000, reason='MOAM, Mother of All Meteors', image="images/moam.png" , testid = 24]
     ]
-
 }
 var armoryVisibility = true;
 var passiveTrigger = false;
 var ticker = 0;
 var selectedIdFromIdCard = 0;    
 var hidden = false; 
+var tutorialChecker = false;
+var firstload = true;
 
 
 const upgradeContainer = document.querySelector("#Upgrades");
@@ -1149,10 +1299,40 @@ function createUpgrades(){
         newStatComponent.classList = "settings_component"
         document.getElementById("passive_calc_all_upgrades").appendChild(newStatComponent)
         $("#"+newIdBox+"_stats").html('<span style="margin: auto; margin-left: 5%;">'+data.passiveUpgrades[i][2]+'</span><span id="passive_calc_'+data.passiveUpgrades[i][1]+'" style="margin: auto"> 0</span>')
-         
-          
+
     }
 } 
+
+function createAchievements(){
+    const achievementList = document.getElementById('all_achievements_list');
+        
+    
+    for(i=0;i<data.achievements.length;i++){
+        const AchievementElement = document.createElement('div');
+        AchievementElement.id = `achievement_full_component_${data.achievements[i][0]}`;
+
+        AchievementElement.innerHTML =`
+            <div id="achievement_component_${data.achievements[i][0]}" class="achievement_component notachieved">
+              <img id="achievement_logo_${data.achievements[i][0]}"style="height: 30px; margin: auto;" src="${data.achievements[i][9]}">
+              <span style="margin: auto; margin-left: 5%;">${data.achievements[i][1]}</span> 
+              <button id="collect_${data.achievements[i][0]}" class="achievement_button" style="margin: auto"> ${data.achievements[i][3]} gems</button>
+            </div>
+            <div class="achievement_more_info" id="achievement_more_info_${data.achievements[i][0]}">
+                ${data.achievements[i][2]}
+            </div>
+        `
+        achievementList.appendChild(AchievementElement);
+
+        $(`achievement_component_${data.achievements[i][0]}`).on('hover',function(){equipEvent()});
+    }
+    
+    achievementChecker();
+    firstload = false;
+}
+
+createAchievements();
+if(document.getElementById("notachieved").checked == false){$(".notachieved").css("display","none");}
+
 
 const relicContainer = document.querySelector("#Relic");
 let relicPurchaseBox = document.getElementById("relic_component");
@@ -1620,7 +1800,7 @@ const unfortunateEvents = [
     "being Struck by lightning.",
     "praying for the cause.",
     "overdosing on drugs.",
-    "failing to take his own life.",
+    "succesfully failing suicide attempt.",
     "being Killed during a robbery.",
     "being Caught in a fishnet during a nightime swim.",
     "slipping over a banana.",
@@ -1716,7 +1896,7 @@ function createIdCard(){
     var surName = lastNames[Math.round(Math.random()*lastNames.length)]
     var job = jobs[Math.round(Math.random()*jobs.length)]
     
-    var acolyteDetails = '<div class="id_card_details"><span class="name" id="id_card_name_'+data.totalSectAcolytes+'"> Name: '+name+' </span><br><span class="level" id="id_card_level_'+data.totalSectAcolytes+'"> Level: Grunt</span><br><span class="age" id="id_card_age_'+data.totalSectAcolytes+'"> Age: '+age+' </span><br><span class="worshipper" id="id_card_worshipper_'+data.totalSectAcolytes+'"> Worshipper: '+initialWorshipper+' </span></div>'
+    var acolyteDetails = '<div class="id_card_details"><span class="name" id="id_card_name_'+data.totalSectAcolytes+'"> Name: '+name+' </span><br><span class="level" id="id_card_level_'+data.totalSectAcolytes+'"> Level: Grunt</span><br><span class="age" id="id_card_age_'+data.totalSectAcolytes+'"> Age: '+Math.round(age)+' </span><br><span class="worshipper" id="id_card_worshipper_'+data.totalSectAcolytes+'"> Worshipper: '+initialWorshipper+' </span></div>'
     //create the acolyte entry
     let newAcolyte = [data.totalSectAcolytes,name,"Initiate Acolyte",0,2000,1,0,initialWorshipper,worshipperGrowth,1,age,maxAge,1,gender,surName,job,image,"Alive",1+Math.random(),0];
     //push it in the to the general data hub
@@ -1747,6 +1927,38 @@ function createIdCard(){
    
 
 }
+
+function recreateIdCards() {
+    // Clear the existing ID cards
+    document.getElementById('cult_roster').innerHTML = '';
+
+    // Loop through the sect data and recreate each ID card
+    data.sect.forEach((acolyte, index) => {
+        let [id, name, , , , , , initialWorshipper, , , age, , , gender, surName, job, image,alive] = acolyte;
+
+        var acolyteDetails = '<div class="id_card_details"><span class="name" id="id_card_name_' + id + '"> Name: ' + name + ' </span><br><span class="level" id="id_card_level_' + id + '"> Level: Grunt</span><br><span class="age" id="id_card_age_' + id + '"> Age: ' + Math.round(age) + ' </span><br><span class="worshipper" id="id_card_worshipper_' + id + '"> Worshipper: ' + initialWorshipper + ' </span></div>';
+
+        let newEmployee = idCardBox.cloneNode(false);
+        newEmployee.id = 'id_card_cultist_' + id;
+        document.getElementById('cult_roster').appendChild(newEmployee);
+
+        $('#id_card_cultist_' + id).html('<div class="id_card_content" id="id_card_content"><img class="id_card_profile_pic" id="id_card_profile_' + id + '" src="' + image + '">' + acolyteDetails + '</div>');
+    
+        if(alive === "Deceased"){
+               
+                $('#id_card_cultist_' + id).addClass("crossed-div")
+            }
+        $('.id_card_cultist').on("click", function () {
+            var id = this.id.replace("id_card_cultist_", "");
+            updateIdCard(id);
+            $('#id_card_detail_pop_up').css("display", "block");
+            data.popupOpen = true;
+           
+        });
+    });
+}
+
+
 
 
 $("#release_button").on("click",function(){
@@ -1897,12 +2109,20 @@ window.onload = function() {
                     data.score += possiblePassiveKills;
                     data.kills += possiblePassiveKills;
                     data.living -= possiblePassiveKills;
+                    recreateIdCards();
 
-                    console.log("auto save file loaded with passive kills")
+                    console.log("auto save file loaded with passive kills");
+                    firstload = true;
+                    achievementChecker();
+                    firstload = false;
                 }
                 else{
                     Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
                     console.log("auto save file loaded without passive kills")
+                    recreateIdCards();
+                    firstload = true;
+                    achievementChecker();
+                    firstload = false;
                 }
                 
                 
@@ -1941,7 +2161,7 @@ if(data.score === 0 && data.gameStarted === false){
   //  playbackgroundmusic();
     localStorage.setItem('initial_situation', JSON.stringify(data));
     
-    
+
     
 }
 
@@ -1952,6 +2172,7 @@ function tutorial(){
     $('.popup').css('top','40%')
     popup.style.display = 'block';
     data.popupOpen = true;
+    tutorialChecker = true;
 }
 
 
@@ -1969,6 +2190,7 @@ function hidepopup(){
         $('#death_button_component').css("border-color",'none')
         $('#death_button_component').css("border-style","none")
         data.popupOpen = false;
+        tutorialChecker = false;
 }
 
 function tutorialpart1(){
@@ -1976,6 +2198,7 @@ function tutorialpart1(){
     $('.popup').html(content)
     $('.score_header_left').css("border-color",'red')
     $('.score_header_left').css("border-style","double")
+    tutorialChecker = true;
     
 }
 function tutorialpart2(){
@@ -1987,12 +2210,14 @@ function tutorialpart2(){
     $('.score_header_left').css("border-style","none")
     $('.score_header_right').css("border-color",'red')
     $('.score_header_right').css("border-style","double")
+    tutorialChecker = true;
 }
 function tutorialpart3(){
     var content = ("Your lightningbolts can be strengthend in 3 ways:<br> The PowerBar, Upgrades, and Relics"+ '<div class="cult_button" onclick="tutorialpart4()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('.popup').html(content)
     $('.score_header_right').css("border-color",'none')
     $('.score_header_right').css("border-style","none")
+    tutorialChecker = true;
 
 
 }
@@ -2003,6 +2228,7 @@ function tutorialpart3(){
 function tutorialpart4(){
     var content = ("The power bar can be seen above the planet and increases for each click"+ '<div class="cult_button" onclick="tutorialpart5()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('.popup').html(content)
+    tutorialChecker = true;
 
 }
 function tutorialpart5(){
@@ -2011,6 +2237,7 @@ function tutorialpart5(){
     $('#lightning_strike_component').css("border-color",'red')
     $('#lightning_strike_component').css("border-style","double")
     $('.popup').html(content)
+    tutorialChecker = true;
 }
 function tutorialpart6(){
     var content = ("The passive lightning strike upgrade increases the speed of you automatic lightning bolts, their standard drop rate is 1/10seconds"+ '<div class="cult_button" onclick="tutorialpart7()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
@@ -2019,6 +2246,7 @@ function tutorialpart6(){
     $('#passive_lightning_strike_component').css("border-color",'red')
     $('#passive_lightning_strike_component').css("border-style","double")
     $('.popup').html(content)
+    tutorialChecker = true;
 }
 function tutorialpart7(){
     var content = ("You can also use your deathpoints to buy passive upgrades such as the 'death button', these effect kill people over time"+ '<div class="cult_button" onclick="tutorialpart8()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
@@ -2027,12 +2255,14 @@ function tutorialpart7(){
     $('#death_button_component').css("border-color",'red')
     $('#death_button_component').css("border-style","double")
     $('.popup').html(content)
+    tutorialChecker = true;
 }
 function tutorialpart8(){
     var content = ("When hoverning/clicking over the name of the upgrade you can see more detials about the passive power up"+ '<div class="cult_button" onclick="tutorialpart9()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('#death_button_component').css("border-color",'none')
     $('#death_button_component').css("border-style","none")
     $('.popup').html(content)
+    tutorialChecker = true;
 }
 function tutorialpart9(){
     var content = ("You can also use your deathpoints to buy relics in the relics tab, these strengthen your powers. Each Relic buffs one or more elements!"+ '<div class="cult_button" onclick="tutorialpart10()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
@@ -2040,19 +2270,30 @@ function tutorialpart9(){
     $('#death_button_component').css("border-color",'none')
     $('#death_button_component').css("border-style","none")
     $('.popup').html(content) 
+    tutorialChecker = true;
 }
 function tutorialpart10(){
-    var content = ("You can purchase the beggers cloak, it will atleast cover you up! Once bought open the armory and equip it by dragging it to the correct slot or clicking it"+ '<div class="cult_button" onclick="tutorialpart11()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    var content = ("You can purchase the beggers cloak, it will atleast cover you up! Once bought, open the armory and equip it by dragging it to the correct slot or by clicking it"+ '<div class="cult_button" onclick="tutorialpart11()">Ok, I will cover up</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('.popup').html(content) 
+    tutorialChecker = true;
 }
 
 function tutorialpart11(){
     document.getElementById('popup').style.display = 'none';
-
+    
+       
+    
     setTimeout(() => {
-        document.getElementById('popup').style.display = 'block';
-        var content = ("Good now that we coverd you up, we can move on!"+ '<div class="cult_button" onclick="tutorialpart12()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
-        $('.popup').html(content) 
+        if(data.relic[0][10] == true ){
+            document.getElementById('popup').style.display = 'block';
+            var content = ("Good now that we coverd you up, we can move on!"+ '<div class="cult_button" onclick="tutorialpart12()">Ok</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+            $('.popup').html(content) 
+        }
+        else{
+            document.getElementById('popup').style.display = 'block';
+            var content = ("You are still not wearing your clothes! Please cover up, this is getting akward!"+ '<div class="cult_button" onclick="tutorialpart10()">Wear clothes</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+            $('.popup').html(content)  
+        }
     }, 5000) 
 } 
 function tutorialpart12(){
@@ -2462,19 +2703,19 @@ $('#armory_button').on("click",function(){
 $("#reincarnation_name").mouseenter(function(){
     $("#reincarnation_more_info").css("display",'block');
 });
-$("#reincarnation_name").mouseleave(function(){
+$("#reincarnation_component").mouseleave(function(){
     $("#reincarnation_more_info").css("display",'none');
 });
 $("#lightning_strike_name").mouseenter(function(){
     $("#lightning_strike_more_info").css("display",'block');
 });
-$("#lightning_strike_name").mouseleave(function(){
+$("#lightning_strike_component").mouseleave(function(){
     $("#lightning_strike_more_info").css("display",'none');
 });
 $("#passive_lightning_strike_name").mouseenter(function(){
     $("#passive_lightning_strike_more_info").css("display",'block');
 });
-$("#passive_lightning_strike_name").mouseleave(function(){
+$("#passive_lightning_strike_component").mouseleave(function(){
     $("#passive_lightning_strike_more_info").css("display",'none');
 });
 $(".upgrade_name").mouseenter(function(Event){
@@ -2484,10 +2725,24 @@ $(".upgrade_name").mouseenter(function(Event){
         }
     }
 });
-$(".upgrade_name").mouseleave(function(Event){
+$(".upgrade_component").mouseleave(function(Event){
     for(i=0;i<data.passiveUpgrades.length;i++){
-        if(Event.currentTarget.id === data.passiveUpgrades[i][1] + "_name"){
+        if(Event.currentTarget.id === data.passiveUpgrades[i][1] + "_component"){
             $("#"+ data.passiveUpgrades[i][1] +"_more_info").css("display",'none');
+        }
+    }
+});
+$(".achievement_component").mouseenter(function(Event){
+    for(i=0;i<data.achievements.length;i++){
+        if(Event.currentTarget.id === "achievement_component_" + data.achievements[i][0]){
+            $("#achievement_more_info_"+ data.achievements[i][0]).css("display",'block');
+        }
+    }
+});
+$(".achievement_component").mouseleave(function(Event){
+    for(i=0;i<data.achievements.length;i++){
+        if(Event.currentTarget.id === "achievement_component_" + data.achievements[i][0]){
+            $("#achievement_more_info_"+ data.achievements[i][0]).css("display",'none');
         }
     }
 });
@@ -2630,6 +2885,7 @@ function dataUpdate(){
         $("#score_death").text(prettyNumbers(data.kills));
         $("#score_passive_death").text(prettyNumbers(data.passiveKills));
         $("#score_divinities").text(prettyNumbers(data.divinities));
+        $("#score_gems").text(prettyNumbers(data.gems));
         $("#score_deathpoints").text(prettyNumbers(data.deathpoints));
         $("#score_worshipper").text(prettyNumbers(data.worshipper));        
         
@@ -2643,6 +2899,7 @@ function dataUpdate(){
         $("#score_death").text(" "+ Math.floor(data.kills));
         $("#score_passive_death").text(" "+ Math.floor(data.passiveKills));
         $("#score_divinities").text(" "+ Math.floor(data.divinities));
+        $("#score_gems").text(" "+ Math.floor(data.gems));
         $("#score_deathpoints").text(" "+ Math.floor(data.deathpoints));
         $("#score_worshipper").text(" "+ Math.floor(data.worshipper)); 
 
@@ -2755,6 +3012,7 @@ function dataUpdate(){
         $("#stats_score").text(" "+ prettyNumbers(data.score));
         $("#stats_deathpoints").text(" "+ prettyNumbers(data.deathpoints));
         $("#stats_worshipper").text(" "+ prettyNumbers(data.worshipper));
+        
         $("#stats_living").text(" "+ prettyNumbers(data.living));
         $("#stats_death").text(" "+ prettyNumbers(data.kills));
         $("#stats_passive_kills").text(" "+ prettyNumbers(data.passiveKills)); 
@@ -2892,26 +3150,7 @@ function dataUpdate(){
             break;
     }}
     $("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself (3 divinities = clickpower *4). Each divinity will increase your passive power abilities by 75%!<br> you can get "+ data.potentialDivinities.toFixed(1) +" divinities if you reincarnate now!") 
-    /*$("#stats_acolyteDamage").text(" "+ Math.floor(data.acolyteDamage));
-    $("#stats_buyacolyteCost").text(" "+ Math.floor(data.buyacolyteCost));
-    $("#stats_acolytelevel").text(" "+ Math.floor(data.acolytelevel));
-    $("#stats_acolyteKills").text(" "+ Math.floor(data.acolyteKills));
-    $("#stats_upgradesExisting").text(" "+ Math.floor(data.upgradesExisting));
-    $("#stats_totalupgradesbought").text(" "+ Math.floor(data.totalupgradesbought));*/
-    /*// lightning info
-    lightningKills: 0,
-    lightninglevel: 1,
-    //Acolyte upgreade
-    acolyteAmount: 0,
-    acolyteDamage: 0,
-    buyacolyteCost: 1250,
-    //acolyte info
-    acolytelevel: 1,
-    acolyteKills: 0,
-    acolyteWorshipperPerSecond: 0,
-    //other
-    upgradesExisting : 0,
-    totalupgradesbought: 0,*/
+
 }
  
 function loadingbar(){
@@ -3028,7 +3267,7 @@ function passiveKillCalculation (){
 function displayPassivePower(image,lvl,id){
     const element = document.getElementById("planet");
     var rect = element.getBoundingClientRect();
-    console.log(rect.top, rect.right, rect.bottom, rect.left); 
+    //console.log(rect.top, rect.right, rect.bottom, rect.left); 
     var xLocation = Math.round(Math.random() * (rect.right- rect.left));
     var yLocation = Math.round(Math.random() * (rect.bottom - rect.top));
 
@@ -3149,7 +3388,7 @@ window.setInterval(function(){
     //update all scores not updated in the increment function
     dataUpdate();
     showNewAbility();
-
+    achievementChecker();
     // update timer    
     window.setTimeout( function(){
         ticker=0;
@@ -3218,6 +3457,110 @@ window.setInterval(function(){
 
 */
 
+function achievementChecker(){
+    if(tutorialChecker === false || firstload === true){
+        for(i=0;i<data.achievements.length;i++){
+            //if achieved no longer needed to test
+            
+            if(data.achievements[i][4] == false ){
+                if(data.achievements[i][10] == 100 && data.achievements[i][7]<=data.lightningKills){
+                    achieve(i);
+                }
+                if(data.achievements[i][10] == 200 && data.achievements[i][7]<=data.score){
+                    achieve(i);
+                }
+                if(data.achievements[i][10] == 300 && data.achievements[i][7]<=data.passiveKills){
+                    achieve(i);
+                }
+                if(data.achievements[i][10] < 30 && data.achievements[i][7]<=data.passiveUpgrades[data.achievements[i][10]][6]){
+                    achieve(i);
+                }
+            }
+            
+            
+            if(firstload == true){
+                if(data.achievements[i][10] == 100 && data.achievements[i][7]<=data.lightningKills){
+                    updateAchievement(i); 
+                }
+                if(data.achievements[i][10] == 200 && data.achievements[i][7]<=data.score){
+                    updateAchievement(i); 
+                }
+                if(data.achievements[i][10] == 300 && data.achievements[i][7]<=data.passiveKills){
+                    updateAchievement(i); 
+                }
+                if(data.achievements[i][10] < 30 && data.achievements[i][7]<=data.passiveUpgrades[data.achievements[i][10]][6]){
+                    updateAchievement(i); 
+                }
+            }
+        
+        }
+    }
+}
+function achieve(key){
+    showPopup("You achieved "+ data.achievements[key][1] + ": " + data.achievements[key][2]) 
+    //console.log("Success")
+    data.achievements[key][4]= true;
+    data.achievements[key][6]= Date();
+    updateAchievement(key)
+
+}
+
+function updateAchievement(key,id){
+    $(".notachieved").css("display","grid");
+
+        $("#achievement_component_"+key).removeClass("notachieved")
+        $("#collect_"+key).addClass("achievement_button_achieved");
+            if( data.achievements[key][5] === true){
+                $("#collect_"+key).addClass("achievement_button_claimed");
+                $("#achievement_component_"+key).addClass("achievement_component_claimed")
+            }
+        $("#collect_"+key).on("click",function(){
+            
+            if( data.achievements[key][5] === false){
+                $("#collect_"+key).addClass("achievement_button_claimed");
+                $("#achievement_component_"+key).addClass("achievement_component_claimed")
+                data.gems += data.achievements[key][3]
+                //console.log(key,data.achievements[key][0],data.achievements[key][1],data.achievements[key][4],data.achievements[key][5],id,data.gems,data.achievements[key][3])
+                data.achievements[key][5] = true
+                if(document.getElementById("claimed").checked == true){$(".achievement_component_claimed").css("display","none");}
+            }
+        })
+        if(document.getElementById("notachieved").checked == false){$(".notachieved").css("display","none");}
+}
+
+document.getElementById('claimed').addEventListener('change', function() {
+    if (this.checked) {
+        $(".achievement_component_claimed").css("display","none");
+    } else {
+        $(".achievement_component_claimed").css("display","grid");
+    }
+  });
+
+  document.getElementById('notachieved').addEventListener('change', function() {
+    if (this.checked) {
+        $(".notachieved").css("display","grid");
+    } else {
+        $(".notachieved").css("display","none");
+    }
+  });
+/*
+[ 
+ 0 - idnumber = 1,
+ 1 - id = 'First Strike', 
+ 2 - description = 'Kill your first human.', 
+ 3 - reward = 15, 
+ 4 - achieved = false, 
+ 5 - claimed = false,
+ 6 - dateAchieved = '', 
+ 7 - killsrequired = 1, 
+ 8 - reason='Lightning', 
+ 9 - image="images/lightning.png" , 
+ 10 - testid = 100
+ ]
+
+*/
+
+
 
 //function dealing with the increase and decrease in world population
 function lifeupdate(){
@@ -3260,7 +3603,9 @@ function reincarnation(){
     var l =data.musicVolume;
     var m =data.totalArtifacts;
     var n =data.reincarnations;
+    var o =data.achievements;
     var t = data.potentialDivinities
+    
     
     Object.assign(data, JSON.parse(localStorage.getItem('initial_situation') || '{}'));
     Object.assign(data.relic, JSON.parse(localStorage.getItem('relics_gameend') || '{}'));
@@ -3279,6 +3624,7 @@ function reincarnation(){
     data.totalArtifacts = m;
     data.reincarnations = n+1;
     data.startingliving = data.living;
+    data.achievements = o;
     data.divinities = t;
     dataUpdate();
     alert("You are left with nothing but your relics and your newly earned divinties... Good luck");
@@ -3429,6 +3775,47 @@ $(".selector_button").on("click",function(Event){
     dataUpdate();
 });
 
+$("#update_view_stats").on("click",function(){
+    statsvisible = $("#all_stats_list").css("display");
+    if(statsvisible == "none"){
+        $("#all_stats_list").css("display","block");
+        $("#all_achievements_list").css("display","none");
+        $("#update_view_stats").text("Achievement");
+        
+    }
+    else{
+        $("#all_stats_list").css("display","none");
+        $("#all_achievements_list").css("display","block");
+        $("#update_view_stats").text("Stats");
+
+    }
+
+})
+
+
+document.getElementById("passive_stats_toggle").addEventListener("click", function() {
+    const content = document.getElementById("passive_calc_all_upgrades");
+    const arrow = this.querySelector(".arrow");
+
+    
+        // Add this check to ensure the elements are found 
+        if (content.style.display === "none" || content.style.display === ""){
+            content.style.display = "block";
+            arrow.innerHTML =`&#9650;` 
+            
+            // Arrow pointing upwards 
+        } else 
+        {   content.style.display = "none"; 
+            arrow.innerHTML = "&#9660;"
+            
+        } 
+    
+    });
+
+
+
+
+
             //get location earth
             
               //code from the internet
@@ -3446,7 +3833,7 @@ $(".selector_button").on("click",function(Event){
 window.setInterval( function(){
     lifeupdate();
 
-},360000);
+},180000);
 
 
 window.setInterval(function(){
