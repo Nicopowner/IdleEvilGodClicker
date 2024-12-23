@@ -27,10 +27,15 @@ body {
 }
 
 .unselectable {
-  user-select: none;
-  -moz-user-select: none; /* Firefox */
-  -webkit-user-select: none; /* Safari and Chrome */
-  -o-user-select: none; /* Opera */
+
+    -webkit-user-drag: none;
+    user-drag: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
 }
 
 #level-title {
@@ -383,25 +388,34 @@ img{
   display: flex; 
   align-items: center;
   justify-content: center;
-  width: 80%;
+  width: 100%;
   height: 80px;
   margin: auto;
+  color: #ffffff;
   background-color: #007EA7;
-  border-radius: 30%;
-  opacity: 60%;
+  border-radius: 10%;
+  border: 1px solid rgb(10, 1, 1)
+  
+}
+
+#all_stats_list{
+  display: none;
 }
 
 #armory_button{
   margin-top: 5px;
   height: 30px;
-  background-color: #2f0299;
+  background-color: #ffffff;
+  color: #000000;
+  
 }
 
 #armory_button:hover{
   border-width: 2px ;
-  border-color: #380c0c;
-  border-style: ridge;
+  border-color: #050000;
+  border-style: solid;
   font-weight: 600;
+  
 
 }
 #buttons{
@@ -414,11 +428,11 @@ img{
 }
 .cult_button{
   height: auto;
-  width: 90%;
+  width: 45%;
   background-color: #ffffff;
   border-radius: 3px;
   color:black;
-  border: #3f3d3d 2px;
+  border: 1px solid #3f3d3d;
   text-align: center;
   vertical-align: middle;
   margin: auto;  
@@ -429,7 +443,7 @@ img{
 .cult_button:hover{
   background-color: black;
   color:#ffffff;
-  border: #f5f2f2 1px;
+  border:1px solid #f5f2f2 ;
 }
 
 .cult_roster{
@@ -571,6 +585,85 @@ display: none;
   background: linear-gradient(to right,#065288, #003459);
   
 }
+
+.achievement_component{
+  min-height: 35px;
+  width: 100%;
+  display: inline-grid;
+  grid-template-columns: [first] 10% [second] 60% [second] 30%;
+  border-radius: 5%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom:10px;
+  background: linear-gradient(to right,#c77930, #f8ac1e);
+  
+}
+.achievement_component_claimed{
+    background: linear-gradient(to right,#339c13, #20d60f);
+}
+.achievement_button{
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex; 
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 30px;
+  margin: auto;
+  color: #ffffff;
+  background-color: #7c550188;
+  border-radius: 10%;
+  border: 1px solid rgb(10, 1, 1)
+}
+.achievement_button_achieved{
+  background-color: #327c01;
+  border: 1px solid rgb(7, 29, 1)
+}
+.achievement_button_achieved:hover{
+  background-color: #4ab403;
+  border: 1px solid rgb(10, 1, 1)
+}
+.achievement_button_claimed{
+  background-color: #4ab403;
+  color: grey;
+  border: 1px solid rgb(10, 1, 1)
+}
+
+.achievement_more_info{
+  margin-top: -12px; 
+  margin-bottom: 10px;
+  padding: 2px;
+  background-color: #ffffff31;
+  display:none;
+  color: #000;
+  font-size: 10px;
+  text-align: left;
+  border-bottom-left-radius: 5%;
+  border-bottom-right-radius: 5%;
+  padding-left: 2%;
+}
+
+.toggle {
+  cursor: pointer;
+  font-weight: bold;
+  color: black;
+  align-items: center;
+}
+
+.arrow {
+  margin-right: 8px;
+  
+}
+
+
+#passive_calc_all_upgrades {
+  display: none;
+  background-color: #00000041;
+  border-radius: 10px;
+  padding-top: 5px;
+  padding-bottom: 8px;
+}
+
+
 .save_component{
   height: 50px;
   width: 100%;
