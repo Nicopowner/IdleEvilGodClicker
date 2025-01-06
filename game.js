@@ -2102,7 +2102,7 @@ window.onload = function() {
             
             //console.log(timeAway)
             //+ dateLastAutoSaveFile - Date.now() 
-            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills.toFixed(1) + " passive kills while you were away for " + timeAway +" minutes. Due to your absence all effects only worked at 5% of their normal efficiency!");
+            let PassiveKillsOverTime = confirm("Do you want to add the " + possiblePassiveKills.toFixed(1) + " passive kills while you were away for " + timeAway +" minutes. Due to your absence all effects only worked at "+ autoSaveData.offlineStrength +" of their normal efficiency!");
                 if (PassiveKillsOverTime){
                     Object.assign(data, JSON.parse(localStorage.getItem("autoSave") || '{}'));
                     data.deathpoints += possiblePassiveKills;
