@@ -17,6 +17,7 @@ var data = {
     mytime: Date.now(),
     currentClicks: 0,
     clickPowerBooster: 1,
+    shopclickPowerBooster: 1,
     gameStarted: false,
     prettyNumber: true,
     removePassiveVisuals: false,
@@ -2440,7 +2441,7 @@ function lightningPowerClick(){
                 }
             }
         
-    var clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
+    var clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster * data.shopclickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster * data.shopclickPowerBooster) + partOfTotal)*data.divinities)
 return clickKills
 }
 function clickPowerExplenation(){
@@ -2467,7 +2468,7 @@ function clickPowerExplenation(){
                 }
             }
         
-    var clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
+    var clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster * data.shopclickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster * data.shopclickPowerBooster) + partOfTotal)*data.divinities)
 return [clickKills,data.lightningKillsPerClick ,addition,multiplication,data.clickPowerBooster,partOfTotal,data.divinities]
 }
 
@@ -2757,6 +2758,60 @@ $("#events_button").on("click",function(){
     data.popupOpen = true;
 });
 
+$("#shop_upgrade_1").on("click",function(){
+    if(data.gems>150){
+        data.gems -= 150;
+        calcdeath = passiveKillCalculation()*60*5;
+        alert(`You crush 150 gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
+        funincrement(calcdeath);
+    }
+    else{
+        alert(`Not enough gems, you only have ${data.gems} gems.`)
+    }
+});
+$("#shop_upgrade_2").on("click",function(){
+    if(data.gems>250){
+        data.gems -= 250;
+        calcdeath = passiveKillCalculation()*60*10;
+        alert(`You crush 250 gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
+        funincrement(calcdeath);
+    }
+    else{
+        alert(`Not enough gems, you only have ${data.gems} gems.`)
+    }
+});
+$("#shop_upgrade_3").on("click",function(){
+    if(data.gems>400){
+        data.gems -= 400;
+        calcdeath = passiveKillCalculation()*60*20;
+        alert(`You crush 400 gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
+        funincrement(calcdeath);
+    }
+    else{
+        alert(`Not enough gems, you only have ${data.gems} gems.`)
+    }
+});
+
+$("#shop_upgrade_11").on("click",function(){
+    if(data.gems>250){
+        data.shopclickPowerBooster += 0.1;
+        data.gems =-250;
+        alert(`Mystical knowledge flows into your brain as your clickpower permanently increases by 10%, you still have ${data.gems} gems left.`)
+    }
+    else{
+        alert(`Not enough gems, you only have ${data.gems} gems.`)
+    }
+});
+$("#shop_upgrade_12").on("click",function(){
+    if(data.gems>300){
+        data.offlineStrength += 0.05;
+        data.gems =-300;
+        alert(`Mystical knowledge flows into your brain as your offline power rentention strength permanently increases by 5%, you still have ${data.gems} gems left.`)
+    }
+    else{
+        alert(`Not enough gems, you only have ${data.gems} gems.`)
+    }
+});
 //create a purchase logic for the x10 and x100 purchases
 function PriceCalc(basePrice,incrementPrice,purchaseNumber){
     var priceUpdate = (Math.round(basePrice*(1-(Math.pow(incrementPrice,purchaseNumber)))/(1-incrementPrice)));
@@ -3166,7 +3221,7 @@ function loadingbar(){
     var updatebar = data.deathpoints/data.passiveUpgrades[i][3]*100;
         if (updatebar>100){updatebar=100};
             $("#"+data.passiveUpgrades[i][1]+"_bar_result").css('width',Math.round(updatebar,1)+'%');
-        }
+    }
 } 
 
 function powerbar(){
@@ -3604,7 +3659,11 @@ function reincarnation(){
     var m =data.totalArtifacts;
     var n =data.reincarnations;
     var o =data.achievements;
+    var p =data.shopclickPowerBooster;
+    var q =data.passiveKillsForOfflineTime;
+    var s = data.offlineStrength;
     var t = data.potentialDivinities
+    
     
     
     Object.assign(data, JSON.parse(localStorage.getItem('initial_situation') || '{}'));
@@ -3625,7 +3684,12 @@ function reincarnation(){
     data.reincarnations = n+1;
     data.startingliving = data.living;
     data.achievements = o;
+    data.shopclickPowerBooster = p;
+    data.passiveKillsForOfflineTime = q;
+    data.offlineStrength = s;
+
     data.divinities = t;
+
     dataUpdate();
     alert("You are left with nothing but your relics and your newly earned divinties... Good luck");
     document.getElementById('popup').style.display = 'none';
