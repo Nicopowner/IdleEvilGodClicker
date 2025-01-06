@@ -2169,7 +2169,7 @@ if(data.score === 0 && data.gameStarted === false){
 
 function tutorial(){
     var popup = document.getElementById('popup');
-    var content = ("Welcome to death clicker. Would you like to skip the totorial? <br> You can always find it in the Config tab!"+'<div id="See" class="cult_button" onclick="tutorialpart1()">Take tutorial</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
+    var content = ("Welcome to Idle Evil God. Would you like to skip the totorial? <br> You can always find it in the Config tab!"+'<div id="See" class="cult_button" onclick="tutorialpart1()">Take tutorial</div>'+'<div class="cult_button" onclick="hidepopup()">skip</div>')
     $('.popup').html(content)
     $('.popup').css('top','40%')
     popup.style.display = 'block';
