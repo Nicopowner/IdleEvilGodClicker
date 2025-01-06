@@ -1317,9 +1317,10 @@ function createAchievements(){
               <img id="achievement_logo_${data.achievements[i][0]}"style="height: 30px; margin: auto;" src="${data.achievements[i][9]}">
               <span style="margin: auto; margin-left: 5%;">${data.achievements[i][1]}</span> 
               <button id="collect_${data.achievements[i][0]}" class="achievement_button" style="margin: auto"> ${data.achievements[i][3]} gems</button>
-            </div>
-            <div class="achievement_more_info" id="achievement_more_info_${data.achievements[i][0]}">
+            <div></div>
+            <div style="margin-top=5px;"class="achievement_more_info" id="achievement_more_info_${data.achievements[i][0]}">
                 ${data.achievements[i][2]}
+            </div>
             </div>
         `
         achievementList.appendChild(AchievementElement);
