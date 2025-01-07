@@ -2796,7 +2796,7 @@ $("#shop_upgrade_3").on("click",function(){
 $("#shop_upgrade_11").on("click",function(){
     if(data.gems>250){
         data.shopclickPowerBooster += 0.1;
-        data.gems -=250;
+        data.gems -= 250;
         alert(`Mystical knowledge flows into your brain as your clickpower permanently increases by 10%, you still have ${data.gems} gems left.`)
     }
     else{
@@ -2806,7 +2806,7 @@ $("#shop_upgrade_11").on("click",function(){
 $("#shop_upgrade_12").on("click",function(){
     if(data.gems>300){
         data.offlineStrength += 0.05;
-        data.gems -=300;
+        data.gems -= 300;
         alert(`Mystical knowledge flows into your brain as your offline power rentention strength permanently increases by 5%, you still have ${data.gems} gems left.`)
     }
     else{
