@@ -60,7 +60,7 @@ var data = {
     lightningMaxBuyable : 0,
     lightningKills: 0,
     lightningLevel: 1,
-    lightningDescription :  "Lightning strikes splits into multiple strands",
+    lightningDescription :  "Lightning strikes split into multiple strands",
     lightningLogo : '"images/lightning.png"',
     lightningBuffElement : 'lightning',
     lightningBuffType : 'active',
@@ -581,7 +581,7 @@ var data = {
                 level = 0,
                 description = "A hat woven from everyday straw, its is known for protecting people from sunburn. It buffs the power of the wind. Wearing this hat can increase your passive wind power by 5% per level.",
                 logo = '"images/Straw Hat.png"',
-                type = 'helm',
+                type = 'helmet',
                 upgradeIncreaseIncrement = 0.05,
                 active = false,
                 availableInArmory = false,
@@ -785,13 +785,13 @@ var data = {
             ],[
                 id = 9,
                 idName = "beast_helmet",
-                namePassive = "Beast Helmet",
+                namePassive = "Beast helmet",
                 price = 230000,
                 upgradeIncreaseEffect = 1,
                 level = 0,
                 description = "A helmet adorned with beastly features, providing unmatched beastly ferocity. Wearing this helmet can increase your passive beast based kills by 65% per level.",
                 logo = '"images/beast helmet.png"',
-                type = 'helm',
+                type = 'helmet',
                 upgradeIncreaseIncrement = 0.65,
                 active = false,
                 availableInArmory = false,
@@ -823,7 +823,7 @@ var data = {
                 level = 0,
                 description = "A helmet charged with the power of lightning, providing superior agility. Wearing this helmet can increase your active lightning power by 45% per level.",
                 logo = '"images/Lightning helmet.png"',
-                type = 'helm',
+                type = 'helmet',
                 upgradeIncreaseIncrement = 0.45,
                 active = false,
                 availableInArmory = false,
@@ -871,7 +871,7 @@ var data = {
             description = 'Each Acolyte sacrifes 5 People per level.',
             killsEffect = 5,
             typeEffect = 'sect',
-            costEvent = 5000,
+            costEvent = 500,
             frequencyAllowed = 10000,
             amountTriggered = 0,
             dependency = '',
@@ -883,9 +883,9 @@ var data = {
             id = "giantHamster",
             nameEvent = 'Giant Hamster Rampage',
             description = 'A lab experiment goes wrong, creating a giant hamster that wreaks havoc in the city.',
-            killsEffect = 300,
+            killsEffect = 100,
             typeEffect = 'absoluut',
-            costEvent = 2000000,
+            costEvent = 200000,
             frequencyAllowed = 15,
             amountTriggered = 0,
             dependency = '',
@@ -898,9 +898,9 @@ var data = {
             id = "clownUprising",
             nameEvent = 'Clown Uprising',
             description = 'Clowns from all over the world unite and start a rebellion against non-clowns.',
-            killsEffect = 10150,
+            killsEffect = 1150,
             typeEffect = 'absoluut',
-            costEvent = 8000000,
+            costEvent = 800000,
             frequencyAllowed = 125,
             amountTriggered = 0,
             dependency = '',
@@ -913,9 +913,9 @@ var data = {
             id = "grump",
             nameEvent = 'Grump for president',
             description = 'D. Grump get elected for president of the united states',
-            killsEffect = 0,
+            killsEffect = 2,
             typeEffect = 'sect',
-            costEvent = 10000000,
+            costEvent = 1000000,
             frequencyAllowed = 1,
             amountTriggered = 0,
             dependency = '',
@@ -928,9 +928,9 @@ var data = {
             id = "bleach",
             nameEvent = 'Drink Bleach',
             description = 'Convice people that drinking bleach will cure covid. Requires the D. Grump as president',
-            killsEffect = 0.0015,
+            killsEffect = 0.0035,
             typeEffect = 'percentage',
-            costEvent = 1750000,
+            costEvent = 3750000,
             frequencyAllowed = 1,
             amountTriggered = 0,
             dependency = 'grump',
@@ -960,7 +960,7 @@ var data = {
             description = 'A mad scientist’s experiment goes wrong, creating a monster that terrorizes the city.',
             killsEffect = 450,
             typeEffect = 'absoluut',
-            costEvent = 3000000,
+            costEvent = 300000,
             frequencyAllowed = 120,
             amountTriggered = 0,
             dependency = '',
@@ -973,9 +973,9 @@ var data = {
             id = "capital",
             nameEvent = 'Storm the Capitol',
             description = 'Convice people that storming the capitol is required for democracy. Requires the D. Grump as president',
-            killsEffect = 50000,
+            killsEffect = 10000,
             typeEffect = 'absoluut',
-            costEvent = 1500000,
+            costEvent = 1050000,
             frequencyAllowed = 5,
             amountTriggered = 0,
             dependency = 'grump',
@@ -988,9 +988,9 @@ var data = {
             id = "putin",
             nameEvent = 'Putni is president of Russia',
             description = 'Putni gets elected during a free "election" in Russia',
-            killsEffect = 10,
+            killsEffect = 42,
             typeEffect = 'absoluut',
-            costEvent = 10000000,
+            costEvent = 9000000,
             frequencyAllowed = 1,
             amountTriggered = 0,
             dependency = '',
@@ -1055,6 +1055,34 @@ var data = {
             pictureUrl = './images/zombie-apocalypse.png',
             active = false,
             canCreate = true,
+            created = false
+        ],[
+            id = "lizardBrain",
+            nameEvent = 'Lizard Brain Activation',
+            description = '5G waves activate the covid vaccines sleeper cells resulting a mass suicide all around the globe.',
+            killsEffect = 0.075,
+            typeEffect = 'percentage',
+            costEvent = 900000000,
+            frequencyAllowed = 1,
+            amountTriggered = 0,
+            dependency = 'grump',
+            pictureUrl = './images/lizard-brain.png',
+            active = false,
+            canCreate = false,
+            created = false
+        ],[
+            id = "windmills",
+            nameEvent = 'Fight the windmills',
+            description = 'Grump decreed windmills as evil, and has declared war on all windmills.',
+            killsEffect = 1500,
+            typeEffect = 'absoluut',
+            costEvent = 500000,
+            frequencyAllowed = 1,
+            amountTriggered = 0,
+            dependency = 'grump',
+            pictureUrl = './images/windmill.png',
+            active = false,
+            canCreate = false,
             created = false
         ]
     ],
@@ -1264,7 +1292,8 @@ function createUpgrades(){
         newUpgradeBoxName.id = newIdBox + '_name';
         targetUpgradeContainer.appendChild(newUpgradeBoxName);
         //update the name based on DB name
-        $("#"+newIdBox + '_name').text(data.passiveUpgrades[i][2]);
+        //$("#"+newIdBox + '_name').text(data.passiveUpgrades[i][2]);
+        document.getElementById(newIdBox + '_name').innerHTML = (data.passiveUpgrades[i][2]) + `<span id="${newIdBox}_increase_amount"> + ${prettyNumbers(data.passiveUpgrades[i][4])} k/m</span>`;
 
         //new attribute // add a button to the box
         let newUpgradeBoxButton = upgradePurchaseBoxButton.cloneNode(false);
@@ -1292,7 +1321,7 @@ function createUpgrades(){
         let newUpgradeBoxMoreInfo = upgradePurchaseBoxMoreInfo.cloneNode(false);
         newUpgradeBoxMoreInfo.id = newIdBox + '_more_info';
         upgradeContainer.appendChild(newUpgradeBoxMoreInfo);
-        $("#"+newIdBox + '_more_info').html("Description: "+ data.passiveUpgrades[i][8] +".<br> Upgrade effect: +" + data.passiveUpgrades[i][4] + ' kills per minute.<br><span id= "' + data.passiveUpgrades[i][1] + '_total_current_kills"> Total kills: ' + data.passiveUpgrades[i][6] +"</span> " +' <span id= "' + data.passiveUpgrades[i][1] +'_total_kills_per_second">'+ (data.passiveUpgrades[i][5]/60).toFixed(1) +')</span>' +"<br> Ability Type: " + data.passiveUpgrades[i][13]  /*+ " <br> balance: " + data.passiveUpgrades[i][3]/data.passiveUpgrades[i][4] */ );
+        $("#"+newIdBox + '_more_info').html("Description: "+ data.passiveUpgrades[i][8] +".<br> Upgrade effect: +" + prettyNumbers(data.passiveUpgrades[i][4]) + ' kills per minute.<br><span id= "' + data.passiveUpgrades[i][1] + '_total_current_kills"> Total kills: ' + data.passiveUpgrades[i][6] +"</span> " +' <span id= "' + data.passiveUpgrades[i][1] +'_total_kills_per_second">'+ (data.passiveUpgrades[i][5]/60).toFixed(1) +')</span>' +"<br> Ability Type: " + data.passiveUpgrades[i][13]  /*+ " <br> balance: " + data.passiveUpgrades[i][3]/data.passiveUpgrades[i][4] */ );
 
 
         let newStatComponent = statComponent.cloneNode(false);
@@ -1345,6 +1374,8 @@ let relicPurchaseBoxButton = document.getElementById("relic_button");
 let relicPurchaseBoxPrice = document.getElementById("relic_price");
 
 let relicArmoryBox = document.getElementById("relic_armory_box");
+let relicArmoryBoxDetails = document.getElementById("relic_armory_box_details");
+
 
 function createRelics(){
     for(i=0;i<data.relic.length;i++){
@@ -1362,7 +1393,7 @@ function createRelics(){
         newRelicBoxLogo.id = newIdRelicBox + '_logo';
         newRelicBoxLogo.classList = ("relic_logo");
         targetRelicContainer.appendChild(newRelicBoxLogo);
-        document.getElementById(newIdRelicBox + '_logo').innerHTML = '<img src= ' +data.relic[i][7] + ' style="height: 75px; margin: auto; border-radius: 8px;">';
+        document.getElementById(newIdRelicBox + '_logo').innerHTML = '<img src= ' +data.relic[i][7] + ' class="relic_image">';
          
         //new level
         let newRelicBoxlevel = relicPurchaseBoxLevel.cloneNode(false);
@@ -1379,7 +1410,7 @@ function createRelics(){
         newRelicBoxName.id = newIdRelicBox + '_name';
         targetRelicContainer.appendChild(newRelicBoxName);
         //update the name based on DB name
-        $("#"+newIdRelicBox + '_name').html('<h6 >'+data.relic[i][2] +'</h6>'+data.relic[i][6] + '<br> <b>Buff Element</b>: '+ data.relic[i][12]);
+        $("#"+newIdRelicBox + '_name').html('<h6 >'+data.relic[i][2] +'</h6>'+data.relic[i][6] + '<br> <b>Buff Element</b>: '+ data.relic[i][12] + '<br> <b>Type</b>: '+ data.relic[i][8]);
 
 
         //new attribute // add a button to the box
@@ -1403,14 +1434,22 @@ function createArmoryRelics(){
         if(data.relic[i][11] === false && data.relic[i][5] > 0 ){
             //create new relic
             let newRelicArmoryBox = relicArmoryBox.cloneNode(false)
+            let newRelicArmoryBoxDetails = relicArmoryBoxDetails.cloneNode(false)
             //identify the relic
+            newRelicArmoryBoxDetails.id = data.relic[i][1] + '_armory_box_details';
             newRelicArmoryBox.id = data.relic[i][1] + '_armory_box';
             //add the class (for movability)
             newRelicArmoryBox.classList = (data.relic[i][8]);
+            newRelicArmoryBoxDetails.classList = "relic_armory_box_details";
             //add it to the list of armory boxes
-            $(".relic_armory_area").append(newRelicArmoryBox);
+            $(".relic_armory_area").append(newRelicArmoryBoxDetails);
+            
+            newRelicArmoryBoxDetails.append(newRelicArmoryBox)
             //add the picture in the box
-            document.getElementById(data.relic[i][1] + '_armory_box').innerHTML ='<img id="'+ data.relic[i][1] + '_armory_image" src= '+data.relic[i][7] + ' style="height: 100px; " draggable="true">';
+            document.getElementById(data.relic[i][1] + '_armory_box').innerHTML ='<img id="'+ data.relic[i][1] + '_armory_image" src= '+data.relic[i][7] + ' style="height: 75px; " draggable="true">';
+            newRelicArmoryBoxDetails.append(`Type:${data.relic[i][8]}`)
+            newRelicArmoryBoxDetails.innerHTML += `<br>`
+            newRelicArmoryBoxDetails.append(`Buff:${data.relic[i][12]}`)
             $('#'+data.relic[i][1] + '_armory_box').css("touchaction","none") /* Prevent default touch actions */
             
             data.relic[i][11] = true;
@@ -1445,7 +1484,7 @@ function createEvent(){
             eventScreen.appendChild(newEventContainer);
             //box that needs to contain the new items
             let targetEventContainer = document.getElementById(newEventContainerId+"_box");
-            $("#"+newEventContainerId+"_box").css("display","block")
+            $("#"+newEventContainerId+"_box").css("display","flex")
 
             let newEventImageBox = eventImageBox.cloneNode(false);
             var newEventImageBoxId = data.sectEvent[i][0] +"_picture";
@@ -1543,7 +1582,7 @@ function createEvent(){
 
 
 
-document.getElementById('helm').addEventListener('dragover',dragOver);
+document.getElementById('helmet').addEventListener('dragover',dragOver);
 document.getElementById('cloak').addEventListener('dragover',dragOver);
 document.getElementById('weapon').addEventListener('dragover',dragOver);
 document.getElementById('chest').addEventListener('dragover',dragOver);
@@ -1551,7 +1590,7 @@ document.getElementById('shield').addEventListener('dragover',dragOver);
 document.getElementById('ring').addEventListener('dragover',dragOver);
 document.getElementById('shoes').addEventListener('dragover',dragOver);
 
-document.getElementById('helm').addEventListener('drop',dragDrop);
+document.getElementById('helmet').addEventListener('drop',dragDrop);
 document.getElementById('cloak').addEventListener('drop',dragDrop);
 document.getElementById('weapon').addEventListener('drop',dragDrop);
 document.getElementById('chest').addEventListener('drop',dragDrop);
@@ -1559,7 +1598,7 @@ document.getElementById('shield').addEventListener('drop',dragDrop);
 document.getElementById('ring').addEventListener('drop',dragDrop);
 document.getElementById('shoes').addEventListener('drop',dragDrop);
 
-document.getElementById('helm').addEventListener('click',clickArmory);
+document.getElementById('helmet').addEventListener('click',clickArmory);
 document.getElementById('cloak').addEventListener('click',clickArmory);
 document.getElementById('weapon').addEventListener('click',clickArmory);
 document.getElementById('chest').addEventListener('click',clickArmory);
@@ -1672,9 +1711,9 @@ function clickArmory(){
         }
     }
     switch (this.id) {
-        case 'helm':
+        case 'helmet':
             //console.log(this.innerHTML);
-            this.innerHTML= '<img src="images/helm area.svg" alt="Description of the image" height="100px"></img>';
+            this.innerHTML= '<img src="images/helmet area.svg" alt="Description of the image" height="100px"></img>';
         break;
         case 'cloak':
             //console.log(this.innerHTML);
@@ -1702,7 +1741,7 @@ function clickArmory(){
         break;
     }
         
-    //<img src="images/helm area.svg" alt="Description of the image" height="100px"></img>
+    //<img src="images/helmet area.svg" alt="Description of the image" height="100px"></img>
 }
 
 $("#switch_button").on("click",function(){
@@ -1711,15 +1750,16 @@ if(armoryVisibility===true){
     armoryVisibility=false;
     $(".armory_section").css("display","none");
     $("#armory_stats").css("display","grid");
+    $("#inventory_title").css("display","none");
+    
 }
 else{
     armoryVisibility=true;
     $("#switch_button").text("See Stats");
     $(".armory_section").css("display","flex");
     $("#armory_stats").css("display","none");
+    $("#inventory_title").css("display","block");
 }
-
-
 });
 
 
@@ -1900,7 +1940,7 @@ function createIdCard(){
     
     var acolyteDetails = '<div class="id_card_details"><span class="name" id="id_card_name_'+data.totalSectAcolytes+'"> Name: '+name+' </span><br><span class="level" id="id_card_level_'+data.totalSectAcolytes+'"> Level: Grunt</span><br><span class="age" id="id_card_age_'+data.totalSectAcolytes+'"> Age: '+Math.round(age)+' </span><br><span class="worshipper" id="id_card_worshipper_'+data.totalSectAcolytes+'"> Worshipper: '+initialWorshipper+' </span></div>'
     //create the acolyte entry
-    let newAcolyte = [data.totalSectAcolytes,name,"Initiate Acolyte",0,2000,1,0,initialWorshipper,worshipperGrowth,1,age,maxAge,1,gender,surName,job,image,"Alive",1+Math.random(),0];
+    let newAcolyte = [data.totalSectAcolytes,name,"Initiate Acolyte",0,2000,1,0,initialWorshipper,worshipperGrowth,1,age,maxAge,1,gender,surName,job,image,"Alive",1+Math.random(),0,0];
     //push it in the to the general data hub
     data.sect.push(newAcolyte);
     //console.log(data.totalSectAcolytes);
@@ -1983,7 +2023,7 @@ $("#upgrade_acolyte").on("click",function(){
             data.sect[selectedIdFromIdCard][4] = Math.round(data.sect[selectedIdFromIdCard][4] *data.incrementPriceAcolyteUpgrade);
             data.sect[selectedIdFromIdCard][7] += data.sect[selectedIdFromIdCard][8]
             data.sect[selectedIdFromIdCard][8] = Math.round(data.sect[selectedIdFromIdCard][8]*data.sect[selectedIdFromIdCard][18]);
-            
+            data.sect[selectedIdFromIdCard][20] = 1;
             data.totalLevels +=1;
 
             $('#pop_up_status').text("Status: "+ data.sect[selectedIdFromIdCard][17]);
@@ -2183,6 +2223,7 @@ function hidepopup(){
     document.getElementById('popup').style.display = 'none';
         $('.score_header_left').css("border-color",'none')
         $('.score_header_left').css("border-style","none")
+        $('.score_header_left').css("padding","0px")
         $('.score_header_right').css("border-color",'none')
         $('.score_header_right').css("border-style","none")
         $('#lightning_strike_component').css("border-color",'none')
@@ -2200,6 +2241,7 @@ function tutorialpart1(){
     $('.popup').html(content)
     $('.score_header_left').css("border-color",'red')
     $('.score_header_left').css("border-style","double")
+    $('.score_header_left').css("padding","10px")
     tutorialChecker = true;
     
 }
@@ -2210,6 +2252,7 @@ function tutorialpart2(){
     
     $('.score_header_left').css("border-color",'none')
     $('.score_header_left').css("border-style","none")
+    $('.score_header_left').css("padding","0px")
     $('.score_header_right').css("border-color",'red')
     $('.score_header_right').css("border-style","double")
     tutorialChecker = true;
@@ -2328,7 +2371,7 @@ $("#new_acolyte").on('click',function(){
     if(data.deathpoints>data.acolyteCost){
         
         data.deathpoints = data.deathpoints-data.acolyteCost;
-        data.acolyteCost = 1500 + Math.round(data.deathpoints*0.02)*data.totalSectAcolytesAlive;
+        data.acolyteCost = 1500 + Math.round(data.deathpoints*0.005)*data.totalSectAcolytesAlive;
 
         createIdCard();
 
@@ -2760,10 +2803,11 @@ $("#events_button").on("click",function(){
 });
 
 $("#shop_upgrade_1").on("click",function(){
-    if(data.gems>150){
-        data.gems -= 150;
+    var cost = 150;
+    if(data.gems>cost){
+        data.gems -= cost;
         calcdeath = passiveKillCalculation()*60*5;
-        alert(`You crush 150 gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
+        alert(`You crush ${cost} gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
         funincrement(calcdeath);
     }
     else{
@@ -2771,10 +2815,11 @@ $("#shop_upgrade_1").on("click",function(){
     }
 });
 $("#shop_upgrade_2").on("click",function(){
-    if(data.gems>250){
-        data.gems -= 250;
+    var cost = 250;
+    if(data.gems>cost){
+        data.gems -= cost;
         calcdeath = passiveKillCalculation()*60*10;
-        alert(`You crush 250 gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
+        alert(`You crush ${cost} gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
         funincrement(calcdeath);
     }
     else{
@@ -2782,10 +2827,11 @@ $("#shop_upgrade_2").on("click",function(){
     }
 });
 $("#shop_upgrade_3").on("click",function(){
-    if(data.gems>400){
-        data.gems -= 400;
+    var cost = 400;
+    if(data.gems>cost){
+        data.gems -= cost;
         calcdeath = passiveKillCalculation()*60*20;
-        alert(`You crush 400 gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
+        alert(`You crush ${cost} gems to dust empowering your evil powers, resulting in ${calcdeath} deaths. You look back at your stash and find that you have ${data.gems} gems left.`)
         funincrement(calcdeath);
     }
     else{
@@ -2794,25 +2840,30 @@ $("#shop_upgrade_3").on("click",function(){
 });
 
 $("#shop_upgrade_11").on("click",function(){
-    if(data.gems>250){
-        data.shopclickPowerBooster += 0.1;
-        data.gems -= 250;
-        alert(`Mystical knowledge flows into your brain as your clickpower permanently increases by 10%, you still have ${data.gems} gems left.`)
-    }
-    else{
-        alert(`Not enough gems, you only have ${data.gems} gems.`)
-    }
-});
-$("#shop_upgrade_12").on("click",function(){
-    if(data.gems>300){
+    var cost = 300;
+    if(data.gems>cost){
         data.offlineStrength += 0.05;
-        data.gems -= 300;
+        data.gems -= cost;
         alert(`Mystical knowledge flows into your brain as your offline power rentention strength permanently increases by 5%, you still have ${data.gems} gems left.`)
     }
     else{
         alert(`Not enough gems, you only have ${data.gems} gems.`)
     }
 });
+
+$("#shop_upgrade_12").on("click",function(){
+    var cost = 250;
+    if(data.gems>cost){
+        data.shopclickPowerBooster += 0.1;
+        data.gems -= cost;
+            alert(`Mystical knowledge flows into your brain as your clickpower permanently increases by 10%, you still have ${data.gems} gems left.`)
+    }
+    else{
+            alert(`Not enough gems, you only have ${data.gems} gems.`)
+    }
+});
+
+
 //create a purchase logic for the x10 and x100 purchases
 function PriceCalc(basePrice,incrementPrice,purchaseNumber){
     var priceUpdate = (Math.round(basePrice*(1-(Math.pow(incrementPrice,purchaseNumber)))/(1-incrementPrice)));
@@ -2880,37 +2931,42 @@ function showPopup(content) {
     var popup = document.getElementById('popup');
     $('.popup').html(content)
     $('.popup').css('top','18%')
-    
-
     popup.style.display = 'block';
+}
+
+function autoHidePopup() {
+    
     setTimeout(function() {
         popup.style.display = 'none';
     }, 6000); // The pop-up will disappear after 6 seconds
+
 }
+
+
 
 function prettyNumbers(inputNumber){
     if (inputNumber> 1000000000000000000){
-        inputNumber = (inputNumber/1000000000000000000).toFixed(2)
+        inputNumber = (inputNumber/1000000000000000000).toFixed(1)
         return " " + inputNumber + " Qui"
     }
     if (inputNumber> 1000000000000000){
-        inputNumber = (inputNumber/1000000000000000).toFixed(2)
+        inputNumber = (inputNumber/1000000000000000).toFixed(1)
         return " " + inputNumber + " Qua"
     }
     if (inputNumber> 1000000000000){
-        inputNumber = (inputNumber/1000000000000).toFixed(2)
+        inputNumber = (inputNumber/1000000000000).toFixed(1)
         return " " + inputNumber + " T"
     }
     if (inputNumber> 1000000000){
-        inputNumber = (inputNumber/1000000000).toFixed(2)
+        inputNumber = (inputNumber/1000000000).toFixed(1)
         return " " + inputNumber + " B"
     }
     if (inputNumber> 1000000){
-        inputNumber = (inputNumber/1000000).toFixed(2)
+        inputNumber = (inputNumber/1000000).toFixed(1)
         return " " + inputNumber + " M"
     }
     if (inputNumber> 1000){
-        inputNumber = (inputNumber/1000).toFixed(2)
+        inputNumber = (inputNumber/1000).toFixed(1)
         return " " + inputNumber + "  K"
     }
     else{
@@ -2919,15 +2975,39 @@ function prettyNumbers(inputNumber){
 
 }
 
+
+
+
 function showNewAbility(){
-        
+    const selectElement = document.getElementById("elements");
+
     for(i=0;i<data.passiveUpgrades.length;i++){
         if(data.deathpoints > data.passiveUpgrades[i][3]*0.1){
-            $("#"+data.passiveUpgrades[i][1]+"_component").css("display",'inline-grid');
- 
+          
+            
+                if (selectElement.value === "all") {
+                    $("#"+data.passiveUpgrades[i][1]+"_component").css("display",'inline-grid');
+                } 
+                else {
+                    if (data.passiveUpgrades[i][13].includes(selectElement.value)) {
+                        $("#"+data.passiveUpgrades[i][1]+"_component").css("display",'inline-grid');
+                    }
+                    else{
+                        $("#"+data.passiveUpgrades[i][1]+"_component").css("display",'none');
+                    }
+                }
+            
         }        
     }
 
+    if (selectElement.value == "all" ||selectElement.value == "electricity") {
+        $("#lightning_strike_component").css("display",'inline-grid');
+        $("#passive_lightning_strike_component").css("display",'inline-grid');
+    } 
+    else {
+        $("#lightning_strike_component").css("display",'none');
+        $("#passive_lightning_strike_component").css("display",'none');
+    }
 }
 
 
@@ -3053,8 +3133,8 @@ function dataUpdate(){
         $("#heavy_flu_price").text(" "+ Math.floor(data.passiveUpgrades[0][3]));
         $("#heavy_malaria_price").text(" "+ Math.floor(data.passiveUpgrades[1][3]));
         */
-        $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + data.lightningKills +"<br> Ability Type: " + data.lightningBuffElement);
-        $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills);
+        $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + prettyNumbers(data.lightningKills) +"<br> Ability Type: " + data.lightningBuffElement);
+        $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + prettyNumbers(data.lightningPassiveKills));
         //$("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself");
         
         $("#click_power").text(prettyNumbers(clickPowerExplenation()[0]) + " = (((" + clickPowerExplenation()[1].toFixed(1) + "+" + clickPowerExplenation()[2].toFixed(1) + ")*" + clickPowerExplenation()[3].toFixed(1) + "*" + clickPowerExplenation()[4].toFixed(1)+") + " + clickPowerExplenation()[5].toFixed(1)+") * (if any: "+ Math.round(data.divinities)+")");
@@ -3090,65 +3170,65 @@ function dataUpdate(){
         $("#stats_lightninglevel").text(" "+ prettyNumbers(data.lightningLevel));
     }
     else{
-    $("#new_acolyte").text("Hire cultist:  "+ Math.floor(data.acolyteCost));
+        $("#new_acolyte").text("Hire cultist:  "+ Math.floor(data.acolyteCost));
 
-    //$("#buy_acolyte_price").text(" "+ Math.floor(data.buyacolyteCost));
+        //$("#buy_acolyte_price").text(" "+ Math.floor(data.buyacolyteCost));
 
-    // Update levels
-    $("#lightning_strike_level").text("lvl "+ data.lightningLevel);
-    $("#passive_lightning_strike_level").text("lvl "+ data.lightningPassiveLevel);
-    /*
-    $("#heavy_flu_price").text(" "+ Math.floor(data.passiveUpgrades[0][3]));
-    $("#heavy_malaria_price").text(" "+ Math.floor(data.passiveUpgrades[1][3]));
-    */
-    $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + data.lightningKills +"<br> Ability Type: " + data.lightningBuffElement);
-    $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills);
-    //$("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself");
-    
-    $("#click_power").text(clickPowerExplenation()[0].toFixed(0) + " = (((" + clickPowerExplenation()[1].toFixed(1) + "+" + clickPowerExplenation()[2].toFixed(1) + ")*" + clickPowerExplenation()[3].toFixed(1) + "*" + clickPowerExplenation()[4].toFixed(1)+") + " + clickPowerExplenation()[5].toFixed(1)+") * (if any: "+ Math.round(data.divinities)+")");
-    //clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
-    $("#passive_power").text(passiveKillCalculation().toFixed(1))
-    $("#passive_calc_power").text(passiveKillCalculation().toFixed(1))
+        // Update levels
+        $("#lightning_strike_level").text("lvl "+ data.lightningLevel);
+        $("#passive_lightning_strike_level").text("lvl "+ data.lightningPassiveLevel);
+        /*
+        $("#heavy_flu_price").text(" "+ Math.floor(data.passiveUpgrades[0][3]));
+        $("#heavy_malaria_price").text(" "+ Math.floor(data.passiveUpgrades[1][3]));
+        */
+        $("#lightning_strike_more_info").html("Description: "+ data.lightningDescription +".<br> Upgrade effect: +" + data.lightningUpgradeIncreaseEffect.toFixed(2) + " kills per click.<br> Total kills: " + data.lightningKills.toFixed(0) +"<br> Ability Type: " + data.lightningBuffElement);
+        $("#passive_lightning_strike_more_info").html("Description: "+ data.lightningPassiveDescription +".<br> Upgrade effect: +" + Math.round((1- data.lightningPassiveSpeedIncrease)*100,2) + "% passive speed up!.<br> Total kills: " + data.lightningPassiveKills.toFixed(0));
+        //$("#reincarnation_more_info").html("Reincarnation will reset all your progress, you will only get to keep your relics, in return you will also get Divinties based on your number of kills!<br> Each divinity will multiply your clickpower by itself");
+        
+        $("#click_power").text(clickPowerExplenation()[0].toFixed(0) + " = (((" + clickPowerExplenation()[1].toFixed(1) + "+" + clickPowerExplenation()[2].toFixed(1) + ")*" + clickPowerExplenation()[3].toFixed(1) + "*" + clickPowerExplenation()[4].toFixed(1)+") + " + clickPowerExplenation()[5].toFixed(1)+") * (if any: "+ Math.round(data.divinities)+")");
+        //clickKills = (((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal) +((((data.lightningKillsPerClick + addition) * multiplication * data.clickPowerBooster) + partOfTotal)*data.divinities)
+        $("#passive_power").text(passiveKillCalculation().toFixed(1))
+        $("#passive_calc_power").text(passiveKillCalculation().toFixed(1))
 
 
-    
-    //stats 
-    $("#stats_score").text(" "+ Math.floor(data.score));
-    $("#stats_deathpoints").text(" "+ Math.floor(data.deathpoints));
-    $("#stats_worshipper").text(" "+ Math.floor(data.worshipper));
-    $("#stats_living").text(" "+ Math.floor(data.living));
-    $("#stats_death").text(" "+ Math.floor(data.kills));
-    $("#stats_passive_kills").text(" "+ Math.floor(data.passiveKills)); 
-    $("#stats_divinities").text(" "+ Math.floor(data.divinities)); 
-    $("#stats_click_kills").text(" "+ Math.floor(data.clickKills));
-    $("#stats_clicks").text(" "+ Math.floor(data.clicks));
-    // natural life cycle
-    $("#stats_daytics").text(" "+ Math.floor(data.daytics));
-    $("#stats_naturalbirths").text(" "+ Math.floor(data.naturalbirths));
-    $("#stats_naturaldeaths").text(" "+ Math.floor(data.naturaldeaths));
-    //upgrades
-    //ligthning strike
-    $("#stats_lightningKillsPerClick").text(" "+ Math.floor(data.lightningKillsPerClick));
-    $("#stats_lightningCost").text(" "+ Math.floor(data.lightningCost));
-    // lightning strike passive speed
-    $("#stats_lightningPassiveSpeed").text("1 strike/ "+ (10*data.lightningPassiveSpeed).toFixed(1) +" Sec");
-    $("#stats_lightningPassiveCost").text(" "+ Math.floor(data.lightningPassiveCost));
-    $("#stats_lightningKills").text(" "+ Math.floor(data.lightningKills));
-    $("#stats_lightninglevel").text(" "+ Math.floor(data.lightningLevel));
+        
+        //stats 
+        $("#stats_score").text(" "+ Math.floor(data.score));
+        $("#stats_deathpoints").text(" "+ Math.floor(data.deathpoints));
+        $("#stats_worshipper").text(" "+ Math.floor(data.worshipper));
+        $("#stats_living").text(" "+ Math.floor(data.living));
+        $("#stats_death").text(" "+ Math.floor(data.kills));
+        $("#stats_passive_kills").text(" "+ Math.floor(data.passiveKills)); 
+        $("#stats_divinities").text(" "+ Math.floor(data.divinities)); 
+        $("#stats_click_kills").text(" "+ Math.floor(data.clickKills));
+        $("#stats_clicks").text(" "+ Math.floor(data.clicks));
+        // natural life cycle
+        $("#stats_daytics").text(" "+ Math.floor(data.daytics));
+        $("#stats_naturalbirths").text(" "+ Math.floor(data.naturalbirths));
+        $("#stats_naturaldeaths").text(" "+ Math.floor(data.naturaldeaths));
+        //upgrades
+        //ligthning strike
+        $("#stats_lightningKillsPerClick").text(" "+ Math.floor(data.lightningKillsPerClick));
+        $("#stats_lightningCost").text(" "+ Math.floor(data.lightningCost));
+        // lightning strike passive speed
+        $("#stats_lightningPassiveSpeed").text("1 strike/ "+ (10*data.lightningPassiveSpeed).toFixed(1) +" Sec");
+        $("#stats_lightningPassiveCost").text(" "+ Math.floor(data.lightningPassiveCost));
+        $("#stats_lightningKills").text(" "+ Math.floor(data.lightningKills));
+        $("#stats_lightninglevel").text(" "+ Math.floor(data.lightningLevel));
     }    
 
     //return [poison, electricity, wind, water, fire, earth, beast, all, active, passive, alltypes ];
-    $("#armory_stat_poison").text(relicPowerCalc()[0].toFixed(2));
-    $("#armory_stat_electricity").text(relicPowerCalc()[1].toFixed(2))
-    $("#armory_stat_wind").text(relicPowerCalc()[2].toFixed(2))
-    $("#armory_stat_water").text(relicPowerCalc()[3].toFixed(2))
-    $("#armory_stat_fire").text(relicPowerCalc()[4].toFixed(2))
-    $("#armory_stat_earth").text(relicPowerCalc()[5].toFixed(2))
-    $("#armory_stat_beast").text(relicPowerCalc()[6].toFixed(2))
-    $("#armory_stat_all").text(relicPowerCalc()[7].toFixed(2))
-    $("#armory_stat_active").text(relicPowerCalc()[8].toFixed(2))
-    $("#armory_stat_passive").text(relicPowerCalc()[9].toFixed(2))
-    $("#armory_stat_alltypes").text(relicPowerCalc()[10].toFixed(2))
+        $("#armory_stat_poison").text(relicPowerCalc()[0].toFixed(2));
+        $("#armory_stat_electricity").text(relicPowerCalc()[1].toFixed(2))
+        $("#armory_stat_wind").text(relicPowerCalc()[2].toFixed(2))
+        $("#armory_stat_water").text(relicPowerCalc()[3].toFixed(2))
+        $("#armory_stat_fire").text(relicPowerCalc()[4].toFixed(2))
+        $("#armory_stat_earth").text(relicPowerCalc()[5].toFixed(2))
+        $("#armory_stat_beast").text(relicPowerCalc()[6].toFixed(2))
+        $("#armory_stat_all").text(relicPowerCalc()[7].toFixed(2))
+        $("#armory_stat_active").text(relicPowerCalc()[8].toFixed(2))
+        $("#armory_stat_passive").text(relicPowerCalc()[9].toFixed(2))
+        $("#armory_stat_alltypes").text(relicPowerCalc()[10].toFixed(2))
 
 
     updateIdCard(selectedIdFromIdCard);
@@ -3457,19 +3537,26 @@ window.setInterval(function(){
     for(i=0;i<data.sect.length;i++){
         var deathReason = unfortunateEvents[Math.round(Math.random()*unfortunateEvents.length)];
         
+
         if(data.sect[i][12]===1){
             data.sect[i][10] = data.sect[i][10]+0.1;
             data.worshipper += data.sect[i][7]/10;
             data.sect[i][6] += data.sect[i][7]/10;
+            $("#id_card_level_"+data.sect[i][0]).text("Level: "+ data.sect[i][2]);
             $("#id_card_age_"+data.sect[i][0]).text("Age: "+ Math.round(data.sect[i][10]));
+            $("#id_card_worshipper_"+data.sect[i][0]).text("Worshipper: "+ Math.round(data.sect[i][7]));
             
             if(data.sect[i][13] ==="male"){var gender = " He " }else{ var gender = " She " }
+            
             if( data.sect[selectedIdFromIdCard][17] === "In training"){
-                data.sect[selectedIdFromIdCard][17] = "Alive";
+                data.sect[i][20] +=1;
+                if(data.sect[i][20]>12){ data.sect[selectedIdFromIdCard][17] = "Alive"; data.sect[i][20] = 0}
+                
             }
             if(Math.round(data.sect[i][10])==data.sect[i][11]){
                 
                 showPopup(('<span class="close" id="close_pop_up">&times;</span>'+"Breaking News: "+ data.sect[i][1]+ " "+ data.sect[i][14]+' died at the age of '+ Math.round(data.sect[i][10]) + "."+ gender + "died while "+ deathReason.toLocaleLowerCase()))
+                autoHidePopup();
                 $("#id_card_cultist_"+data.sect[i][0]).addClass("crossed-div")
                 $('#close_pop_up').on("click",function(){
                     $('#popup').css("display","none");
@@ -3554,6 +3641,7 @@ function achievementChecker(){
 }
 function achieve(key){
     showPopup("You achieved "+ data.achievements[key][1] + ": " + data.achievements[key][2]) 
+    autoHidePopup()
     //console.log("Success")
     data.achievements[key][4]= true;
     data.achievements[key][6]= Date();
@@ -3633,18 +3721,17 @@ function lifeupdate(){
 $("#reincarnation_button").on("click",function(){
     
     var popup = document.getElementById('popup');
-    
-    popup.style.display = 'block';
-
+        popup.style.display = 'block';
     var content = ("For the small price of <b>Everything you own</b> you can reincarnate? I am emphasizing here, you will lose everything, are you sure you want to reincarnate? <br> You will get <b>"+ data.potentialDivinities.toFixed(0) + "</b> divinities"+'<div class="cult_button" onclick="reincarnation()">Yes I want to reincarnate</div>'+'<div class="cult_button" style="margin-top:15px;" onclick="hidepopup()">No I am not ready</div>')
     $('.popup').html(content)
     $('.popup').css('top','40%')
+    
     
 });
 
 function reincarnation(){
     dataUpdate();
-    localStorage.setItem("relics_gameend", JSON.stringify(data.relic));
+    //localStorage.setItem("relics_gameend", JSON.stringify(data.relic));
     var a = data.score;
     var b =data.divinities;
     var c =data.kills;
@@ -3663,12 +3750,12 @@ function reincarnation(){
     var p =data.shopclickPowerBooster;
     var q =data.passiveKillsForOfflineTime;
     var s = data.offlineStrength;
-    var t = data.potentialDivinities
+    var t = data.potentialDivinities + data.divinities
     
     
     
     Object.assign(data, JSON.parse(localStorage.getItem('initial_situation') || '{}'));
-    Object.assign(data.relic, JSON.parse(localStorage.getItem('relics_gameend') || '{}'));
+    //Object.assign(data.relic, JSON.parse(localStorage.getItem('relics_gameend') || '{}'));
     data.score = a;
     data.divinities = b;
     data.killsReincarnation += c;
@@ -3692,7 +3779,7 @@ function reincarnation(){
     data.divinities = t;
 
     dataUpdate();
-    alert("You are left with nothing but your relics and your newly earned divinties... Good luck");
+    alert("You are left with nothing divinties... Good luck");
     document.getElementById('popup').style.display = 'none';
 
 }
@@ -3704,13 +3791,15 @@ function gameEnd(growth, stage){
     if(data.living<0){
         data.living =0;
         dataUpdate();
-        window.setTimeout( function(){
-            alert("Congratulations you killed everyone, ... You psychopath");
-            alert("Do you want to kill another planet?!");
-            alert("Yes");
-            alert(" ...");
-            alert(" Yes, YOU DO!");
-        },150);
+        
+            var popup = document.getElementById('popup');
+            popup.style.display = 'block';
+            var content = ("Congratulations you killed everyone, ... You psychopath<br>Do you want to kill another planet?!"
+                            +`<div class="cult_button" onclick="gameEndcomm2()">Yes I do!</div>`)
+            $('.popup').html(content)
+            $('.popup').css('top','40%')
+                        
+        
         localStorage.setItem("relics_gameend", JSON.stringify(data.relic));
             var a = data.score;
             var b =data.divinities;
@@ -3764,20 +3853,37 @@ function gameEnd(growth, stage){
             
             worlddecay();
             $("#overlay").show();
-            window.setTimeout( function(){
-                    alert("Everything turns black!");
-                    alert("You feel weak, as if all your power left you...");
-                    dataUpdate(); 
-            },350);
-            window.setTimeout( function(){
-               $("#overlay").hide();
-            },550); 
-            window.setTimeout( function(){
-                alert("A new planet? So much potential...");
-                alert("Lets do this again");
-            },850);    
+            
+
+            
+
+                
         }
         
+}
+
+function gameEndcomm2(){
+    popup.style.display = 'block';
+    var content = ("You feel weak, as if all your power left you..."
+    +`<div class="cult_button" onclick="gameEndcomm3()">Yes I do!</div>`)
+    $('.popup').html(content)
+    
+    //alert("Everything turns black!");
+    //alert("You feel weak, as if all your power left you...");
+    dataUpdate(); 
+}
+function gameEndcomm3(){
+    //alert("A new planet? So much potential...");
+    //alert("Lets do this again");
+    var content = ("A new planet? So much potential...!"
+        +`<div class="cult_button" onclick="hideoverlay()">Lets do this again!</div>`)
+        $('.popup').html(content)
+
+}
+
+function hideoverlay(){
+    $("#overlay").hide();
+    hidepopup();
 }
 
 function worlddecay(){
