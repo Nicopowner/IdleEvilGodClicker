@@ -20,11 +20,6 @@ body {
 
 }
 
-@media screen and (max-width: 500px) {
-  body {
-    font-size: 13px;
-  }
-}
 
 .unselectable {
 
@@ -343,15 +338,11 @@ img{
   /*background-color: #003459;*/
   background: linear-gradient(to right,#065288, #003459);
   padding: 10px;
-
-  
 }
-
 .relic_logo{
   width: auto;
   margin: auto;
- 
-   
+  max-width: 90%;
 }
 .relic_level{
   background-color: #007EA7;
@@ -361,9 +352,80 @@ img{
   margin:auto;
   margin-left: 10%;
   border-radius: 205%;
-  
-
 }
+.relic_image{
+  max-height: 75px; 
+  width: auto; 
+  margin: auto; 
+  border-radius: 8px;
+}
+/* Styles for screens narrower than 600px */
+@media (max-width: 500px) {
+  body{
+    font-size: 11px;
+  }
+  .relic_image{
+    width: 60px; 
+    margin: auto; 
+    border-radius: 8px;
+  }
+  .score_header{
+    font-size: 12px;
+  }
+  .settings_button{
+    font-size: 12px;
+ }
+ .cult_button{
+  font-size: 12px;
+}
+ #new_acolyte{
+  font-size: 11px;
+ }
+ #events_button{
+  font-size: 11px;
+}
+#armory_button{
+  padding-bottom: 10px ;
+}
+}
+
+@media (max-width: 400px) {
+  .score_header{
+    font-size: 10px;
+  }
+  .relic_component{
+    grid-template-columns: [first] 20% [second] 60% [third] 20%;
+    
+  }
+  .relic_image{
+    width: 50px;   
+  }
+  .relic_logo{
+    max-width: 50px;
+  }
+  .relic_level{
+    font-size: 10px;
+    max-width: 50px;
+    border-radius: 200%;
+  }
+  .relic_title{
+    margin-bottom: 0.5%;
+  }
+  .relic_name{
+
+    font-size: 10px;
+
+  }
+  .relic_button{
+    font-size: 10px;
+  }
+  .settings_button{
+    font-size: 10px;
+ }
+}
+
+
+
 .relic_title{
   font-family: Arial, Helvetica, sans-serif;
   padding: 1%;
@@ -371,8 +433,6 @@ img{
   border-radius: 5%;
   position:sticky;
   margin: auto;
-
-  
 }
 .relic_name{
   font-family: Arial, Helvetica, sans-serif;
@@ -381,7 +441,6 @@ img{
   vertical-align: middle;
   width: 90%;
   margin: auto;
-
 }
 .relic_button{
   font-family: Arial, Helvetica, sans-serif;
@@ -395,7 +454,6 @@ img{
   background-color: #007EA7;
   border-radius: 10%;
   border: 1px solid rgb(10, 1, 1)
-  
 }
 
 #all_stats_list{
@@ -404,20 +462,16 @@ img{
 
 #armory_button{
   margin-top: 5px;
+  padding-bottom: 30px ;
   height: 30px;
-  background-color: #ffffff;
-  color: #000000;
-  
+  text-align: center;
+  vertical-align: middle;
 }
 
 #armory_button:hover{
-  border-width: 2px ;
-  border-color: #050000;
-  border-style: solid;
   font-weight: 600;
-  
-
 }
+
 #buttons{
   display: flex;
 
@@ -437,7 +491,6 @@ img{
   vertical-align: middle;
   margin: auto;  
   padding: 5px;
- 
 }
 
 .cult_button:hover{
@@ -500,11 +553,13 @@ display: none;
   display: none;
  
 }
-.id_card_detail_pop_up_content{
+.id_card_detail_pop_up_content_group{
   background-color: #cfcdcd;
-  display: grid;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
+}
+.id_card_detail_pop_up_content{
+  display: grid;
   grid-template-columns: [first] 40% [second] 60%;
 }
 .id_card_profile_pic_pop_up{
@@ -544,6 +599,7 @@ display: none;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   color: #000;
+  z-index: 15;
 }
 
 .crossed-div {
@@ -680,10 +736,8 @@ display: none;
   border-radius: 25%;
   margin: auto;
   background-color: #0395c5;
-  
   font-weight: 600;
   color: white;
-  font-size: 17px;
   display: flex;
   align-items: center;
   text-align: center;
@@ -692,7 +746,11 @@ display: none;
 .settings_button:hover{
   background-color: #00A8E8;
 } 
+.shop_upgrades{
+  display: flex;
+  gap: 10px;
 
+}
 
 .click_effect{
   position: absolute;
@@ -772,7 +830,7 @@ display: none;
 .event_box{
   min-height: 360px;
   height: auto;
-  width: 200px;
+  width: 210px;
   border-radius: 3px;
   margin: 10px;
   margin-top: 1%;
@@ -800,6 +858,7 @@ display: none;
   margin: auto;  
   padding: 1px;
   margin-bottom: 2%;
+
 }
 
 .event_button:hover{
@@ -856,9 +915,16 @@ display: none;
 }
 
 .relic_armory_box{
-  width: 100px;
-  height: 100px;
+  width: 75px;
+  height: 75px;
+  border-radius: 3%;
   background-color: #00A8E8;
+}
+.relic_armory_box_details{
+  border:#7a7a7a solid 0.5px;
+  border-radius: 3%;
+  padding: 1px;
+  color: #000000;
 }
 .relic_armory_area{
   display: flex;
@@ -904,7 +970,7 @@ display: none;
   height: 100%;
   background-color: black; /* Black background */
   opacity: 0.9; /* Slight transparency */
-  z-index: 9999; /* On top of other elements */
+  z-index: 14; /* On top of other elements */
   display: none; /* Hidden by default */
 }
 
