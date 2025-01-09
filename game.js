@@ -221,7 +221,7 @@ var data = {
             automatedFlag = false,
             artifactUpgrade = 1,
             visible = true,
-            buffElement = ['electricity', 'fire'],
+            buffElement = ['lightning', 'fire'],
             buffType = 'passive',
             maxBuyable = 0,
         ],
@@ -3000,7 +3000,7 @@ function showNewAbility(){
         }        
     }
 
-    if (selectElement.value == "all" ||selectElement.value == "electricity") {
+    if (selectElement.value == "all" ||selectElement.value == "lightning") {
         $("#lightning_strike_component").css("display",'inline-grid');
         $("#passive_lightning_strike_component").css("display",'inline-grid');
     } 
@@ -3217,15 +3217,15 @@ function dataUpdate(){
         $("#stats_lightninglevel").text(" "+ Math.floor(data.lightningLevel));
     }    
 
-    //return [poison, electricity, wind, water, fire, earth, beast, all, active, passive, alltypes ];
+    //return [poison, lightning, wind, water, fire, earth, beast, all, active, passive, alltypes ];
         $("#armory_stat_poison").text(relicPowerCalc()[0].toFixed(2));
-        $("#armory_stat_electricity").text(relicPowerCalc()[1].toFixed(2))
+        $("#armory_stat_lightning").text(relicPowerCalc()[1].toFixed(2))
         $("#armory_stat_wind").text(relicPowerCalc()[2].toFixed(2))
         $("#armory_stat_water").text(relicPowerCalc()[3].toFixed(2))
         $("#armory_stat_fire").text(relicPowerCalc()[4].toFixed(2))
         $("#armory_stat_earth").text(relicPowerCalc()[5].toFixed(2))
         $("#armory_stat_beast").text(relicPowerCalc()[6].toFixed(2))
-        $("#armory_stat_all").text(relicPowerCalc()[7].toFixed(2))
+        $("#armory_stat_all_elements").text(relicPowerCalc()[7].toFixed(2))
         $("#armory_stat_active").text(relicPowerCalc()[8].toFixed(2))
         $("#armory_stat_passive").text(relicPowerCalc()[9].toFixed(2))
         $("#armory_stat_alltypes").text(relicPowerCalc()[10].toFixed(2))
@@ -3444,7 +3444,7 @@ function displayPassivePower(image,lvl,id){
 function relicPowerCalc(){
             
         var poison = 1;
-        var electricity = 1;
+        var lightning = 1;
         var wind = 1;
         var water = 1;
         var fire = 1;
@@ -3462,6 +3462,14 @@ function relicPowerCalc(){
             if( data.relic[a][10] === true){
                 //check their buff type
                 switch(true){
+                     case(data.relic[a][13] === "all"):
+                        if(data.relic[a][14] === "percentage"){
+                            alltypes *= data.relic[a][4]
+                            passive *= data.relic[a][4]
+                            active *= data.relic[a][4]
+                        }
+                        //else(alltypesAbsolute += data.relic[a][4])
+                        break;
                     case(data.relic[a][13] === "passive"):
                         if(data.relic[a][14] === "percentage"){passive *= data.relic[a][4]}
                         //else(passiveAbsolute += data.relic[a][4])
@@ -3470,18 +3478,28 @@ function relicPowerCalc(){
                         if(data.relic[a][14] === "percentage"){active *= data.relic[a][4]}
                         //else(activeAbsolute += data.relic[a][4])
                         break;
-                    case(data.relic[a][13] === "all"):
-                        if(data.relic[a][14] === "percentage"){alltypes *= data.relic[a][4]}
-                        //else(alltypesAbsolute += data.relic[a][4])
-                        break;
+                   
                     default:
                 }
                 switch(true){
+                    case(data.relic[a][12]==="all"):
+                    if(data.relic[a][14] === "percentage"){
+                        all *= data.relic[a][4]
+                        poison *= data.relic[a][4]
+                        lightning *= data.relic[a][4]
+                        wind *= data.relic[a][4]
+                        water *= data.relic[a][4]
+                        fire *= data.relic[a][4]
+                        earth *= data.relic[a][4]
+                        beast *= data.relic[a][4]
+                    }
+
+                        break;
                     case(data.relic[a][12]==="poison"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){poison *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="electricity"||data.relic[a][12]==="all"):
-                        if(data.relic[a][14] === "percentage"){electricity *= data.relic[a][4]}
+                    case(data.relic[a][12]==="lightning"||data.relic[a][12]==="all"):
+                        if(data.relic[a][14] === "percentage"){lightning *= data.relic[a][4]}
                         break;    
                     case(data.relic[a][12]==="wind"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){wind *= data.relic[a][4]}
@@ -3498,15 +3516,13 @@ function relicPowerCalc(){
                     case(data.relic[a][12]==="beast"||data.relic[a][12]==="all"):
                         if(data.relic[a][14] === "percentage"){beast *= data.relic[a][4]}
                         break;
-                    case(data.relic[a][12]==="all"):
-                        if(data.relic[a][14] === "percentage"){all *= data.relic[a][4]}
-                        break;
+                    
                     default:
                     }
 
             }
         }
-    return [poison, electricity, wind, water, fire, earth, beast, all, active, passive, alltypes ];
+    return [poison, lightning, wind, water, fire, earth, beast, all, active, passive, alltypes ];
 
 }
 
