@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="viewport"
-content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
   <title>Idle Evil God</title>
-   
+  
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -33,9 +32,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       <div class="clicker_power_bar"><div class="clicker_power_bar_result" id="clicker_power_bar"></div></div>
       <div class="clicker_area" id="clicker_area_id"draggable="false" userselect="none">
         
-        <img class="click_object" id="planet" src="images/world smaller stage 1.png" draggable="false">
+        <img alt="picture of a planet" class="click_object" id="planet" src="images/world smaller stage 1.png" draggable="false">
         
-        <div id="lightning_strike_effect"><img class="click_effect" id="click_effect_visual" src="images/lightning.png"></div>
+        <div id="lightning_strike_effect"><img alt="Lighting strike picture" class="click_effect" id="click_effect_visual" src="images/lightning.png"></div>
 
         <div id="number-container"></div>
         <!--<div id="lightning_strike_effect" style="position: absolute; visibility: visible; top:200px; left:200px; width: 20px; height: 20px; object-fit: contain;background-image: 'images/lightning.png';">
@@ -59,9 +58,22 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <div class="progress_bar" id="passive_speed_bar"><div class="progress_bar_result" id="passive_speed_bar_result"></div></div>
 
         <!-- lightning kills -->  
-        <div class="info_box" >
-          
-          <div style="text-align: end;">
+        <div class="info_box">
+          <div style="float: left; color: #535151;" >
+            <label for="elements" >
+              Filter for:</label> 
+              <select id="elements" name="elements" style="font-size: 12px;" onchange="showNewAbility()"> 
+                <option value="all">All</option> 
+                <option value="poison">Poison</option> 
+                <option value="electricity">Electricity</option> 
+                <option value="wind">Wind</option> 
+                <option value="water">Water</option> 
+                <option value="earth">Earth</option> 
+                <option value="fire">Fire</option> 
+                <option value="beast">Beast</option> 
+              </select>
+          </div>
+            <div style="text-align: end;">
             <button id="select_1" class="w3-button selector_button selector_button_clicked" onclick="buyamount('1')" style="height: 25px; padding:0px;">x1</button>
             <button id="select_10" class="w3-button selector_button" onclick="buyamount('10')" style="height: 25px; padding:0px;">x10</button>
             <button id="select_100" class="w3-button selector_button" onclick="buyamount('100')" style="height: 25px; padding:0px;">x100</button>
@@ -85,7 +97,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <div class="upgrade_component" id="lightning_strike_component">
             <div class = "upgrade_logo" id="lightning_strike_logo">
               
-              <img src="images/lightning.png" style="height: 35px; ">
+              <img alt="lighting strike image" src="images/lightning.png" style="height: 35px; ">
               <div class="upgrade_level" id="lightning_strike_level"></div>
             </div>
             <div class="upgrade_name" id="lightning_strike_name">
@@ -106,7 +118,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
         <div class="upgrade_component" id="passive_lightning_strike_component">
           <div class = "upgrade_logo" id="passive_lightning_strike_logo">
             
-            <img src="images/lightning.png" style="height: 35px; ">
+            <img alt="lighting strike image" src="images/lightning.png" style="height: 35px; ">
             <div class="upgrade_level" id="passive_lightning_strike_level">lvl </div>
           </div>
           <div class="upgrade_name" id="passive_lightning_strike_name">
@@ -169,8 +181,8 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
       <!--Relics-->
         <div id="Relic" class="w3-container w3-display-container menuitem" style="display:none">
               
-          <div id="armory_button" class="relic_button">Armory</div>
-
+          <div id="armory_button" class="cult_button">Armory</div>
+          <div style="color: black;"> Don't forget to equip your gear in the armory!</div>
 
               <div style="display: none;">
                 <div class="relic_component" id="relic_component">
@@ -373,9 +385,9 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
             <p>Active upgrades</p>
           
           <div class="shop_upgrades">
-              <button class="cult_button" id="shop_upgrade_1" > 5 min of kills - 150 Gems</button>
-              <button class="cult_button" id="shop_upgrade_2" > 10 min of kills - 250 Gems</button>
-              <button class="cult_button" id="shop_upgrade_3" > 20 min of kills - 400 Gems</button>
+              <button class="cult_button" id="shop_upgrade_1" > 5 min of passive kills - 150 Gems</button>
+              <button class="cult_button" id="shop_upgrade_2" > 10 min of passive kills - 250 Gems</button>
+              <button class="cult_button" id="shop_upgrade_3" > 20 min of passive kills - 400 Gems</button>
 
           </div>
           <p>Permanent upgrades</p>
@@ -409,7 +421,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
               <div id="switch_button" class="cult_button">See Stats</div>
             </div>
             <div id="top_armory_section" class="armory_section"> 
-              <div id="helm" class="helm">
+              <div id="helmet" class="helmet">
                 <img src="images/helm area.svg" alt="Description of the image" height="100px">
               </div>
               <div id="cloak" class="cloak"> 
@@ -486,24 +498,27 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
 
             </div>
         </div> 
-
+        <h5 id="inventory_title" style="color: #000;">Inventory:<span style="color: #000;"> click or drag to equip</span></h5>  
         <div class="relic_armory_area armory_section" >
-          
+        
         <!-- Potential section to remove gear, dont see why i would add this for now
           <div id="remove_gear" class="remove_gear" style="float:right;"> 
             <img src="images/remove.jpeg" alt="Description of the image" height="100px">
           </div> -->
-          <div class="relic_armory_box" id="relic_armory_box" >
-            
-          </div>
+            <div id="relic_armory_box_details">  
+                <div class="relic_armory_box" id="relic_armory_box" >
+                </div>
+            </div>
         </div>
         </div>
 
         <div class="id_card_detail_pop_up" id="id_card_detail_pop_up">
+          <div class="id_card_detail_pop_up_content_group">
+          <span class="close" id="close_id_card">&times;</span>
           <div class="id_card_detail_pop_up_content">
             <div >
-              <img class="id_card_profile_pic_pop_up" id="id_card_profile_pic_pop_up" src="">
-              <span class="close" id="close_id_card">&times;</span>
+              <img alt="image_profile_picture_cultist" class="id_card_profile_pic_pop_up" id="id_card_profile_pic_pop_up" src="">
+              
             </div>
             
             <div class="id_card_details_pop_up_details">
@@ -520,7 +535,7 @@ content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable
               
 
             </div>
-            
+            </div>
 
           </div>
           <div class="id_card_detail_pop_up_buttons">
