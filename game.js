@@ -3799,6 +3799,15 @@ function reincarnation(){
 
     data.divinities = t;
     $(".relic_armory_area").html(""); 
+
+    document.getElementById("helmet").innerHTML = '<img src="images/helmet area.svg" alt="Description of the image" height="100px"></img>';
+    document.getElementById("cloak").innerHTML = '<img src="images/cloak area.svg" alt="Description of the image" height="100px"></img>';
+    document.getElementById("weapon").innerHTML = '<img src="images/weapon area left.svg" alt="Description of the image" height="100px"></img>';
+    document.getElementById("chest").innerHTML = '<img src="images/chest area.svg" alt="Description of the image" height="100px"></img>';
+    document.getElementById("shield").innerHTML = '<img src="images/weapon area right.svg" alt="Description of the image" height="100px"></img>';
+    document.getElementById("ring").innerHTML = '<img src="images/ring area.svg" alt="Description of the image" height="100px"></img>';
+    document.getElementById("shoes").innerHTML = '<img src="images/shoe area.svg" alt="Description of the image" height="100px"></img>';
+    
     dataUpdate();
     alert("You are left with nothing divinties... Good luck");
     document.getElementById('popup').style.display = 'none';
