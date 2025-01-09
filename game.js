@@ -1465,6 +1465,11 @@ function createArmoryRelics(){
            // document.getElementById(data.relic[i][1] + '_armory_box').addEventListener('touchend',equipEvent(Event),{passive:true});
             
         }
+        if(data.relic[i][5] == 0){
+            if($('#'+data.relic[i][1]+"armory_box_details")){
+                $('#'+data.relic[i][1]+"armory_box_details").remove()
+            }
+        }
     };
 };
 
@@ -3793,7 +3798,7 @@ function reincarnation(){
     data.offlineStrength = s;
 
     data.divinities = t;
-
+    $(".relic_armory_area").html(""); 
     dataUpdate();
     alert("You are left with nothing divinties... Good luck");
     document.getElementById('popup').style.display = 'none';
