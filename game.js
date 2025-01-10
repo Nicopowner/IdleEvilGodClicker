@@ -722,13 +722,13 @@ var data = {
                 id = 5,
                 idName = "thunder_staff",
                 namePassive = "Thunder Staff",
-                price = 697000,
+                price = 797000,
                 upgradeIncreaseEffect = 0,
                 level = 0,
                 description = "A staff crackling with the power of lightning, capable of summoning thunderous strikes. Wielding this staff can increase your lightning click kills by 3950 per level.",
                 logo = '"images/Thunder staff.png"',
                 type = 'weapon',
-                upgradeIncreaseIncrement = 3950,
+                upgradeIncreaseIncrement = 2950,
                 active = false,
                 availableInArmory = false,
                 buffElement = 'lightning',
@@ -2572,7 +2572,7 @@ $(".upgrade_button").on("click",function(Event){
             while(data.deathpoints>= PriceCalc(data.lightningPassiveCost,1.09,1)){purchaseClickEvent(Event)}
         }
         if(idCurrentTarget === "lightning_strike_button" ){
-            while( data.deathpoints>= PriceCalc(data.lightningCost,1.07,1)){
+            while( data.deathpoints>= PriceCalc(data.lightningCost,1.06,1,"click")){
                 purchaseClickEvent(Event)}
         }
         for(i=0;i<data.passiveUpgrades.length;i++){
@@ -2636,17 +2636,18 @@ function purchaseClickEvent(e){
         }
         if(idCurrentTarget === "lightning_strike_button"){
             
-            if(data.deathpoints>=PriceCalc(data.lightningCost,1.07,numberToBuy)){
-                
+            if(data.deathpoints>=PriceCalc(data.lightningCost,1.06,numberToBuy,"click")){
+                //console.log(data.lightningCost,numberToBuy)
                 //costs deducted
-                data.deathpoints -= PriceCalc(data.lightningCost,1.07,numberToBuy);
+                data.deathpoints -= PriceCalc(data.lightningCost,1.06,numberToBuy,"click");
                 //kills to be added
                 data.lightningKillsPerClick += Math.round(ValueCalc(data.lightningUpgradeIncreaseEffect,1.02,numberToBuy)); 
                 //effect and cost added to the upgrade
                 data.lightningUpgradeIncreaseEffect *= Number(Math.pow(1.02,numberToBuy)); 
-                data.lightningCost *= Number(Math.pow(1.07,numberToBuy));
+                data.lightningCost *= Number(Math.pow(1.06,numberToBuy));
+                data.lightningCost += Number(25*numberToBuy);
                 //levels added to counters
-                data.totalupgradesbought += Number(numberToBuy);  
+                data.totalupgradesbought += Number(numberToBuy) ;  
                 data.lightningLevel += Number(numberToBuy);
                 
             }
@@ -2870,9 +2871,18 @@ $("#shop_upgrade_12").on("click",function(){
 
 
 //create a purchase logic for the x10 and x100 purchases
-function PriceCalc(basePrice,incrementPrice,purchaseNumber){
-    var priceUpdate = (Math.round(basePrice*(1-(Math.pow(incrementPrice,purchaseNumber)))/(1-incrementPrice)));
-    
+function PriceCalc(basePrice,incrementPrice,purchaseNumber,click){
+    if(click){
+        
+        var priceUpdate = (Math.round(basePrice*(1-(Math.pow(incrementPrice,purchaseNumber)))/(1-incrementPrice)));
+        console.log(basePrice, incrementPrice, purchaseNumber)
+        priceUpdate += 25*purchaseNumber;
+
+    }
+    else{
+        var priceUpdate = (Math.round(basePrice*(1-(Math.pow(incrementPrice,purchaseNumber)))/(1-incrementPrice)));
+    }
+
 return priceUpdate
 }
 
@@ -2909,11 +2919,11 @@ function upgradepurchablecheck(){
     //    console.log(purchaseAmountCalc);
     }
 
-    if(data.deathpoints>=PriceCalc(data.lightningCost,1.07,purchaseAmountCalc))
+    if(data.deathpoints>=PriceCalc(data.lightningCost,1.06,purchaseAmountCalc,"click"))
         {$("#lightning_strike_button").addClass("buyable");}
     else{$("#lightning_strike_button").removeClass("buyable");}
     //passive lightning
-    if(data.deathpoints>=PriceCalc(data.lightningPassiveCost,1.07,purchaseAmountCalc))
+    if(data.deathpoints>=PriceCalc(data.lightningPassiveCost,1.06,purchaseAmountCalc))
         {$("#passive_lightning_strike_button").addClass("buyable");}
     else{$("#passive_lightning_strike_button").removeClass("buyable");}
     //Passive upgrades
@@ -3054,7 +3064,7 @@ function dataUpdate(){
         
         if(data.purchaseAmount>=0){
 
-            $("#lightning_strike_price").text(prettyNumbers(PriceCalc(data.lightningCost,1.07,data.purchaseAmount)));
+            $("#lightning_strike_price").text(prettyNumbers(PriceCalc(data.lightningCost,1.06,data.purchaseAmount,"click")));
             $("#passive_lightning_strike_price").text(prettyNumbers(PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount)));
             for(i=0;i<data.passiveUpgrades.length;i++){
                 // to be updated for everything + code for lvl up and for purchase to be written
@@ -3089,7 +3099,7 @@ function dataUpdate(){
     else{ 
         
         if(data.purchaseAmount>=0){
-            $("#lightning_strike_price").text(" "+ PriceCalc(data.lightningCost,1.07,data.purchaseAmount));
+            $("#lightning_strike_price").text(" "+ PriceCalc(data.lightningCost,1.06,data.purchaseAmount,"click"));
             $("#passive_lightning_strike_price").text(" "+ PriceCalc(data.lightningPassiveCost,1.09,data.purchaseAmount));
             for(i=0;i<data.passiveUpgrades.length;i++){
                 // to be updated for everything + code for lvl up and for purchase to be written
